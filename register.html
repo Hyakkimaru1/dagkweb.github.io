@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./resources/css/register.css">
+</head>
+<body>
+    <div id="container">
+        <div id="heading">
+            <h1>Register</h1>
+        </div>
+        <form id="frmRegister" method="POST" action="process.html">
+            <div class="fg">
+                <span>Name</span>
+                <input type="text" id ="txtName" placeholder="Username" required autofocus>
+                <span id="errName"></span>
+            </div>
+            <div class="fg">
+                <span>Address</span>
+                <input type="text" id ="txtAddr" placeholder="Your Address">
+                <span id="errAddr"></span>
+            </div>
+            <div class="fg">
+                <span>Email (*)</span>
+                <input type="text" id ="txtEmail" placeholder="Your Email">
+                <span id="errEmail"></span>
+            </div>
+            <div class="fg">
+                <span>Password</span>
+                <input type="password" id ="pwd" maxlength="8" placeholder="Password (6-8 characters)">
+                <span id="errPwd"></span>
+            </div>
+            <div>
+                <div class="g-recaptcha" id="rcaptcha" data-sitekey="6Le5KsEUAAAAAHey0TrA7WZeK_cFDy68DQ1THGhK"></div>
+                <span id="errcaptcha"></span>
+            </div> 
+            <div class="fg">
+                <button type="submit" onclick="return check()">SUBMIT</button>
+            </div>
+        </form>
+    </div>
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="./resources/js/register.js" type="text/javascript"></script>
+</body>
+</html>
