@@ -1,0 +1,187 @@
+/* start editing from here */
+a {
+	text-decoration:none;
+}
+.txt-rt {
+	text-align:right;
+}/* text align right */
+.txt-lt {
+	text-align:left;
+}/* text align left */
+.txt-center {
+	text-align:center;
+/*-- W3Layouts --*/	
+}/* text align center */
+.float-rt {
+	float:right;
+}/* float right */
+.float-lt {
+	float:left;
+}/* float left */
+.clear {
+	clear:both;
+}/* clear float */
+.pos-relative {
+	position:relative;
+}/* Position Relative */
+.pos-absolute {
+	position:absolute;
+}/* Position Absolute */
+.vertical-base {	
+	vertical-align:baseline;
+}/* vertical align baseline */
+.vertical-top {	
+	vertical-align:top;
+}/* vertical align top */
+img {
+	max-width:100%;
+}
+
+/*--- end reset code ---*/
+
+body {
+	background:url(./resources/images/banner.jpg) no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	font-family: 'Raleway', sans-serif;
+	font-weight:300;
+}
+h1.title {
+	font-size:50px;
+	color:#fff;
+	padding:40px 0;
+	text-align:center;
+	/*-- w3layouts --*/ 
+	text-transform:uppercase;
+}
+.content {
+	background-color:#202123;
+	width:70%;
+	margin:0 auto 50px;
+	padding:0;
+}
+.content .content-agile1 {
+    width: 50%;
+    float: left;
+    background: url(./resources/images/content.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    height: 555px;
+}
+h2.agileits1 {
+    font-size: 40px;
+    font-weight: normal;
+    color: #fff;
+    text-align: Center;
+    padding: 200px 0 15px;
+    text-transform: uppercase;
+	font-family: 'Monoton', cursive;
+}
+p.agileits2 {
+    font-size: 15px;
+    font-weight: normal;
+    color: #fff;
+    text-align: center;
+    text-transform: capitalize;
+}
+.content .content-agile2 {
+	width: 50%;
+    float: left;
+    padding: 25px 0 0;
+}
+input#txtName,input#txtAddr,input#txtEmail,input#password1,input#password2 {
+	width:300px;
+	height:50px;
+	padding:0 15px;
+	color:#fff;
+	font-size:17px;
+	font-weight:200;
+	background-color:transparent;
+	/*-- w3layouts --*/ 
+	border-bottom:5px solid #fff;
+	border-top-color:transparent;
+	border-left-color:transparent;
+	border-right-color:transparent;
+	font-family: 'Raleway', sans-serif;
+	margin:0 auto;
+	display:block;
+	outline:none;
+}
+input#txtName:focus,input#txtEmail:focus,input#password1:focus,input#password2:focus,input#txtName:hover,input#txtEmail:hover,input#password1:hover,input#password2:hover {
+	color:#fff;
+	border-bottom:5px solid #3970b0;
+}
+input#txtName:in-range{
+	color:#fff;
+	border-bottom:5px solid #3970b0;
+}
+input::-webkit-input-placeholder {
+color: #fff !important;
+} 
+input:-moz-placeholder { /* Firefox 18- */
+color: #fff !important;  
+} 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #fff !important;  
+} 
+input:-ms-input-placeholder {  
+color: #fff !important;  
+}
+input:hover::-webkit-input-placeholder {
+color: #3970b0 !important;
+} 
+input:hover:-moz-placeholder { /* Firefox 18- */
+color:	#3970b0 !important;  
+} 
+input:hover::-moz-placeholder {  /* Firefox 19+ */
+color: #3970b0 !important;  
+} 
+input:hover:-ms-input-placeholder {  
+color: #3970b0 !important;  
+}
+
+input.register {
+    width: 335px;
+    margin: 30px auto;
+    display: block;
+    height: 50px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: normal;
+    color: #fff;
+    background-color:#3970b0;
+    border-color: transparent;
+	font-family: 'Raleway', sans-serif;
+	/*-- w3ls --*/
+	transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	cursor:pointer;
+}
+input.register:hover {
+	color: #fff;
+    background-color:#3970b0;
+}
+
+div.g-recaptcha {
+	width:300px;
+
+	margin:0 auto;
+	display:block;
+	outline:none;
+}
+div#errName,div#errAddr,div#errEmail,div#errPwd,div#errCfpwd,div#errCaptcha{
+	margin:0 auto 5px;
+	color: red;
+	width: 330px;
+}

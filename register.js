@@ -2,8 +2,11 @@ function check(){
     var name = document.getElementById("txtName").value;
     var addr = document.getElementById("txtAddr").value;
     var email = document.getElementById("txtEmail");
-    var pwd = document.getElementById("pwd").value;
+    var pwd1 = document.getElementById("password1").value;
+    var pwd2 = document.getElementById("password2").value;
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; //Regular Expressions
+
+    //check name
     if(name == "")
     {
         document.getElementById("errName").innerHTML = "Please fill out your name!";
@@ -14,6 +17,7 @@ function check(){
         document.getElementById("errName").innerHTML = "";
     }
 
+    //check address
     if(addr == "")
     {
         document.getElementById("errAddr").innerHTML = "Please fill out your address!";
@@ -24,6 +28,7 @@ function check(){
         document.getElementById("errAddr").innerHTML = "";
     }
 
+    //check email
     if(email.value == "")
     {
         document.getElementById("errEmail").innerHTML = "Please fill out your email!";
@@ -38,12 +43,14 @@ function check(){
     {
         document.getElementById("errEmail").innerHTML = "";
     }
-    if(pwd=="")
+
+    //check password
+    if(pwd1=="")
     {
         document.getElementById("errPwd").innerHTML = "Please fill out password!";
         return false;
     }
-    else if(pwd.length < 6)
+    else if(pwd1.length < 6)
     {
         document.getElementById("errPwd").innerHTML = "Password has 6-8 characters";
         return false;
@@ -53,26 +60,37 @@ function check(){
         document.getElementById("errPwd").innerHTML = "";
     }
 
-    //kiểm tra trùng ở back-end
-    //...
+    //check confirm password
+    if(pwd2=="")
+    {
+        document.getElementById("errCfpwd").innerHTML = "Please fill out password!";
+        return false;
+    }
+    else if(pwd2 !=pwd1)
+    {
+        document.getElementById("errCfpwd").innerHTML = "Password Don't Match";
+        return false;
+    }
+    else
+    {
+        document.getElementById("errCfpwd").innerHTML = "";
+    }
 
-
-    alert("Register success!");
-    return true;
+    return get_action();
 }
 
 //check recaptcha
-function get_action(form) 
-        {
-            var v = grecaptcha.getResponse();
-            if(v.length == 0)
-            {
-                document.getElementById('captcha').innerHTML="You can't leave Captcha Code empty";
-                return false;
-            }
-            else
-            {
-                    document.getElementById('errcaptcha').innerHTML="Captcha completed";
-                return true; 
-            }
-        }  
+function get_action() 
+{
+    var v = grecaptcha.getResponse();
+    if(v.length == 0)
+    {
+        document.getElementById('errCaptcha').innerHTML="You can't leave Captcha Code empty";
+        return false;
+    }
+    else
+    {
+        document.getElementById('errCaptcha').innerHTML="Captcha completed";
+        return true; 
+    }
+}  
