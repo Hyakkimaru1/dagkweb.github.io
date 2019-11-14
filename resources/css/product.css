@@ -1,0 +1,89 @@
+p{
+    display: inline-block;
+    font-family:"Courier New", Times, serif;
+    font-size: 13px;
+}
+
+#link a{
+    color: #262e26;
+}
+
+#link a:hover{
+    border-bottom:1px solid #262e26;
+}
+
+.mainPic{
+    display: inline-block;
+    width: 50px;
+}
+
+.changeImg{
+
+    color:rgba(0,170,239,0.5);
+}
+
+.changeImg:hover{
+    background-color: rgba(241, 241, 241,0.7);
+    cursor:pointer;
+    cursor:pointer;
+ }
+
+ .headTag{
+     background-color: #00aeef;
+ }
+
+ h5{
+     display: inline;
+     color: white;
+     font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;
+ }
+ .bodyTag{
+    font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;
+    font-weight: 400; font-size: 15px;
+ }
+
+ .description{
+    
+     border: 0;
+     background: white;
+ }
+ .description:active{
+    border: none;
+    background-color: #00aeef;
+    color: white;
+ }
+
+
+ #top-overlay {
+    background-color: rgba(0, 0, 0,0.8);
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 998;
+ }
+
+#top-overlay,#allBid {
+    display: none;
+    position: fixed;
+}
+
+#allBid{
+    background-color: #fff;
+    z-index: 999;
+}
+
+.textCenter{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.bidHistory{
+    display: block;
+    height: 10%;
+    font-size: 14px;
+}
