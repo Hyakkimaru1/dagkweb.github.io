@@ -1,6 +1,8 @@
-
+.breadcrumb{
+    background-color: #fff;
+}
 .sidenav {
-    width:25%;
+    width:280px;
     position: fixed;
     z-index: 1;
     background-color: #fff;
@@ -21,8 +23,8 @@
     cursor: pointer;
     outline: none;
 }
-h1 i,.sidenav a i,.dropdown i{
-    width: 20%;
+.title i,.sidenav a i,.dropdown i{
+    width: 50px;
 }
   
 /* Main content */
@@ -38,12 +40,8 @@ h1 i,.sidenav a i,.dropdown i{
     padding-left: 25%;
 }
 
-.dropdown-container a:hover{
+.dropdown-container a:hover {
     color: blue;
-}
-
-h1{
-    margin-bottom: 40px;
 }
 
 .fa-user-circle{
@@ -77,6 +75,15 @@ h1{
 }
 
 .content_menu{
-    margin-top: 10px;
-    margin-left: 20px;
+    border:1px solid black;
+    padding: 10 10 10 10;
+}
+
+.content{
+    margin: 20px 20px 20px 20px;
+}
+
+.title{
+    margin-left: 15px;
+    margin-bottom: 40px;
 }
