@@ -8,13 +8,85 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
     <link rel="stylesheet" href="../resources/css/product.css">
+    <link rel="stylesheet" href="../resources/css/home.css">
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <title>product</title>
 </head>
 
 <body>
-   
-        
-       
+    <div class="navbar">
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+
+            <a class="fa fa-bars px-2 dropdown-toggle button" data-toggle="dropdown" style="color: black;"></a>
+            <ul class="dropdown-menu ">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </a>
+
+
+            <a class="navbar-brand" href="#"> <b>AUTION</b> </a>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Hot items</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Most view</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Help</a>
+                    </li>
+                </ul>
+
+
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" style="display: inline-block;width: 610px;" type="text"
+                        placeholder="Search" aria-label="Search">
+                </form>
+                <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
+                <a class="nav-link px-2" id="right" href="#"> <b>LOGIN</b> </a>
+                <a class="nav-link pr-1" id="right" href="#"><b>SIGNUP</b></a>
+                <img src="cart.svg" class="cart" alt="">
+            </div>
+        </nav>
+    </div>
+
     <div class="container mt-3" id="content">
         <div id="link">
             <a href="#">
@@ -40,16 +112,17 @@
                 <div class="row mt-4">
                     <div class="col-sm-4">
                         <div class="text-center">
-                        <img style="margin-top: 120px;" class="rounded-circle" width="80px" height="80px"
-                            src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg"
-                            alt="">
-                        <br>
-                        <p style="font-size:20px;" >Seller:<br>* *</p>
-                        <p style="font-size:20px;" id="nameSeller">Duy</p>
-                        <br>
-                        <i class="far fa-heart fa-2x " style="color: #15AABF"></i>
-                        <p style="font-size:20px;" id="voteSeller">100</p>
-                        <p style="font-size:20px;">%</p>
+                            <img style="margin-top: 120px;" class="rounded-circle" width="80px" height="80px"
+                                src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg"
+                                alt="">
+                            <br>
+                            <p style="font-size:20px;">Seller:</p> <br>
+                            <p style="font-size:20px;">* *</p>
+                            <p style="font-size:20px;" id="nameSeller">Duy</p>
+                            <br>
+                            <i class="far fa-heart fa-2x " style="color: #15AABF"></i>
+                            <p style="font-size:20px;" id="voteSeller">100</p>
+                            <p style="font-size:20px;">%</p>
                         </div>
                         <br>
 
@@ -60,97 +133,102 @@
                             Support</a>
                     </div>
                     <div class="col-sm-8">
-                        <div class="card" style="width: 29rem;">
+
+                        <div class="card img" style="width: 29rem;border:0">
                             <img src="https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg"
-                                class="card-img-top" alt="..." id="mainPic" >
-                            <div onclick="changeImg(this)"  id="changimgR" class="d-inline" style="margin-top: 150px;margin-left: 415px; position: absolute;">
-                                    <i class="fas fa-arrow-circle-right fa-3x rounded-circle changeImg"></i>
+                                class="card-img-top" alt="..." id="mainPic">
+                            <div onclick="changeImg(this)" id="changimgR" class="d-inline"
+                                style="margin-top: 150px;margin-left: 415px; position: absolute;">
+                                <i class="fas fa-arrow-circle-right fa-3x rounded-circle changeImg"></i>
                             </div>
-                            <div onclick="changeImg(this)" style="position: absolute;margin-left: 0px;margin-top: 150px;">
-                            <i class="fas fa-arrow-circle-left fa-3x rounded-circle changeImg" ></i>
+                            <div onclick="changeImg(this)"
+                                style="position: absolute;margin-left: 0px;margin-top: 150px;">
+                                <i class="fas fa-arrow-circle-left fa-3x rounded-circle changeImg"></i>
                             </div>
                         </div>
-                        <div class="mt-2 text-center mr-5" id="smallPic">
+                        <div class="mr-5 text-center" id="smallPic">
                             <img class="mr-2 mr-"
                                 src="https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg"
-                                width="65px" height="65px" alt="..." style="border: 2px solid #00AEEF;" onclick="pic(this)">
+                                width="65px" height="65px" alt="..." style="border: 2px solid #00AEEF;"
+                                onclick="pic(this)">
                             <img class="mr-2"
                                 src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg"
                                 width="65px" height="65px" alt="..." onclick="pic(this)">
+                            <img class="mr-2"
+                                src="https://nypdecider.files.wordpress.com/2019/06/one-punch-man.jpg?quality=90&strip=all&w=646&h=431&crop=1"
+                                width="65px" height="65px" alt="..." onclick="pic(this)">
+
                         </div>
-                        <div class="text-center mr-5 des" style="margin-top: 100px;">
-                           
-                                <button type='button' id="description" class="description" style="border: 2px solid #BFEEFA">
+                        <div style="margin-top: 90px;">
+                            <div class="text-center">
+                                <button type='button' id="description" class="description"
+                                    style="border: 2px solid #BFEEFA">
                                     <p style="font-size:20px;">Description</p>
                                 </button>
                                 <button type='button' id="seller" class="description">
                                     <p style="font-size:20px"> Seller</p>
-                                
-                            </form>
-
-                        </div>
-
-                        <div class="mt-3">
-                            <div id="inf" class=" border-left pl-4">
-                                <h5 style="font-size:20px; color: black;" id="titleDes">Mint - in undamaged sealed
-                                    original
-                                    box</h5>
-                                <br>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Brand:                </h5>
-                                <p style="font-size:17px; color: black;" id="brand">LEGO</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Series:                </h5>
-                                <p style="font-size:17px; color: black;" id="Series">Trains</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Serial Number:  </h5>
-                                <p style="font-size:17px; color: black;" id="serialNumber">10025</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Object:                </h5>
-                                <p style="font-size:17px; color: black;" id="object">-</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Model/ Name:    </h5>
-                                <p style="font-size:17px; color: black;" id="model">Santa Fe Cars Set I</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Packaging:         </h5>
-                                <p style="font-size:17px; color: black;" id="pack">in undamaged sealed original box</p>
-                                <br>
-                                <h5 style="font-size:17px; color: black;">Condition:           </h5>
-                                <p style="font-size:17px; color: black;" id="condition">Mint</p>
-                                <br>
-                                <p style="font-size:17px; color: black; margin-top: 20px; display: block;" id="moreInf">
-                                    Set from 2002 Sealed, mint. One small price tag on front
-                                    <br>Will be shipped registered & insured</p>
+                                </button>
                             </div>
-                            <div id="infSeller" class=" border-left pl-4">
-                                <p style="font-size: 15px; color: #727272;"> * * </p>
-                                <p id="nameSeller" style="font-size: 15px; color: #727272;">Duy</p>
-                                <p  style="font-size: 15px; color: #727272;">member since</p>
-                                <p  style="font-size: 15px; color: #727272;"> January 18, 2015</p>
-                                <br>
-                                <p style="font-size: 18px;">Feedback score:  <i class="far fa-heart fa-x " style="color: #15AABF"></i></p>
-                                <p id="voteSeller" style="color: black;">100</p>
-                                <p >% (</p> <p id="totalVote">8</p> <p>reviews )</p>
 
+                            <div class="mt-3">
+                                <div id="inf" class=" border-left pl-4">
+                                    <h5 style="font-size:20px; color: black;" id="titleDes">Mint - in undamaged sealed
+                                        original
+                                        box</h5>
+                                    <br>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Brand:                </h5>
+                                    <p style="font-size:17px; color: black;" id="brand">LEGO</p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Series:                </h5>
+                                    <p style="font-size:17px; color: black;" id="Series">Trains</p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Serial Number:  </h5>
+                                    <p style="font-size:17px; color: black;" id="serialNumber">10025</p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Object:                </h5>
+                                    <p style="font-size:17px; color: black;" id="object">-</p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Model/ Name:    </h5>
+                                    <p style="font-size:17px; color: black;" id="model">Santa Fe Cars Set I</p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Packaging:         </h5>
+                                    <p style="font-size:17px; color: black;" id="pack">in undamaged sealed original box
+                                    </p>
+                                    <br>
+                                    <h5 style="font-size:17px; color: black;">Condition:           </h5>
+                                    <p style="font-size:17px; color: black;" id="condition">Mint</p>
+                                    <br>
+                                    <p style="font-size:17px; color: black; margin-top: 20px; display: block;"
+                                        id="moreInf">
+                                        Set from 2002 Sealed, mint. One small price tag on front
+                                        <br>Will be shipped registered & insured</p>
+                                </div>
+                                <div id="infSeller" class=" border-left pl-4">
+                                    <p style="font-size: 15px; color: #727272;"> * * </p>
+                                    <p id="nameSeller" style="font-size: 15px; color: #727272;">Duy</p>
+                                    <p style="font-size: 15px; color: #727272;">member since</p>
+                                    <p style="font-size: 15px; color: #727272;"> January 18, 2015</p>
+                                    <br>
+                                    <p style="font-size: 18px;">Feedback score: <i class="far fa-heart fa-x "
+                                            style="color: #15AABF"></i></p>
+                                    <p id="voteSeller" style="color: black;">100</p>
+                                    <p>% (</p>
+                                    <p id="totalVote">8</p>
+                                    <p>reviews )</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="shadow mb-5 bg-white rounded">
+                <div class="shadow mb-5 bg-white rounded" id='lotOpen'>
                     <div class="headTag">
                         <div class="p-3">
                             <p style="color: white;">Lot closes in:</p>
                             <br>
-                            <h5>6</h5>
-                            <h5>d </h5>
-                            <h5>6</h5>
-                            <h5>h </h5>
-                            <h5>6</h5>
-                            <h5>m </h5>
-                            <h5>6</h5>
-                            <h5>s </h5>
+                            <h5 id="timeOut">6d 6h 6m 6s</h5>
                             <hr style="border-color: white;">
                             <p style="font-weight: 700; color: white;">You haven't bid on this lot yet.</p>
                         </div>
@@ -181,7 +259,7 @@
                         <br>
                         <br>
                         <p style="font-size: 15px; font-weight: 700;"> Bid directly</p>
-                        <form action="" id="inputBid" >
+                        <form action="" id="inputBid">
                             <div>
                                 <input style="text-align:right; width: 45%; background:url(resources/img/dollar.png) no-repeat scroll 7px 4px;
                                 padding-left:30px;" type="text" class="form-control rounded-pill d-inline"
@@ -209,57 +287,281 @@
                                         type="button" class="btn btn-primary rounded-circle mb-2 text-center"
                                         id="btbuyNow">BUY NOW</button>
                                     <h5 style="color: #3878E1;"> $</h5>
-                                    <h5 style="color: #3878E1; font-weight: 700; font-size: 25px;" id="priceBuyNow">99999</h5>
+                                    <h5 style="color: #3878E1; font-weight: 700; font-size: 25px;" id="priceBuyNow">
+                                        99999</h5>
                                 </div>
 
                             </div>
                         </form>
                         <br>
                         <br>
-                        <a href="javascript:void(0)" style="font-size: 15px;" id="ViewAll">View all bids</a>
+                        <a data-toggle="modal" data-target="#exampleModalScrollable" href="javascript:void(0)"
+                            style="font-size: 15px;" id="ViewAll">View all bids</a>
+                    </div>
+                </div>
+                <div class="shadow mb-5 bg-white rounded" id="lotClosed" style="display: none">
+                    <div class="headTag-close">
+                        <div class="p-3">
+                            <p style="color: white; ">Lot closed</p>
+                            <hr style="border-color: white;margin-top: -5px;">
+                            <br>
+                            <p style="display:block; color: white; margin-top: -20px;">You can no longer place any bids
+                                on this lot.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h4>Other interesting lots</h4>
-    </div>
-    <div class="textCenter text-center" id="allBid">
-            <div class="card" style="width: 32rem;">
+        <h4 class="mt-5">Other interesting lots</h4>
+        <div class="a">
+            <h2>Top 5 items with most bids/ closing soon/ highest price</h2>
+  
+            <div class="list_product row d-flex justify-content-around">
+      
+      
+              <div class="shadow col-2 item">
+                <div class="card" style="width: auto;">
+                  <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+                    class="card-img-top" alt="...">
+                  <div class="card_banner">
+                    106 bids
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
+                    <div class=" smalldes">
+                      <div id="block1">Post in: </div>
+                      <div id="block2">25/6/2019 11:11</div>
+                    </div>
+                    <div class="card-subtitle text-muted ">
+                      <div id="block1">Buy it now: </div>
+                      <div id="block3">190$</div>
+                    </div>
+                    <div class="card-subtitle text-muted text-truncate">
+                      <div id="block1">Bidder: </div>
+                      <div class="bidder">Katashiwa Ohisa </div>
+                    </div>
+                    <div id="price"><strong>190$</strong> </div>
+                    <div class="time_remain ">
+                      <strong>Close in </strong>
+                      <time class="time_close">
+                        <span>4d</span>
+                        <span>2h</span>
+                        <span>42m</span>
+                        <span>24s</span>
+                      </time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="shadow col-2 item">
+                  <div class="card" style="width: auto;">
+                    <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+                      class="card-img-top" alt="...">
+                    <div class="card_banner">
+                      106 bids
+                    </div>
                     <div class="card-body">
-                           <p style="color:black; font-weight:700; font-size: 23px;">Bid history</p>
-                           <div class="row ">
-                               <div class="col-sm-4">
-                                   <p class="bidHistory">Thời điểm</p>
-                                   <p class="bidHistory">1/11/2019 10:43</p>
-                                   <p class="bidHistory">1/11/2019 9:43</p>
-                                   <p class="bidHistory">1/11/2019 8:43</p>
-                                   <p class="bidHistory">1/11/2019 7:43</p>
-                               </div>
-                               <div class="col-sm-4">
+                      <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
+                      <div class=" smalldes">
+                        <div id="block1">Post in: </div>
+                        <div id="block2">25/6/2019 11:11</div>
+                      </div>
+                      <div class="card-subtitle text-muted ">
+                        <div id="block1">Buy it now: </div>
+                        <div id="block3">190$</div>
+                      </div>
+                      <div class="card-subtitle text-muted text-truncate">
+                        <div id="block1">Bidder: </div>
+                        <div class="bidder">Katashiwa Ohisa </div>
+                      </div>
+                      <div id="price"><strong>190$</strong> </div>
+                      <div class="time_remain ">
+                        <strong>Close in </strong>
+                        <time class="time_close">
+                          <span>4d</span>
+                          <span>2h</span>
+                          <span>42m</span>
+                          <span>24s</span>
+                        </time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+  
+                <div class="shadow col-2 item">
+                    <div class="card" style="width: auto;">
+                      <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+                        class="card-img-top" alt="...">
+                      <div class="card_banner">
+                        106 bids
+                      </div>
+                      <div class="card-body">
+                        <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
+                        <div class=" smalldes">
+                          <div id="block1">Post in: </div>
+                          <div id="block2">25/6/2019 11:11</div>
+                        </div>
+                        <div class="card-subtitle text-muted ">
+                          <div id="block1">Buy it now: </div>
+                          <div id="block3">190$</div>
+                        </div>
+                        <div class="card-subtitle text-muted text-truncate">
+                          <div id="block1">Bidder: </div>
+                          <div class="bidder">Katashiwa Ohisa </div>
+                        </div>
+                        <div id="price"><strong>190$</strong> </div>
+                        <div class="time_remain ">
+                          <strong>Close in </strong>
+                          <time class="time_close">
+                            <span>4d</span>
+                            <span>2h</span>
+                            <span>42m</span>
+                            <span>24s</span>
+                          </time>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+  
+                  <div class="shadow col-2 item">
+                      <div class="card" style="width: auto;">
+                        <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+                          class="card-img-top" alt="...">
+                        <div class="card_banner">
+                          106 bids
+                        </div>
+                        <div class="card-body">
+                          <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
+                          <div class=" smalldes">
+                            <div id="block1">Post in: </div>
+                            <div id="block2">25/6/2019 11:11</div>
+                          </div>
+                          <div class="card-subtitle text-muted ">
+                            <div id="block1">Buy it now: </div>
+                            <div id="block3">190$</div>
+                          </div>
+                          <div class="card-subtitle text-muted text-truncate">
+                            <div id="block1">Bidder: </div>
+                            <div class="bidder">Katashiwa Ohisa </div>
+                          </div>
+                          <div id="price"><strong>190$</strong> </div>
+                          <div class="time_remain ">
+                            <strong>Close in </strong>
+                            <time class="time_close">
+                              <span>4d</span>
+                              <span>2h</span>
+                              <span>42m</span>
+                              <span>24s</span>
+                            </time>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+  
+                    <div class="shadow col-2 item">
+                        <div class="card" style="width: auto;">
+                          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+                            class="card-img-top" alt="...">
+                          <div class="card_banner">
+                            106 bids
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title truncate2l">Car in 1970s very cool for </h5>
+                            <div class=" smalldes">
+                              <div id="block1">Post in: </div>
+                              <div id="block2">25/6/2019 11:11</div>
+                            </div>
+                            <div class="card-subtitle text-muted ">
+                              <div id="block1">Buy it now: </div>
+                              <div id="block3">190$</div>
+                            </div>
+                            <div class="card-subtitle text-muted text-truncate">
+                              <div id="block1">Bidder: </div>
+                              <div class="bidder">Katashiwa Ohisa </div>
+                            </div>
+                            <div id="price"><strong>190$</strong> </div>
+                            <div class="time_remain ">
+                              <strong>Close in </strong>
+                              <time class="time_close">
+                                <span>4d</span>
+                                <span>2h</span>
+                                <span>42m</span>
+                                <span>24s</span>
+                              </time>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+            </div>
+          </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p style="color:black; font-weight:700; font-size: 23px;">Bid history</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>    
+                </div>
+                <div class="modal-body">
+                    <div id="allBid">
+                        <div class="card-body" style="width: 32rem;">
+
+                            <div class="row ">
+                                <div class="col-sm-4">
+                                    <p class="bidHistory">Thời điểm</p>
+                                    <p class="bidHistory">1/11/2019 10:43</p>
+                                    <p class="bidHistory">1/11/2019 9:43</p>
+                                    <p class="bidHistory">1/11/2019 8:43</p>
+                                    <p class="bidHistory">1/11/2019 7:43</p>
+                                    <p class="bidHistory">1/11/2019 10:43</p>
+                                    <p class="bidHistory">1/11/2019 9:43</p>
+                                    <p class="bidHistory">1/11/2019 8:43</p>
+                                    <p class="bidHistory">1/11/2019 7:43</p>
+                                </div>
+                                <div class="col-sm-4">
                                     <p class="bidHistory">Người mua</p>
                                     <p class="bidHistory">****Khoa</p>
                                     <p class="bidHistory">****Quang</p>
                                     <p class="bidHistory">****Tuấn</p>
                                     <p class="bidHistory">****Minh</p>
-                               </div>
-                               <div class="col-sm-4">
+                                    <p class="bidHistory">****Khoa</p>
+                                    <p class="bidHistory">****Quang</p>
+                                    <p class="bidHistory">****Tuấn</p>
+                                    <p class="bidHistory">****Minh</p>
+                                </div>
+                                <div class="col-sm-4">
                                     <p class="bidHistory">Giá</p>
                                     <p class="bidHistory">6,000,000</p>
                                     <p class="bidHistory">5,900,000</p>
                                     <p class="bidHistory">5,800,000</p>
                                     <p class="bidHistory">5,700,000</p>
+                                    <p class="bidHistory">6,000,000</p>
+                                    <p class="bidHistory">5,900,000</p>
+                                    <p class="bidHistory">5,800,000</p>
+                                    <p class="bidHistory">5,700,000</p>
 
-                               </div>
-                           </div>
-                           
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
-                
+        </div>
     </div>
-    <div id="top-overlay"></div>
-  
-    
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
     <script src="../resources/js/product.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
