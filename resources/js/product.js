@@ -1,5 +1,5 @@
 
-var imgsource = ['https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg','https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg'];
+var imgsource = ['https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg','https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg','https://nypdecider.files.wordpress.com/2019/06/one-punch-man.jpg?quality=90&strip=all&w=646&h=431&crop=1'];
 $(document).ready(function(){
     $('#infSeller').hide();
     $('#description').click(function(){
@@ -57,25 +57,70 @@ $('#btPrimary').click( function(){
            $( "#notiWrong" ).text( "Not valid!" ).show().fadeOut( 2000 );
     }
     else {
-        $('#currendBid').text($('#primary').val());
+        Swal.fire({
+            title: 'Bạn có đồng ý ra giá?',
+            icon: 'question',
+            iconHtml: '?',
+            confirmButtonText: 'YES',
+            cancelButtonText: 'NO',
+            showCancelButton: true,
+            showCloseButton: true
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Ra giá thành công',
+                $('#currendBid').text($('#primary').val())
+              )
+            }
+            else {
+                Swal.fire(
+                    'Ra giá thất bại')
+            }
+          });
+       
     }
 });
 
 $('#btPrimaryAuto').click( function(){
     if ( parseInt($('#primaryAuto').val()) < minBid)
+    { 
         $( "#notiWrongAuto" ).text( "Not valid!" ).show().fadeOut( 2000 );
+    }
+    else {
+        Swal.fire({
+            title: 'Bạn có đồng ý ra giá?',
+            icon: 'question',
+            iconHtml: '?',
+            confirmButtonText: 'YES',
+            cancelButtonText: 'NO',
+            showCancelButton: true,
+            showCloseButton: true
+          })
+            
+    }
 
 });
 
 
-
-$('#ViewAll').click(function(){
-    $('#top-overlay,#allBid').show();   
-    $().show();   
+$('#btbuyNow').click(function(){
+    
+    Swal.fire({
+        title: 'Bạn có đồng ý ra giá?',
+        icon: 'question',
+        iconHtml: '?',
+        confirmButtonText: 'YES',
+        cancelButtonText: 'NO',
+        showCancelButton: true,
+        showCloseButton: true
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire(
+            'Thành Công!',
+            'Xem trong giỏ hàng!',
+            $('#lotClosed').show(),
+            $('#lotOpen').hide()
+          )
+        }
+      });
 });
-
-$('#top-overlay').click(function(){
-    $('#top-overlay,#allBid').hide();
-});
-
 

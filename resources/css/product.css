@@ -32,6 +32,11 @@ p{
      background-color: #00aeef;
  }
 
+ 
+ .headTag-close{
+    background-color: #727272;
+}
+
  h5{
      display: inline;
      color: white;
@@ -43,10 +48,17 @@ p{
  }
 
  .description{
-    
      border: 0;
      background: white;
  }
+
+
+.img{
+    position: relative;
+    top: 0px;
+    left:0px ; 
+    height: 400px;
+}
  .description:active{
     border: none;
     background-color: #00aeef;
@@ -54,23 +66,9 @@ p{
  }
 
 
- #top-overlay {
-    background-color: rgba(0, 0, 0,0.8);
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 998;
- }
-
-#top-overlay,#allBid {
-    display: none;
-    position: fixed;
-}
 
 #allBid{
     background-color: #fff;
-    z-index: 999;
 }
 
 .textCenter{
