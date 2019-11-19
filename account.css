@@ -1,0 +1,82 @@
+
+.sidenav {
+    width:25%;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+    overflow-x: hidden;
+}
+  
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width:100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+}
+h1 i,.sidenav a i,.dropdown i{
+    width: 20%;
+}
+  
+/* Main content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidenav */
+    font-size: 20px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+  
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+    display: none;
+    padding-left: 25%;
+}
+
+.dropdown-container a:hover{
+    color: blue;
+}
+
+h1{
+    margin-bottom: 40px;
+}
+
+.fa-user-circle{
+    color:rgba(255, 166, 0, 0.836);
+}
+
+.fa-clipboard-list{
+    color:rgb(0, 153, 255);
+}
+
+.fa-bell{
+    color: orangered;
+}
+
+.fa-box{
+    color: rgb(212, 94, 113);
+}
+
+.fa-dollar-sign{
+    color: yellow;
+}
+
+.fa-archive{
+    color: brown;
+}
+
+.rounded-circle{
+    display: block;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+.content_menu{
+    margin-top: 10px;
+    margin-left: 20px;
+}
