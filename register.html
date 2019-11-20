@@ -11,54 +11,56 @@
 	<!-- /fonts -->
 	<!-- css -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link href="register.css" rel='stylesheet' type='text/css' media="all" />
+	<link href="/resources/css/register.css" rel='stylesheet' type='text/css' media="all">
 	<!-- /css -->
 </head>
-<body>
-	<h1 class="title">Auction Online Register</h1>
-	<div class="content">
-		<div class="content-agile1">
-			<h2 class="agileits1">Auction Online</h2>
-			<p class="agileits2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+<body style="background:url(resources/images/banner.jpg) no-repeat;">
+	<div id="contener-register">
+		<h1 class="title">Auction Online Register</h1>
+		<div class="content">
+			<div class="content-agile1" style="background: url(resources/images/content.jpg) no-repeat;">
+				<h2 class="agileits1">Auction Online</h2>
+				<p class="agileits2">BID, WIN AND CLOSE WITH CONFIDENCE.</p>
+			</div>
+			<div class="content-agile2">
+				<form action="#" method="post" autocomplete="off">
+					<div class="form-control"> 
+						<input type="text" id="txtName" placeholder="First Name" title="Please enter your First Name">
+						<div id="errName"></div>
+					</div>
+
+					<div class="form-control">	
+						<input type="text" id="txtAddr" placeholder="Address" title="Please enter your address">
+						<div id="errAddr"></div>
+					</div>
+
+					<div class="form-control">	
+						<input type="text" id="txtEmail" placeholder="mail@example.com" title="Please enter a valid email">
+						<div id="errEmail"></div>
+					</div>
+
+					<div class="form-control">	
+						<input type="password" name="password" placeholder="Password (6-8 characters)" id="password1" maxlength="8">
+						<div id="errPwd"></div>
+					</div>	
+
+					<div class="form-control">	
+						<input type="password" name="confirm-password" placeholder="Confirm Password" id="password2" maxlength="8">
+						<div id="errCfpwd"></div>
+					</div>			
+					<br>
+					<div class="form-control">
+						<div class="g-recaptcha" id="recaptcha" data-sitekey="6Le5KsEUAAAAAHey0TrA7WZeK_cFDy68DQ1THGhK"></div>
+						<div id="errCaptcha"></div>
+					</div> 
+
+					<input type="submit" class="register" value="Register" onclick="return check()">
+				</form>
+			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="content-agile2">
-			<form action="#" method="post" autocomplete="off">
-				<div class="form-control"> 
-					<input type="text" id="txtName" placeholder="First Name" title="Please enter your First Name">
-					<div id="errName"></div>
-				</div>
-
-				<div class="form-control">	
-					<input type="text" id="txtAddr" placeholder="Address" title="Please enter your address">
-					<div id="errAddr"></div>
-				</div>
-
-				<div class="form-control">	
-					<input type="text" id="txtEmail" placeholder="mail@example.com" title="Please enter a valid email">
-					<div id="errEmail"></div>
-				</div>
-
-				<div class="form-control">	
-					<input type="password" name="password" placeholder="Password (6-8 characters)" id="password1" maxlength="8">
-					<div id="errPwd"></div>
-				</div>	
-
-				<div class="form-control">	
-					<input type="password" name="confirm-password" placeholder="Confirm Password" id="password2" maxlength="8">
-					<div id="errCfpwd"></div>
-				</div>			
-				<br>
-				<div class="form-control">
-					<div class="g-recaptcha" id="recaptcha" data-sitekey="6Le5KsEUAAAAAHey0TrA7WZeK_cFDy68DQ1THGhK"></div>
-					<div id="errCaptcha"></div>
-				</div> 
-
-				<input type="submit" class="register" value="Register" onclick="return check()">
-			</form>
-		</div>
-		<div class="clear"></div>
 	</div>
 	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<script src="register.js" type="text/javascript"></script>
+	<script src="/resources/js/register.js" type="text/javascript"></script>
 </body>
 </html>

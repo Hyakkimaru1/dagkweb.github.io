@@ -26,6 +26,8 @@
 .title i,.sidenav a i,.dropdown i{
     width: 50px;
 }
+
+
   
 /* Main content */
 .main {
@@ -36,11 +38,11 @@
   
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-    display: none;
+    display: block;
     padding-left: 25%;
 }
 
-.dropdown-container a:hover {
+.sidenav a:hover, .dropdown-container a:hover {
     color: blue;
 }
 
@@ -80,10 +82,23 @@
 }
 
 .content{
-    margin: 20px 20px 20px 20px;
+    margin: 0px 20px 20px 20px;
 }
 
 .title{
     margin-left: 15px;
     margin-bottom: 40px;
+}
+
+.form-control-sm{
+    width: 300px;
+    display: inline-block;
+}
+
+span{
+    color: red;
+}
+
+.btn-primary{
+    width: 80px;;
 }

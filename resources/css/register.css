@@ -39,8 +39,7 @@ img {
 
 /*--- end reset code ---*/
 
-body {
-	background:url(./resources/images/banner.jpg) no-repeat;
+#contener-register {
 	background-attachment:fixed;
 	background-position:center;
 	background-size:cover;
@@ -48,7 +47,7 @@ body {
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	font-family: 'Raleway', sans-serif;
-	font-weight:300;
+	font-weight: 300;
 }
 h1.title {
 	font-size:50px;
@@ -67,7 +66,7 @@ h1.title {
 .content .content-agile1 {
     width: 50%;
     float: left;
-    background: url(./resources/images/content.jpg) no-repeat;
+    
     background-position: center;
     background-size: cover;
     -webkit-background-size: cover;
