@@ -378,3 +378,7 @@ display: inline-block;
   margin-right: auto;
   margin-left: auto;
 }
+
+.navbar{
+  margin-bottom: 100px;
+}
