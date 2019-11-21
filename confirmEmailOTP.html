@@ -13,7 +13,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="./resources/css/home.css">
-	<link href="/resources/css/register.css" rel='stylesheet' type='text/css' media="all">
+    <link href="/resources/css/register.css" rel='stylesheet'>
+    <link rel="stylesheet" href="/resources/css/login.css">
+    <link rel="stylesheet" href="/resources/css/confirmEmailOTP.css">
 	<!-- /css -->
 </head>
 <body style="background:url(resources/images/banner.jpg) no-repeat;">
@@ -96,38 +98,25 @@
 				<p class="agileits2">BID, WIN AND CLOSE WITH CONFIDENCE.</p>
 			</div>
 			<div class="content-agile2">
-				<form action="#" method="post" autocomplete="off">
-					<div class="form-control-cus"> 
-						<input type="text" id="txtName" placeholder="Name" title="Please enter your Name">
-						<div id="errName"></div>
-					</div>
-
+                <div class="title-login">
+                    <div><i class="fa fa-buysellads" aria-hidden="true"></i> Auction Online</div>
+                </div>
+                <div id="title">
+                    CONFIRM EMAIL OTP
+                </div>
+                <div style="color: white; padding: 0px 20px 0px 40px; margin-bottom: 30px;">
+                    A OTP (One Time Passcode) has been sent to <b>abc@bca.com</b><br>Please enter the OTP in the field below to verify.   
+                </div>
+				<form class="form-confirmOTP" action="#" method="post" autocomplete="off">
 					<div class="form-control-cus">	
-						<input type="text" id="txtAddr" placeholder="Address" title="Please enter your address">
-						<div id="errAddr"></div>
-					</div>
-
-					<div class="form-control-cus">	
-						<input type="text" id="txtEmail" placeholder="mail@example.com" title="Please enter a valid email">
-						<div id="errEmail"></div>
-					</div>
-
-					<div class="form-control-cus">	
-						<input type="password" name="password" placeholder="Password (6-8 characters)" id="password1" maxlength="8">
-						<div id="errPwd"></div>
-					</div>	
-
-					<div class="form-control-cus">	
-						<input type="password" name="confirm-password" placeholder="Confirm Password" id="password2" maxlength="8">
-						<div id="errCfpwd"></div>
-					</div>			
-					<br>
-					<div class="form-control-cus">
-						<div class="g-recaptcha" id="recaptcha" data-sitekey="6Le5KsEUAAAAAHey0TrA7WZeK_cFDy68DQ1THGhK"></div>
-						<div id="errCaptcha"></div>
-					</div> 
-
-					<input type="submit" class="register" value="Register" onclick="return check()">
+                        <input type="text" id="txtOTP" placeholder="Enter your email OTP.">
+                        <div class="error" id="errOTP"></div>
+                        <a href="#" style="display: block; width: 300px; margin: 0 auto; margin-top: 5px;">resend OTP</a>
+                    </div>
+                    <div style="width: 300px; margin: 0 auto; margin-top: 20px;">
+                        <button type="submit" class="validate">Validate OTP</button>
+                        <button type="button" class="cancel" onclick="window.location.href='home.html'">Cancel</button>
+                    </div>
 				</form>
 			</div>
 			<div class="clear"></div>
@@ -138,7 +127,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script src='https://www.google.com/recaptcha/api.js'></script>
-	<script src="/resources/js/register.js" type="text/javascript"></script>
+    <script src="/resources/js/confirmEmailOTP.js"></script>
 </body>
 </html>
