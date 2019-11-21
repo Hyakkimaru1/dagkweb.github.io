@@ -1,9 +1,45 @@
 /* start editing from here */
+a {
+	text-decoration:none;
+}
+.txt-rt {
+	text-align:right;
+}/* text align right */
+.txt-lt {
+	text-align:left;
+}/* text align left */
+.txt-center {
+	text-align:center;
+/*-- W3Layouts --*/	
+}/* text align center */
+.float-rt {
+	float:right;
+}/* float right */
+.float-lt {
+	float:left;
+}/* float left */
 .clear {
 	clear:both;
 }/* clear float */
+.pos-relative {
+	position:relative;
+}/* Position Relative */
+.pos-absolute {
+	position:absolute;
+}/* Position Absolute */
+.vertical-base {	
+	vertical-align:baseline;
+}/* vertical align baseline */
+.vertical-top {	
+	vertical-align:top;
+}/* vertical align top */
+img {
+	max-width:100%;
+}
 
-#container-register {
+/*--- end reset code ---*/
+
+#contener-register {
 	background-attachment:fixed;
 	background-position:center;
 	background-size:cover;
@@ -30,6 +66,7 @@ h1.title {
 .content .content-agile1 {
     width: 50%;
     float: left;
+    
     background-position: center;
     background-size: cover;
     -webkit-background-size: cover;
