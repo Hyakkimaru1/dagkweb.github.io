@@ -85,3 +85,7 @@ p{
     height: 10%;
     font-size: 14px;
 }
+
+#delBid1, #delBid2,#delBid3, #delBid4,#delBid5,#delBid6,#delBid7{
+    cursor: pointer;
+}

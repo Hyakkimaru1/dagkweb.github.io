@@ -63,3 +63,14 @@ $(document).ready(function(){
     }
   });
 });
+
+$(document).ready( function() {
+  $('#falseinput').click(function(){
+    $("#fileinput").click();
+  });
+
+  $('#fileinput').on('change',function() {
+    alert(window.URL.createObjectURL($('#fileinput').files[0]));
+    $('#avatar').attr('src', window.URL.createObjectURL($('#fileinput').files[0]));
+  });
+});
