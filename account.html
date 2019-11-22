@@ -11,71 +11,84 @@
     <title>Auction Online</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="fa fa-bars px-2 dropdown-toggle button" data-toggle="dropdown" style="color: black;"></a>
-        <ul class="dropdown-menu ">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-            <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li class="dropdown-submenu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-submenu">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        </a>
-        <a class="navbar-brand" href="home.html"> <b>AUTION</b> </a>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hot items</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Most view</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Help</a>
+    <!-- Navbar menu -->
+
+  <div class="navbar">
+        <nav class="navbar navbar-expand-md navbar-light fixed-top " style="background-color: #ecffff;">
+          <div class="dropdown">
+              <a  class="px-2 dropdown-toggle button2" data-toggle="dropdown" style="color: black;">
+                <i class="fa fa-bars"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Electronic Devices</a></li>
+                <li><a href="#">Healthy and Beauty</a></li>
+                <li><a href="#">Sports and Travel</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Men's Fashion</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Women's Fashion</a></li>
+                <li class="dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Babies & Toys</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Barby gear</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nursery</a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
             </ul>
+          </a>
+    </div>
+    
+          <a class="navbar-brand" href="home.html"> <b>AUTION</b> </a>
+    
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="categories.html">Hot items</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Most view</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Help</a>
+              </li>
+            </ul>
+    
+    
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" style="display: inline-block;width: 610px;" type="text"
-                    placeholder="Search" aria-label="Search">
+              <input class="form-control mr-sm-2" style="display: inline-block;width: 610px;" type="text"
+                placeholder="Search" aria-label="Search">
             </form>
             <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
-            <a class="nav-link px-2" id="right" href="account.html"><b>MY ACCOUNT</b></a>
-            <a class="nav-link pr-1" id="right" href="home.html"><b>LOGOUT</b></a>
-        </div>
-    </nav>
+            <a class="nav-link px-2" id="right" href="account.html"> <b>My Account</b> </a>
+            <a class="nav-link pr-1" id="right" href="home.html"><b>LOG OUT</b></a>
+            <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart" alt=""></a>
+            
+          </div>
+        </nav>
+      </div>
 
-    <nav aria-label="breadcrumb" style="margin-top: 60px;">
+    <nav aria-label="breadcrumb" style="margin-top: 40px;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="account.html">My account</a></li>
+            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
             <li class="breadcrumb-item active" aria-current="page">Background</li>
         </ol>
     </nav>
@@ -85,8 +98,8 @@
                 <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
                 <hr>
                 <div class="sidenav">
-                    <div class="dropdown"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container">
+                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
+                    <div class="dropdown-container-pf">
                         <a class="item" href="account.html" style="color: blue;">Background</a>
                         <a class="item" href="changePwd.html">Change Password</a>
                     </div>
