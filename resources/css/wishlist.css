@@ -1,0 +1,19 @@
+.acc-container{
+    margin-top: 100px;
+    background-color: rgb(255, 255, 255);
+}
+
+.in-stock{
+   
+}
+
+.out-of-stock{
+    margin-top: 20px;
+   
+}
+
+.row.oos{
+opacity: 0.5;
+
+}
+
