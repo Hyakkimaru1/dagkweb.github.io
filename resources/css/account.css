@@ -2,11 +2,7 @@
     background-color: #fff;
 }
 .sidenav {
-    width:280px;
-    position: fixed;
-    z-index: 1;
     background-color: #fff;
-    overflow-x: hidden;
 }
   
 /* Style the sidenav links and the dropdown button */
@@ -42,6 +38,10 @@
     padding-left: 25%;
 }
 
+.dropdown-container a{
+    max-width: 100%;
+}
+
 .sidenav a:hover, .dropdown-container a:hover {
     color: blue;
 }
@@ -50,7 +50,7 @@
     color:rgba(255, 166, 0, 0.836);
 }
 
-.fa-clipboard-list{
+.fa-list-alt{
     color:rgb(0, 153, 255);
 }
 
@@ -58,11 +58,11 @@
     color: orangered;
 }
 
-.fa-box{
+.fa-shopping-bag{
     color: rgb(212, 94, 113);
 }
 
-.fa-dollar-sign{
+.fa-usd{
     color: yellow;
 }
 
@@ -95,7 +95,7 @@
     display: inline-block;
 }
 
-span{
+.error{
     color: red;
 }
 

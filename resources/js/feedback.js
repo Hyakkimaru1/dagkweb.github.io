@@ -4,12 +4,12 @@ $(function(){ /* to make sure the script runs after page load */
         if($(this).attr('class') === 'read'){
             $(this).text("Read less");
             $(this).toggleClass('less');
-            $(this).parents('.item').find('.more_text').show(); /* show the .more_text span */
+            $(this).parents('#item').find('.more_text').show(); /* show the .more_text span */
         }
         else{
             $(this).text("Read more");
             $(this).toggleClass('less');
-            $('a.read').parents('.item').find('.more_text').hide(); /* hide the .more_text span */
+            $('a.read').parents('#item').find('.more_text').hide(); /* hide the .more_text span */
         }
     });
 });
