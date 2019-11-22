@@ -2,6 +2,9 @@
     background-color: #fff;
 }
 .sidenav {
+    width:280px;
+   
+    z-index: 1;
     background-color: #fff;
 }
   
