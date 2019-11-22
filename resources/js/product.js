@@ -20,6 +20,7 @@ var i = 0;
 function changeImg(x){
     if (x == document.getElementById("changimgR")){
         $('#smallPic').children().eq(i).css('border','0')
+       
         i++;
         if (i>(imgsource.length - 1))
             i=0;
