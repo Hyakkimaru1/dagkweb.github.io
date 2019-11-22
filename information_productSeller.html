@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+  <link rel="stylesheet" href="../resources/css/information_product.css">
+
+  <title>Đăng sản phẩm</title>
+</head>
+
+<body style="background-color: #F6F6F6;">
+  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: white;">
+    <i class="fa fa-home fa-3x" aria-hidden="true" style="color: #BFEEFA;"></i>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <img class="rounded-circle" width="40px" height="40px"
+        src="https://cdn.trangcongnghe.com/uploads/posts/2017-11/lien-quan-mobile-top-5-nhung-tuong-khac-che-cung-superman-ma-ban-can-biet_1.jpg"
+        alt="">
+      <p class="navbar-text ml-2 m-1"> Super man</p>
+      <div style="border-left: 1px solid #E8E8EC; height: 30px;" class="ml-4 mr-4"></div>
+      <img src="https://img.icons8.com/cute-clipart/64/000000/squared-menu.png" width="30px" height="30px">
+      <img src="https://img.icons8.com/carbon-copy/100/000000/bell.png" class="ml-4 mr-4" width="30px" height="30px">
+    </div>
+    </div>
+  </nav>
+  <div class="container mt-3 p-4" style="background-color: white;min-width: 1140px;">
+    <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Thông tin cơ bản</p>
+    <br>
+    <form action="productViewSeller.html" class=" text-right" id="form">
+      <div class="row" id="tenSanPham">
+        <div class="col-md-2">
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Tên sản phẩm</span>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" name="productName" id="productName">
+        </div>
+
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Mô tả sản phẩm</span>
+        </div>
+        <div class="col-md-8">
+          <textarea name="description" id="description"></textarea>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-2">
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá khởi điểm</span>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" name="firstPrice" id="firstPrice" placeholder="VNĐ">
+        </div>
+
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-2">
+
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Bước giá</span>
+        </div>
+        <div class="col-md-8">
+          <input type="text" class="form-control" name="stepPrice" id="stepPrice" placeholder="VNĐ">
+        </div>
+
+      </div>
+      <div class="row mt-3">
+
+        <div class="col-md-2">
+
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá bán ngay</span>
+        </div>
+        <div class="col-md-1 pr-5">
+          <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
+            id="checkBuying" name="checkBuying" value="true">
+        </div>
+        <div class="col-md-3">
+          <input type="text" class="form-control" name="buyingNow" id="buyingNow" placeholder="VNĐ">
+        </div>
+        <div class="col-md-3">
+          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Gia hạn tự động</span>
+        </div>
+        <div class="col-md-1">
+          <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
+            id="checkAuto" value="true" name="checkAuto">
+        </div>
+      </div>
+        <div class="row mt-3">
+            <div class="col-md-2">
+
+                <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Chọn ảnh</span>
+              </div>
+            <div class="col-md-2 text-center">
+                <input type="file" id="file1" name="coverImg" />
+                <label for="file1" id="nameFile1">Ảnh bìa</label>
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="file" id="file2" name="img2" />
+                <label for="file2" id="nameFile2">choose a file</label>
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="file" id="file3" name="img3"/>
+                <label for="file3" id="nameFile3">choose a file</label>
+            </div>
+            <div class="col-md-2 text-center">
+                <input type="file" id="file4" name="img4"/>
+                <label for="file4" id="nameFile4">choose a file</label>
+            </div>
+          </div>
+          <div class="row mt-3">
+              <div class="col-md-2">
+                </div>
+              <div class="col-md-2 text-center">
+                  <input type="file" id="file5" name="img5"/>
+                  <label for="file5" id="nameFile5">choose a file</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <input type="file" id="file6" name="img6" />
+                  <label for="file6" id="nameFile6">choose a file</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <input type="file" id="file7" name="img7"/>
+                  <label for="file7" id="nameFile7">choose a file</label>
+              </div>
+              <div class="col-md-2 text-center">
+                  <input type="file" id="file8" name="img8"/>
+                  <label for="file8" id="nameFile8">choose a file</label>
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline-danger" id="btSubmit">Xác nhận</button>
+            <br>
+            
+    </form>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
+  <script src="../resources/js/information_product.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
