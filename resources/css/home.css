@@ -155,7 +155,10 @@
     text-overflow: ellipsis;
 }
 
-
+.a :hover {
+    text-decoration: none !important;
+    cursor: pointer;
+}
 
 .card_banner{
     top: 1rem;
@@ -380,7 +383,6 @@
     border-color: #11ab7c;
 }
 .container.a1{
-<<<<<<< HEAD
     margin-bottom: 30px;
     margin-top: 60px;
     width: 100%;
@@ -388,17 +390,4 @@
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-=======
-  margin-bottom: 30px;
-  margin-top: 60px;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.navbar{
-  margin-bottom: 100px;
->>>>>>> 371ba5b72f6e2b81d1c278918f5acc2db815f6d6
 }
