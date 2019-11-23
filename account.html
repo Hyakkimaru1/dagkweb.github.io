@@ -11,7 +11,9 @@
     <title>Auction Online</title>
 </head>
 <body>
-    <div class="navbar">
+    <!-- Navbar menu -->
+
+  <div class="navbar">
         <nav class="navbar navbar-expand-md navbar-light fixed-top " style="background-color: #ecffff;">
           <div class="dropdown">
               <a  class="px-2 dropdown-toggle button2" data-toggle="dropdown" style="color: black;">
@@ -56,7 +58,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="categories.html">Hot items</a>
@@ -75,44 +77,37 @@
                 placeholder="Search" aria-label="Search">
             </form>
             <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
-            <a class="nav-link px-2" id="right" href="#"> <b>LOGIN</b> </a>
-            <a class="nav-link pr-1" id="right" href="#"><b>SIGNUP</b></a>
+            <a class="nav-link px-2" id="right" href="account.html"> <b>My Account</b> </a>
+            <a class="nav-link pr-1" id="right" href="home.html"><b>LOG OUT</b></a>
             <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart" alt=""></a>
             
           </div>
         </nav>
-      
-    
-    
-    
-      
       </div>
 
-    <div style="margin-top: 30px;">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">My account</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Background</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container mt-3">
+    <nav aria-label="breadcrumb" style="margin-top: 40px;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Background</li>
+        </ol>
+    </nav>
+    <div class="container mt-3 mb-5" style="display: block;">
         <div class="row mt-2">
             <div class="col-sm-3">
                 <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
                 <hr>
                 <div class="sidenav">
-                    <div class="dropdown"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container">
+                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
+                    <div class="dropdown-container-pf">
                         <a class="item" href="account.html" style="color: blue;">Background</a>
                         <a class="item" href="changePwd.html">Change Password</a>
                     </div>
-                    <a href="wishlist.html"><i class="fas fa-clipboard-list"></i>Wishlist</a>
-                    <a href="feedback.html"><i class="fas fa-bell"></i>Feedback</a>
-                    <a href="cartBidding.html"><i class="fas fa-box"></i>Bid product</a>
-                    <a href="successfulBid.html"><i class="fas fa-dollar-sign"></i>Succesful auction</a>
-                    <a href="sellerSoldItems.html"><i class="fas fa-archive"></i>Manage products</a> 
+                    <a href="wishlist.html"><i class="fa fa-list-alt"></i>Wishlist</a>
+                    <a href="feedback.html"><i class="fa fa-bell"></i>Feedback</a>
+                    <a href="cartBidding.html"><i class="fa fa-shopping-bag"></i>Bid product</a>
+                    <a href="successfulBid.html"><i class="fa fa-usd"></i>Succesful auction</a>
+                    <a href="sellerSoldItems.html"><i class="fa fa-archive"></i>Manage products</a> 
                 </div>
             </div>
             <div class="col-sm-6">
@@ -170,9 +165,6 @@
             </div>
         </div>
     </div>
-     <!-- FOOTER -->
-    
-
      <!-- FOOTER -->
     <footer class="footer section bg-dark text-white">
         <div class="container a1">

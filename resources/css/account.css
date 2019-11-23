@@ -2,11 +2,14 @@
     background-color: #fff;
 }
 .sidenav {
+    width:280px;
+   
+    z-index: 1;
     background-color: #fff;
 }
   
 /* Style the sidenav links and the dropdown button */
-.sidenav a {
+.sidenav a, .dropdown-pf {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -19,7 +22,7 @@
     cursor: pointer;
     outline: none;
 }
-.title i,.sidenav a i,.dropdown i{
+.title i,.sidenav a i,.dropdown-pf i{
     width: 50px;
 }
 
@@ -33,16 +36,16 @@
 }
   
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
+.dropdown-container-pf {
     display: block;
     padding-left: 25%;
 }
 
-.dropdown-container a{
+.dropdown-container-pf a{
     max-width: 100%;
 }
 
-.sidenav a:hover, .dropdown-container a:hover {
+.sidenav a:hover, .dropdown-container-pf a:hover {
     color: blue;
 }
 
