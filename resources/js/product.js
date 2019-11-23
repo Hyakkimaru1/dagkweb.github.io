@@ -2,7 +2,6 @@
 var imgsource = ['https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg','https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg','https://nypdecider.files.wordpress.com/2019/06/one-punch-man.jpg?quality=90&strip=all&w=646&h=431&crop=1'];
 $(document).ready(function(){
     $('#infSeller').hide();
-    $('#btBackEdit').hide();
     $('#description').click(function(){
       $('#infSeller').hide();
       $('#inf').show();
@@ -17,7 +16,6 @@ $(document).ready(function(){
     });
   });
 
-  CKEDITOR.replace( 'descriptionEdit' );
 
 var i = 0;
 function changeImg(x){
@@ -128,157 +126,3 @@ $('#btbuyNow').click(function(){
       });
 });
 
-$('#delBid1').click(function(){
- 
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder1').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#currendBid').text($('#priceBid2').text()),
-        $('#nameBidder').text($('#bidder2').text()),  
-        $('#bid1').hide()
-      )
-    }
-  });
-});
-
-$('#delBid2').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder2').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid2').hide()
-      )
-    }
-  });
-});
-$('#delBid3').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder3').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid3').hide()
-      )
-    }
-  });
-});
-$('#delBid4').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder4').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid4').hide()
-      )
-    }
-  });
-});
-$('#delBid5').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder5').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid5').hide()
-      )
-    }
-  });
-});
-$('#delBid6').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder6').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid6').hide()
-      )
-    }
-  });
-});
-$('#delBid7').click(function(){
-  Swal.fire({
-    title: 'Bạn muốn từ chối lượt ra giá của người dùng '+ $('#bidder7').text()+' ?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      Swal.fire(
-        'Từ chối thành công!',
-        $('#bid7').hide()
-      )
-    }
-  });
- 
-});
-
-$('#btEdit').click(function(){
-  Swal.fire({
-    title: 'Bạn có muốn thêm mô tả?',
-    icon: 'question',
-    iconHtml: '?',
-    confirmButtonText: 'YES',
-    cancelButtonText: 'NO',
-    showCancelButton: true,
-    showCloseButton: true
-  }).then((result) => {
-    if (result.value) {
-      var currentdate = new Date(); 
-  var datetime = "<br>" + "<i class=\"fas fa-pencil-alt\"></i> "+currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/" 
-                + currentdate.getFullYear() + "<br>";
-  var descriptionEdit = CKEDITOR.instances.descriptionEdit.getData();
-  $('#editNew').append(datetime);
-  $('#editNew').append(descriptionEdit);
-    }
-  });
- 
-});
