@@ -1,8 +1,9 @@
 
 $(document).ready(function(){
+
+    $('#btHome').css('cursor','pointer');
    $('#btNext').css('cursor','not-allowed');
 });
-
 
 $("input").change(function() {
     $('#productNameNull').empty();

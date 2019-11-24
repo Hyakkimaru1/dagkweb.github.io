@@ -9,13 +9,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
   <link rel="stylesheet" href="resources/css/information_product.css">
+  <link rel="stylesheet" href="resources/css/post_product.css">
 
   <title>Đăng sản phẩm</title>
 </head>
 
 <body style="background-color: #F6F6F6;">
-  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: white;">
-    <i class="fa fa-home fa-3x" aria-hidden="true" style="color: #BFEEFA;"></i>
+  <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #ECFFFF; height: 60px;">
+    <a href="manageProductSeller.html"><i class="fa fa-home fa-3x" aria-hidden="true" style="color: #BFEEFA;" id="btHome"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -23,16 +24,32 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="manageProductSeller.html">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <img class="rounded-circle" width="40px" height="40px"
-        src="https://cdn.trangcongnghe.com/uploads/posts/2017-11/lien-quan-mobile-top-5-nhung-tuong-khac-che-cung-superman-ma-ban-can-biet_1.jpg"
-        alt="">
-      <p class="navbar-text ml-2 m-1"> Super man</p>
+      <div class="dropdown">
+        <div class='avt-name' data-toggle="dropdown">
+          <img class="rounded-circle" width="35px" height="35px"
+            src="https://cdn.trangcongnghe.com/uploads/posts/2017-11/lien-quan-mobile-top-5-nhung-tuong-khac-che-cung-superman-ma-ban-can-biet_1.jpg"
+            alt="">
+          <p class="navbar-text ml-2 m-1"> Super man</p>
+        </div>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="account.html">Hồ sơ</a>
+          <a class="dropdown-item" href="home.html">Đăng xuất</a>
+        </div>
+      </div>
+      
       <div style="border-left: 1px solid #E8E8EC; height: 30px;" class="ml-4 mr-4"></div>
-      <img src="https://img.icons8.com/cute-clipart/64/000000/squared-menu.png" width="30px" height="30px">
-      <img src="https://img.icons8.com/carbon-copy/100/000000/bell.png" class="ml-4 mr-4" width="30px" height="30px">
+      <div class="dropdown">
+          <img src="resources/img/icons8-squared-menu-50.png" width="30px" height="30px" data-toggle="dropdown">
+        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
+          <a style="color: #007BFF;" class="dropdown-item" href="manageProductSeller.html">Products  <i class="fas fa-gift" style="color: #007BFF;"></i></a>
+          <a class="dropdown-item" href="sellerSoldItems.html" style="color: rgb(240, 196, 53);">Sold <i style="color: rgb(240, 196, 53);" class="fas fa-wallet"></i></a>
+        </div>
+      </div>
+      
+      <img src="resources/img/icons8-bell-100.png" class="ml-4 mr-4" width="30px" height="30px">
     </div>
     </div>
   </nav>

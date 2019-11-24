@@ -16,7 +16,6 @@ $(document).ready(function(){
     });
   });
 
-
 var i = 0;
 function changeImg(x){
     if (x == document.getElementById("changimgR")){
@@ -38,7 +37,6 @@ function changeImg(x){
         $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
     }
 }
-
 
 function pic(x){
     $('#smallPic').children().eq(i).css('border','0')
