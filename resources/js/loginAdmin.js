@@ -31,7 +31,7 @@ $(document).ready(function(){
       }
 
       if(flag){
-        if ($("#txtEmail").val() === 'user' && $('#password1').val()==='user'){
+        if ($("#txtEmail").val() === 'admin' && $('#password1').val()==='admin'){
           this.submit();
         }
         else{
