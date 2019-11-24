@@ -1,3 +1,4 @@
+var flagLogin = true;
 $(document).ready(function(){
     $('.form-login').on('submit', function(e){
       e.preventDefault();
@@ -33,10 +34,19 @@ $(document).ready(function(){
       if(flag){
         if ($("#txtEmail").val() === 'user' && $('#password1').val()==='user'){
           this.submit();
+          flagLogin = true;
         }
         else{
           $("#errPwd").text("Email or password was wrong!");
         }
       }
     });
+  });
+
+  $( '.navbar' ).ready(function() {
+    if(flagLogin==true) {
+      $('#login').html('<i class="fa fa-user-circle fa-lg"></i>');
+     
+      $('#signup').html('<b> LOG OUT <b>');
+    }
   });

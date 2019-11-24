@@ -74,3 +74,9 @@ $(document).ready( function() {
     $('#avatar').attr('src', window.URL.createObjectURL($('#fileinput').files[0]));
   });
 });
+
+$( '.navbar' ).ready(function() {
+  if(flagLogin) {
+    $('#login').html('<i class="fal fa-user-circle"></i>');
+  }
+});

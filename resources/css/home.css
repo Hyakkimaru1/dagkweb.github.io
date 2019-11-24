@@ -27,6 +27,15 @@
     border-color:  #28a745;
 }
 
+.right{
+    color: rgb(147, 150, 152);
+    font-size: 13px;
+    margin-right: 0px;
+
+}
+.right:hover{
+    color:#28a745; 
+}
 #right{
     color: rgb(147, 150, 152);
     font-size: 13px;
