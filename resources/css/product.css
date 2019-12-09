@@ -1,4 +1,4 @@
-p{
+.product p{
     display: inline-block;
     font-family:"Courier New", Times, serif;
     font-size: 13px;
@@ -37,7 +37,7 @@ p{
     background-color: #727272;
 }
 
- h5{
+.product h5{
      display: inline;
      color: white;
      font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;

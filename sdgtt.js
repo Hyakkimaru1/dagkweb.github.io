@@ -23,15 +23,18 @@ app.get('/', (req, res) => {
   res.render('home');
 })
 
+app.use('/product', require('./routes/users/product.route'));
+app.use('/categories', require('./routes/users/categories.route'));
+
 app.use((req, res, next) => {
   // res.render('vwError/404');
-  res.render('error');
+  res.render('error',{layout:'error'});
 })
 
 app.use((err, req, res, next) => {
   // res.render('vwError/index');
   console.error(err.stack);
-  res.status(500).send('View error on console.');
+  res.status(500).render('error',{layout:'error'});
 })
 
 const PORT = 3000;
