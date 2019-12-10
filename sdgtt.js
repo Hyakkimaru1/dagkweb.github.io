@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
   res.render('home');
 })
 
+app.use('/account', require('./routes/user/user.route'));
+
 app.use((req, res, next) => {
   // res.render('vwError/404');
   res.render('error');

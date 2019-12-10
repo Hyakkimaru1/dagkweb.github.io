@@ -1,0 +1,168 @@
+<nav aria-label="breadcrumb" style="margin-top: 40px;">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/account">My Account</a></li>
+    <li class="breadcrumb-item"><a href="/account/manageProductSeller">Manage product</a></li>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Successful Auction</li>
+  </ol>
+</nav>
+<div class="container mt-3 mb-5" style="display: block;">
+  <div class="row mt-2">
+    <div class="col-sm-4">
+      <h3 class="title"><i class="fa fa-address-book"></i>Manage Product</h3>
+      <hr>
+      <div class="sidenav">
+        <a href="/account/manageProductSeller"><i class="fa fa-shopping-bag"></i>Product list</a>
+        <a href="/account/manageProductSeller/post_productSeller"><i class="fa fa-list-alt"></i>New Product</a>
+        <a href="/account/manageProductSeller/sellerSoldItems" style="color: blue;"><i class="fa fa-usd"></i>Successful
+          auction</a>
+      </div>
+    </div>
+    <div class="col-sm-8" id="scroll">
+      <div class="content_menu">
+        <div class="content">
+          <h4>SOLD ITEMS</h4>
+          <br>
+          <div class="in-stock">
+            <hr class="mt-1">
+            <a class="item" href="#">
+              <div class="card-body shadow-sm p-3 mb-5 bg-white rounded" style="min-width: 689px; height:195px;">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <img
+                      src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
+                      alt="">
+                  </div>
+                  <div class="col-sm-10">
+                    <h5 class="item-title">Glycine - Collezione "AIRMAN WORLD TIME 4" Watch 1990 - Esaurito
+                      - 3323.35A - Men -
+                      1990</h5>
+
+                    <div class="item-content ">
+                      <P> Quartz - Steel - Documents, Full set, Warranty</P>
+                      <h5>Bidder: Maria Yohiro</h5>
+
+                    </div>
+                    <div class="row justify-content-lg-end">
+
+                      <div class="col-sm-2">
+                        <p style="font-size: 25px; font-weight: 700;">$</p>
+                        <p style="font-size: 25px; font-weight: 700;">100</p>
+
+                      </div>
+                      <div class="col-sm-auto" style="padding: 0;">
+                        <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
+                          data-target="#exampleModal" data-whatever="@mdo" style="width:75.8px;">
+                          Rate
+                        </button>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New
+                                  message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class=" form-group">
+                                    <label for="message-text" class="col-form-label">Rate:</label>
+                                  </div>
+                                  <div class="d-flex justify-content-sm-center">
+                                    <p id="rate">(-1)</p>
+                                    <img class="cart mt-2" id="dislike" onclick="rate(this)"
+                                      src="https://image.flaticon.com/icons/svg/149/149190.svg" alt="">
+                                    <img class="cart mb-2" id="like" onclick="rate(this)"
+                                      src="https://image.flaticon.com/icons/svg/149/149189.svg" alt="">
+                                    <p id="rate1">(+1)</p>
+                                  </div>
+
+                                </form>
+                                <form>
+
+                                  <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Feedback:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send
+                                  message</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-auto">
+                        <button type="button" class="btn btn-outline-danger rounded-pill" data-toggle="modal"
+                          data-target="#exampleModal2" data-whatever="@mdo">
+                          Cancel
+                        </button>
+
+                        <div class=" modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New
+                                  message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+
+                              <div class="modal-body">
+                                <form>
+                                  <div class=" form-group">
+                                    <label for="message-text" class="col-form-label">Rate:</label>
+                                  </div>
+                                  <div class="d-flex justify-content-sm-center">
+                                    <p>(-1)</p>
+                                    <img class="cart mt-2" id="dislike"
+                                      src="https://image.flaticon.com/icons/svg/148/148809.svg" alt="">
+
+                                  </div>
+                                </form>
+                                <form>
+                                  <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Feedback:</label>
+                                    <textarea class="form-control" id="message-text">Customer don't pay</textarea>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send
+                                  message</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="time_remain " style="align-self: center; ">
+                        <strong>Closed in </strong>
+                        <time class="time_close">
+                          <span>22/</span>
+                          <span>11/</span>
+                          <span>2019 </span>
+                          <span> 15:30</span>
+                        </time>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
