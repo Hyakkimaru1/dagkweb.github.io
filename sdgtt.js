@@ -19,13 +19,18 @@ app.use(express.static(__dirname + '/resources'));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
+  
   // res.end('hello from expressjs');
-  res.render('home');
+  res.render('home',{
+    showMenuAcc:false
+  });
 })
+
+
 
 app.use('/product', require('./routes/users/product.route'));
 app.use('/categories', require('./routes/users/categories.route'));
-
+app.use('/account', require('./routes/account.route'));
 app.use((req, res, next) => {
   // res.render('vwError/404');
   res.render('error',{layout:'error'});

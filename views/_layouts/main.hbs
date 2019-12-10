@@ -12,9 +12,10 @@
   <link rel="icon" href="images/duckk.png">
  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/home.css">
-  <link rel="stylesheet" href="css/product.css">
-  <link rel="stylesheet" href="css/categories.css">
+  <link rel="stylesheet" href="/css/home.css" type="text/css">
+  <link rel="stylesheet" href="/css/account.css" type="text/css">
+  <link rel="stylesheet" href="/css/product.css" type="text/css" >
+  <link rel="stylesheet" href="/css/categories.css" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
@@ -89,15 +90,54 @@
         <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
         <a class="nav-link px-2 right" id="login" href="login.html"> <b>LOGIN</b> </a>
         <a class="nav-link pr-1 right" id="signup" href="register.html"><b>SIGNUP</b></a>
-        <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart"
+        <a href="/account/"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart"
             alt=""></a>
 
       </div>
     </nav>
   </div>
 
+{{#if showMenuAcc}}
+<div class="container-account">
+
+
+ <nav aria-label="breadcrumb" style="margin-top: 40px;">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Feedback</li>
+        </ol>
+    </nav>
+    <div class="container mt-3 mb-5">
+        <div class="row mt-2">
+           
+            <div class="col-sm-3">
+                <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
+                <hr>
+                <div class="sidenav">
+                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
+                    <div class="dropdown-container-pf" style="display: none;">
+                        <a class="item" href="account.html">Background</a>
+                        <a class="item" href="changePwd.html">Change Password</a>
+                    </div>
+                    <a href="wishlist.html"><i class="fa fa-list-alt"></i>Wishlist</a>
+                    <a href="feedback.html" style="color: blue;"><i class="fa fa-bell"></i>Feedback</a>
+                    <a href="cartBidding.html"><i class="fa fa-shopping-bag"></i>Bid product</a>
+                    <a href="successfulBid.html"><i class="fa fa-usd"></i>Succesful auction</a>
+                    <a href="manageProductSeller.html"><i class="fa fa-archive"></i>Manage products</a>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                {{{body}}}
+                
+            </div>
+        </div>
+    </div>
+    </div>
+{{else}}
+
   {{{body}}}
-  
+  {{/if}}
   <!-- FOOTER -->
   <footer class="footer section bg-dark text-white">
     <div class="container a1">
