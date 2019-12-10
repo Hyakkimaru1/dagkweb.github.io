@@ -75,8 +75,3 @@ $(document).ready( function() {
   });
 });
 
-$( '.navbar' ).ready(function() {
-  if(flagLogin) {
-    $('#login').html('<i class="fal fa-user-circle"></i>');
-  }
-});
