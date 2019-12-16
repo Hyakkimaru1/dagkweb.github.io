@@ -27,8 +27,7 @@ app.get('/', (req, res) => {
   });
 })
 
-
-
+app.use('/account', require('./routes/user/user.route'));
 app.use('/product', require('./routes/users/product.route'));
 app.use('/categories', require('./routes/users/categories.route'));
 app.use('/account', require('./routes/account.route'));

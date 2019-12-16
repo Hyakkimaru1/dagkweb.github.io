@@ -1,22 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title> Auction</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+
+
+    <link rel="icon" href="/images/duckk.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
-    <link rel="stylesheet" href="resources/css/home.css">
-    <link rel="stylesheet" href="resources/css/account.css">
-    <link rel="stylesheet" href="resources/css/changePwd.css">
-    <title>Auction Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/account.css">
+    <link rel="stylesheet" href="/css/categories.css">
+    <link rel="stylesheet" href="/css/changePwd.css">
+    <link rel="stylesheet" href="/css/error.css">
+    <link rel="stylesheet" href="/css/feedback.css">
+    <link rel="stylesheet" href="/css/wishlist.css">
+    <link rel="stylesheet" href="css/product.css">
 </head>
 
 <body>
+
     <!-- Navbar menu -->
-    <div class="navbar">
+
+    <div class="navbar" style="font-size: 15px;">
         <nav class="navbar navbar-expand-md navbar-light fixed-top " style="background-color: #ecffff;">
             <div class="dropdown">
                 <a class="px-2 dropdown-toggle button2" data-toggle="dropdown" style="color: black;">
@@ -55,11 +69,13 @@
                 </ul>
                 </a>
             </div>
-            <a class="navbar-brand" href="home.html"> <b>AUTION</b> </a>
+
+            <a class="navbar-brand" href="/"> <b>AUTION</b> </a>
+
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="categories.html">Hot items</a>
@@ -67,89 +83,23 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Most view</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
-                    </li>
                 </ul>
+
+
                 <form class="form-inline mt-2 mt-md-0">
                     <input class="form-control mr-sm-2" style="display: inline-block;width: 610px;" type="text"
                         placeholder="Search" aria-label="Search">
                 </form>
                 <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
-                <a class="nav-link px-2 right" id="login" href="account.html"> <b>LOGIN</b> </a>
-                <a class="nav-link pr-1 right" id="signup" href="home.html"><b>SIGNUP</b></a>
-                  <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart"
+                <a class="nav-link px-2 right" id="login" href="/account"> <b>My Account</b> </a>
+                <a class="nav-link pr-1 right" id="signup" href="/"><b>SIGNOUT</b></a>
+                <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart"
                         alt=""></a>
             </div>
         </nav>
     </div>
 
-    <nav aria-label="breadcrumb" style="margin-top: 40px;">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Change password</li>
-        </ol>
-    </nav>
-
-    <div class="container mt-3 mb-5">
-        <div class="row mt-2">
-            <div class="col-sm-3">
-                <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
-                <hr>
-                <div class="sidenav">
-                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container-pf">
-                        <a class="item" href="account.html">Background</a>
-                        <a class="item" href="changePwd.html" style="color: blue;">Change Password</a>
-                    </div>
-                    <a href="wishlist.html"><i class="fa fa-list-alt"></i>Wishlist</a>
-                    <a href="feedback.html"><i class="fa fa-bell"></i>Feedback</a>
-                    <a href="cartBidding.html"><i class="fa fa-shopping-bag"></i>Bid product</a>
-                    <a href="successfulBid.html"><i class="fa fa-usd"></i>Succesful auction</a>
-                    <a href="manageProductSeller.html"><i class="fa fa-archive"></i>Manage products</a>
-                </div>
-            </div>
-            <div class="col-sm-7">
-                <div class="content_menu">
-                    <div class="content">
-                        <h2>Change password</h2>
-                        <hr>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label col-form-label-sm">Current password </label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control form-control-sm" id="curPwd" maxlength="8"
-                                    autofocus>
-                                <span class="error" id="errCurPwd"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label col-form-label-sm">New password <abbr
-                                    title="Password has 6-8 characters."> <i
-                                        class="fa fa-question-circle"></i></abbr></label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control form-control-sm" id="newPwd" maxlength="8">
-                                <span class="error" id="errNewPwd"></span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-3 col-form-label col-form-label-sm">Retype password</label>
-                            <div class="col-sm-9">
-                                <input type="password" class="form-control form-control-sm" id="retypePwd"
-                                    maxlength="8">
-                                <span class="error" id="errRetypePwd"></span>
-                            </div>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-primary ml-5" onclick="check()">Change</button>
-                            <button type="button" class="btn btn-primary ml-3"
-                                onclick="window.location.href='home.html'">Cancel</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{{body}}}
 
     <!-- FOOTER -->
     <footer class="footer section bg-dark text-white">
@@ -157,7 +107,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <a class="footer-brand" href="#"><img src="https://image.flaticon.com/icons/svg/2258/2258440.svg"
-                            alt="brand"> <strong style="color: aliceblue;">AUCTION</strong> </a>
+                            alt="brand">
+                        <strong style="color: aliceblue;">AUCTION</strong> </a>
                     <p class="mt-2 text-gray">For those seeking the finest in services and technology
                         in a downtown business center, without the high cost.</p>
                     <ul class="social-buttons mb-5 mb-lg-0 a">
@@ -207,18 +158,18 @@
             <div class="copyright text-center mt-5">©
                 <script>
                     document.write(new Date().getFullYear())
-                </script>
-                <span><a href="https://themesberg.com">Themesberg</a>. All rights reserved.</span></div>
+                </script>2019<span><a href="https://themesberg.com">Themesberg</a>. All rights reserved.</span></div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <!-- Optional JavaScript -->
+    <script src="/js/account.js"></script>
+    <script src="/js/categories.js"></script>
+    <script src="/js/changePwd.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.js"></script>
-    <script src="resources/js/account.js"></script>
-    <script src="resources/js/changePwd.js"></script>
-    <script src="resources/js/login.js"></script>
 </body>
 
 </html>
