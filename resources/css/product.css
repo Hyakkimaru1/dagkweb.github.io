@@ -59,6 +59,15 @@
     left:0px ; 
     height: 400px;
 }
+
+
+.in-stock img, .out-of-stock img{
+    position: relative;
+    top: 0px;
+    left:0px ; 
+    height: 126px;
+}
+
  .description:active{
     border: none;
     background-color: #00aeef;

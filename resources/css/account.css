@@ -11,6 +11,10 @@
 .navbar.b{
 font-size: 15px;
 }
+
+.is_active{ 
+    color: blue !important;
+}
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-pf {
     padding: 6px 8px 6px 16px;
@@ -48,7 +52,7 @@ font-size: 15px;
     max-width: 100%;
 }
 
-.sidenav a:hover, .dropdown-container-pf a:hover {
+.sidenav a:hover, a:active, .dropdown-container-pf a:hover {
     color: blue;
 }
 
@@ -68,13 +72,15 @@ font-size: 15px;
     color: rgb(212, 94, 113);
 }
 
-.fa-usd{
+.fa-dollar-sign{
     color: yellow;
 }
 
 .fa-archive{
     color: brown;
 }
+
+
 
 .rounded-circle{
     display: block;
@@ -108,3 +114,71 @@ font-size: 15px;
 .btn-primary{
     width: 80px;;
 }
+
+.form-control-sm{
+    width: 150px;
+    display: inline-block;
+}
+
+#id, #point{
+    width: 50px;
+}
+
+#name{
+    width: 200px;
+}
+
+.more_text{
+    color: black;
+}
+
+button.reset {
+    display: inline-block;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #fff;
+    background-color:rgba(218, 76, 50, 0.712);
+    border-color: transparent;
+    border-radius: 10px;
+	font-family: 'Raleway', sans-serif;
+	/*-- w3ls --*/
+	transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	cursor:pointer;
+}
+
+button.cancel {
+    display: inline-block;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000;
+    background-color:white;
+    border-color: transparent;
+    border-radius: 10px;
+	font-family: 'Raleway', sans-serif;
+	/*-- w3ls --*/
+	transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
+	cursor:pointer;
+}
+
+.out-of-stock{
+    margin-top: 20px;
+   
+}
+
+.row.oos{
+opacity: 0.5;
+
+}
+
