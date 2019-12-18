@@ -1,0 +1,52 @@
+
+  <div class="container mt-3" style="background-color: white;">
+    <p style="margin-bottom: 6px;font-size: 22px;color: #333;">Thêm 1 sản phẩm mới</p>
+    <p style="font-size: 12px;color: #999;">Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</p>
+    <hr> 
+    
+    <span id="productNameNull"  style="border: 1;margin-left:122px;color:red;"></span>
+    <form action="information_productSeller.html" id='nameCate_Product'>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="background-color: #4d4dff;color: white;">Tên sản phẩm</span>
+      </div>
+      <input type="text" class="form-control" name="productName" id="productName">
+    </div>
+    <br>
+    <p style="margin-bottom: 6px;font-size: 15px;color: #333;">
+      Ngành hàng
+    </p>
+    <div class="row">
+      <div class="col-sm-6" style="overflow-y: scroll; height: 250px;" >
+        <ul class="list-group" id="cateParent">
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Music</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Sports</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Toys and model</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Wine</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Coins</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Bullion </p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Stamps</p> <i class="fas fa-arrow-right float-right"></i></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this)"><p>Stamps</p> <i class="fas fa-arrow-right float-right"></i></li>
+
+        </ul>
+      </div>
+      <div class="col-sm-6" style="overflow-y: scroll; height: 250px;" >
+        <ul class="list-group" style="display: none;" id="cateChild">
+         <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Asian Antiques</p></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Asian Curio</p> </li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Exclusive Asian Art & Objects</p></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Exclusive Japanese Antiques</p></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Japanese Antiques</p></li>
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>Samurai</p></li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <p>Selected:</p>
+    <p id="selected" style="color: red;display: inline;" ></p><p id="selected1" style="color: red;display: inline;"></p><p id="selected2" style="color: red;display: inline;"></p>
+    <input style="display: none;" type="text" name="id_DM_cha" id="id_DM_cha">
+    <input style="display: none;" type="text" name="id_DM_con" id="id_DM_con">
+    </form>
+    <br>
+    <button type="button" class="btn btn-outline-primary" id="btNext">Tiếp theo</button>
+  </div>

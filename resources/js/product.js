@@ -69,7 +69,7 @@ $('#btPrimary').click( function(){
             if (result.value) {
               Swal.fire(
                 'Ra giá thành công',
-                $('#currendBid').text($('#primary').val())
+                $("#inputBid").submit()
               )
             }
             else {
@@ -95,7 +95,17 @@ $('#btPrimaryAuto').click( function(){
             cancelButtonText: 'NO',
             showCancelButton: true,
             showCloseButton: true
-          })
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                'Ra giá thành công'
+              )
+            }
+            else {
+                Swal.fire(
+                    'Ra giá thất bại')
+            }
+          });
             
     }
 
@@ -103,7 +113,7 @@ $('#btPrimaryAuto').click( function(){
 
 
 $('#btbuyNow').click(function(){
-    
+    console.log($('#btbuyNow').attr("formaction"));
     Swal.fire({
         title: 'Bạn có đồng ý ra giá?',
         icon: 'question',
@@ -118,7 +128,9 @@ $('#btbuyNow').click(function(){
             'Thành Công!',
             'Xem trong giỏ hàng!',
             $('#lotClosed').show(),
-            $('#lotOpen').hide()
+            $('#lotOpen').hide(),
+            $("#inputBid").attr("action", $('#btbuyNow').attr("formaction")),
+            $("#inputBid").submit()
           )
         }
       });

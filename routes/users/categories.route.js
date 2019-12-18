@@ -1,49 +1,99 @@
 const express = require('express');
-//const categoryModel = require('../../models/category.model');
+const categoryModel = require('../../models/categories.model');
+const productModel = require('../../models/product.model');
+const config = require('../../config/default.json');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/:id', async (req, res) => {
 
-  // const pr = db.load('select * from categories1');
-  // pr.then(rows => {
-  //   res.render('vwCategories/index', {
-  //     categories: rows,
-  //     empty: rows.length === 0
-  //   });
-  // }).catch(err => {
-  //   console.log(err);
-  //   res.end('View error log in console.');
-  // });
+  for (const c of res.locals.lcCategories) {
+    if (c.id === +req.params.id) {
+      c.isActive = true;
+    }
+  }
 
-  // try {
-  // const rows = await db.load('select * from categories');
+  const id_DM = req.params.id;
+  const limit = config.paginate.limit;
+  const page = req.query.page || 1;
+  if (page < 1) page = 1;
+  const offset = (page - 1) * config.paginate.limit;
 
+  const [total, rows, links] = await Promise.all([
+    productModel.countByCat(id_DM),
+    productModel.pageByCat(id_DM, offset),
+    categoryModel.categoryPapa(id_DM)
+  ]);
 
-//   const rows = await categoryModel.all();
-//   res.render('_product/product', {
-//     categories: rows,
-//     empty: rows.length === 0
-//   });
-    res.render('_categories/categories');
-
-  // } catch (err) {
-  //   console.log(err);
-  //   res.end('View error log in console.');
-  // }
-
-
-  // db.load('select * from categories', rows => {
-  //   res.render('vwCategories/index', {
-  //     categories: rows,
-  //     empty: rows.length === 0
-  //   });
-  // });
+  let nPages = Math.floor(total / limit);
+  if (total % limit > 0) nPages++;
+  const page_numbers = [];
+  for (i = 1; i <= nPages; i++) {
+    page_numbers.push({
+      value: i,
+      isCurrentPage: i === +page,
+    })
+  }
+  let isMax = +page !== nPages;
+  let isMin = +page !== 1;
+  res.render('_categories/categories', {
+    rows,
+    empty: rows.length === 0,
+    page_numbers,
+    prev_value: +page - 1,
+    next_value: +page + 1,
+    isMax,
+    isMin,
+    links: links[0]
+  });
 })
 
-router.get('/add', (req, res) => {
-  res.render('vwCategories/add');
+
+router.get('/:id/:id2', async (req, res) => {
+ 
+  const id_Cha = req.params.id;
+  const id_DM = req.params.id2;
+  const limit = config.paginate.limit;
+  const page = req.query.page || 1;
+  if (page < 1) page = 1;
+  const offset = (page - 1) * config.paginate.limit;
+
+  const [lcCategories,total, rows, links] = await Promise.all([
+    categoryModel.allChildCanSell(id_Cha),
+    productModel.countByCatCanSell(id_DM),
+    productModel.pageByCatCanSell(id_DM,id_Cha, offset),
+    categoryModel.categoryPapa(id_DM)
+  ]);
+  for (const c of lcCategories) {
+    if (c.id === +req.params.id2) {
+      c.isActive = true;
+    }
+  }
+
+  let nPages = Math.floor(total / limit);
+  if (total % limit > 0) nPages++;
+  const page_numbers = [];
+  for (i = 1; i <= nPages; i++) {
+    page_numbers.push({
+      value: i,
+      isCurrentPage: i === +page,
+    })
+  }
+  let isMax = +page !== nPages;
+  let isMin = +page !== 1;
+  res.render('_categories/categories', {
+    lcCategories,
+    rows,
+    empty: rows.length === 0,
+    page_numbers,
+    prev_value: +page - 1,
+    next_value: +page + 1,
+    isMax,
+    isMin,
+    links: links[0]
+  });
 })
+
 
 router.post('/add', async (req, res) => {
   // console.log(req.body);
@@ -58,14 +108,6 @@ router.post('/add', async (req, res) => {
 router.get('/err', (req, res) => {
 
   throw new Error('error occured');
-
-  // try {
-  //   throw new Error('error occured');
-  // }
-  // catch (err) {
-  //   console.log(err.stack);
-  //   res.send('View error on console');
-  // }
 })
 
 router.get('/edit/:id', async (req, res) => {
