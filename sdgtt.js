@@ -57,7 +57,6 @@ app.get('/', (req, res) => {
 require('./middlewares/route.mdw')(app);
 
 
-
 app.use((req, res, next) => {
   // res.render('vwError/404');
   res.render('error', { layout: 'error' });
