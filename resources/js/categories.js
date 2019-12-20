@@ -9,6 +9,8 @@ $( window ).resize(function() {
     }
 });
 
+
+
 var header = document.getElementById('myHeader');
 var sticky = header.offsetTop;
 
@@ -38,5 +40,3 @@ $('#myBtn').click(function(){
   $('html, body').animate({scrollTop : 0},800);
   return false;
 });
-
-
