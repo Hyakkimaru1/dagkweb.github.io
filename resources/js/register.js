@@ -1,20 +1,33 @@
-function check(){
-    var name = document.getElementById("txtName").value;
+function validate(){
+    var f_name = document.getElementById("txtFirstName").value;
+    var l_name = document.getElementById("txtLastName").value;
     var addr = document.getElementById("txtAddr").value;
+    var user = document.getElementById("txtUserName").value;
     var email = document.getElementById("txtEmail");
     var pwd1 = document.getElementById("password1").value;
     var pwd2 = document.getElementById("password2").value;
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; //Regular Expressions
 
-    //check name
-    if(name == "")
+    //check first name
+    if(f_name == "")
     {
-        document.getElementById("errName").innerHTML = "Please fill out your name!";
+        document.getElementById("errFName").innerHTML = "Please fill out First name!";
         return false;
     }
     else
     {
-        document.getElementById("errName").innerHTML = "";
+        document.getElementById("errFName").innerHTML = "";
+    }
+
+    //check last name
+    if(l_name == "")
+    {
+        document.getElementById("errLName").innerHTML = "Please fill out last name!";
+        return false;
+    }
+    else
+    {
+        document.getElementById("errLName").innerHTML = "";
     }
 
     //check address
@@ -26,6 +39,17 @@ function check(){
     else
     {
         document.getElementById("errAddr").innerHTML = "";
+    }
+
+    //check user name
+    if(user == "")
+    {
+        document.getElementById("errUserName").innerHTML = "Please fill out user name!";
+        return false;
+    }
+    else
+    {
+        document.getElementById("errUserName").innerHTML = "";
     }
 
     //check email
@@ -48,11 +72,6 @@ function check(){
     if(pwd1=="")
     {
         document.getElementById("errPwd").innerHTML = "Please fill out password!";
-        return false;
-    }
-    else if(pwd1.length < 6)
-    {
-        document.getElementById("errPwd").innerHTML = "Password has 6-8 characters";
         return false;
     }
     else
@@ -90,7 +109,7 @@ function get_action()
     }
     else
     {
-        document.getElementById('errCaptcha').innerHTML="Captcha completed";
+        document.getElementById('errCaptcha').innerHTML="";
         return true; 
     }
-}  
+}

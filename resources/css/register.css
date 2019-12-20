@@ -1,72 +1,43 @@
 /* start editing from here */
-.clear {
-	clear:both;
-}/* clear float */
 
-#container-register {
-	background-attachment:fixed;
-	background-position:center;
-	background-size:cover;
-	-webkit-background-size:cover;
-	-moz-background-size:cover;
-	-o-background-size:cover;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
+body{
+	background:url(/images/banner.jpg) no-repeat;
 }
+
 h1.title {
 	font-size:50px;
 	color:#fff;
 	padding:40px 0;
 	text-align:center;
-	/*-- w3layouts --*/ 
 	text-transform:uppercase;
 }
-.content {
-	background-color:#202123;
-	width:70%;
-	margin:0 auto 50px;
-	padding:0;
-}
-.content .content-agile1 {
-    width: 50%;
-    float: left;
-    background-position: center;
-    background-size: cover;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    -ms-background-size: cover;
-    height: 555px;
-}
+
 h2.agileits1 {
     font-size: 40px;
     font-weight: normal;
     color: #fff;
-    text-align: Center;
+    text-align: center;
     padding: 200px 0 15px;
     text-transform: uppercase;
 	font-family: 'Monoton', cursive;
 }
-p.agileits2 {
+.agileits2 {
     font-size: 15px;
     font-weight: normal;
     color: #fff;
     text-align: center;
     text-transform: capitalize;
 }
-.content .content-agile2 {
-	width: 50%;
-    float: left;
-}
-input#txtName,input#txtAddr,input#txtEmail,input#password1,input#password2 {
-	width:300px;
+
+input#txtFirstName,input#txtLastName,input#txtAddr,input#txtUserName,input#txtEmail,input#password1,input#password2 {
+	width:100%;
 	height:50px;
-	padding:0 15px;
+	padding-left: 15px;
+	padding-right: 15px;
 	color:#fff;
 	font-size:17px;
 	font-weight:200;
-	background-color:transparent;
-	/*-- w3layouts --*/ 
+	background-color:transparent; 
 	border-bottom:5px solid #fff;
 	border-top-color:transparent;
 	border-left-color:transparent;
@@ -76,11 +47,10 @@ input#txtName,input#txtAddr,input#txtEmail,input#password1,input#password2 {
 	display:block;
 	outline:none;
 }
-input#txtName:focus,input#txtEmail:focus,input#password1:focus,input#password2:focus,input#txtName:hover,input#txtEmail:hover,input#password1:hover,input#password2:hover {
-	color:#fff;
-	border-bottom:5px solid #3970b0;
-}
-input#txtName:in-range{
+input#txtFirstName:focus,#txtLastName:focus,input#txtAddr:focus,input#txtUserName:focus,
+input#txtEmail:focus,input#password1:focus,input#password2:focus,
+input#txtFirstName:hover,#txtLastName:hover,input#txtAddr:hover,input#txtUserName:hover,
+input#txtEmail:hover,input#password1:hover,input#password2:hover {
 	color:#fff;
 	border-bottom:5px solid #3970b0;
 }
@@ -125,23 +95,16 @@ color: #000 !important;
 
 
 input.register {
-    width: 335px;
-    margin: 30px auto;
+    width: 100%;
     display: block;
-    height: 50px;
+    height: 100%;
     text-align: center;
-    font-size: 17px;
-    font-weight: normal;
+    font-size: 25px;
+    font-weight: bold;
     color: #fff;
     background-color:#3970b0;
     border-color: transparent;
 	font-family: 'Raleway', sans-serif;
-	/*-- w3ls --*/
-	transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
 	cursor:pointer;
 }
 input.register:hover {
@@ -150,26 +113,23 @@ input.register:hover {
 }
 
 div.g-recaptcha {
-	width:300px;
-
+	width:100%;
+	text-align: center;
 	margin:0 auto;
 	display:block;
 	outline:none;
 }
-div#errName,div#errAddr,div#errEmail,div#errPwd,div#errCfpwd,div#errCaptcha{
-	margin:0 auto 5px;
+div#errFName,#errLName,div#errAddr,#errUserName,div#errEmail,div#errPwd,div#errCfpwd,div#errCaptcha{
 	color: red;
-	width: 330px;
 }
 
 .title-register{
-	height: 100px;
+	height: 100%;
     background-color: rgba(218, 76, 50, 0.712);
     border-block-end: 10px solid tomato;
 }
 
 .title-register div{
-    padding: 20px 0px 20px 0px;
     font-size: 40px;
     font-weight: bold;
     color: white;
