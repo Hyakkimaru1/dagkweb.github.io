@@ -5,5 +5,5 @@ module.exports = function (app) {
 
     app.use('/categories', require('../routes/users/categories.route'));
 
-    app.use('/account', require('./routes/user/user.route'));
+    app.use('/account', require('../routes/user/user.route'));
 }

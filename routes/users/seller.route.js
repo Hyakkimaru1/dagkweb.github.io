@@ -1,33 +1,35 @@
 const express = require('express');
-//const categoryModel = require('../../models/category.model');
+const categoryModel = require('../../models/categories.model');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.render('_seller/information_productSeller',{layout:'seller_layout'});
+router.get('/add_product', async (req, res) => {
+  const rows = await categoryModel.allCategoryPapa();
+  const rowsChild = await categoryModel.all();
+  for (const i of rows){
+      i.Child = [];
+      for (const j of rowsChild)
+      {
+        if (i.id === j.id_DM_cha){
+          i.Child.push(j);
+        }
+      }
+  }
+  console.log(rows);
+  res.render('_seller/post_productSeller',{rows,layout:'seller_layout'});
 })
 
 router.post('/post', (req, res) => {
-  res.render('_seller/post_productSeller',{layout:'seller_layout'});
+  console.log(req.body);
+  res.render('_seller/information_productSeller',{layout:'seller_layout'});
 })
 
-router.get('/post', (req, res) => { 
-  res.render('_seller/post_productSeller',{layout:'seller_layout'});
+router.post('/add_product2', (req, res) => {
+  console.log(req.body);
+  res.render('_seller/information_productSeller',{layout:'seller_layout'});
 })
 
-router.get('/post/post', (req, res) => { 
-  res.render('_seller/post_productSeller',{layout:'seller_layout'});
-})
 
-router.post('/add', async (req, res) => {
-  // console.log(req.body);
-  // const entity = {
-  //   CatName: req.body.txtCatName
-  // }
-  const result = await categoryModel.add(req.body);
-  // console.log(result.insertId);
-  res.render('vwCategories/add');
-})
 
 router.get('/err', (req, res) => {
 
