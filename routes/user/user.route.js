@@ -34,8 +34,4 @@ router.get('/manageProductSeller/sellerSoldItems',(req, res) =>{
   res.render('vwAccount/sellerSoldItems',{layout:'loggedIn'});
 })
 
-router.get('/manageProductSeller/post_productSeller',(req, res) =>{
-  res.render('vwAccount/post_productSeller', {layout:'post_product'});
-})
-
 module.exports = router;

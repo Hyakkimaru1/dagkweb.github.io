@@ -1,10 +1,14 @@
+.content-agile2{
+    padding: 0!important;
+}
 
 .title-login{
-    height: 100%;
+    height: 100px;
     background-color: rgba(218, 76, 50, 0.712);
     border-block-end: 10px solid tomato;
 }
 .title-login div{
+    padding: 20px 0px 20px 0px;
     font-size: 40px;
     font-weight: bold;
     color: white;
@@ -16,6 +20,11 @@
     font-weight: bold; 
     margin: 20px 0px 10px 0px;
 }
+.options{
+    width: 300px;
+    margin:0 auto;
+}
+
 input.login {
     width: 200px;
     margin: 10px auto;
@@ -39,5 +48,7 @@ input.login {
 }
 
 .error{
+    width: 300px!important;
+    margin:0 auto;
     color: red;
 }

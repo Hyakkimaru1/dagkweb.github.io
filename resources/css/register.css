@@ -1,43 +1,72 @@
 /* start editing from here */
+.clear {
+	clear:both;
+}/* clear float */
 
-body{
-	background:url(/images/banner.jpg) no-repeat;
+#container-register {
+	background-attachment:fixed;
+	background-position:center;
+	background-size:cover;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
 }
-
 h1.title {
 	font-size:50px;
 	color:#fff;
 	padding:40px 0;
 	text-align:center;
+	/*-- w3layouts --*/ 
 	text-transform:uppercase;
 }
-
+.content {
+	background-color:#202123;
+	width:70%;
+	margin:0 auto 50px;
+	padding:0;
+}
+.content .content-agile1 {
+    width: 50%;
+    float: left;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    height: 555px;
+}
 h2.agileits1 {
     font-size: 40px;
     font-weight: normal;
     color: #fff;
-    text-align: center;
+    text-align: Center;
     padding: 200px 0 15px;
     text-transform: uppercase;
 	font-family: 'Monoton', cursive;
 }
-.agileits2 {
+p.agileits2 {
     font-size: 15px;
     font-weight: normal;
     color: #fff;
     text-align: center;
     text-transform: capitalize;
 }
-
-input#txtFirstName,input#txtLastName,input#txtAddr,input#txtUserName,input#txtEmail,input#password1,input#password2 {
-	width:100%;
+.content .content-agile2 {
+	width: 50%;
+    float: left;
+}
+input#txtName,input#txtAddr,input#txtEmail,input#password1,input#password2 {
+	width:300px;
 	height:50px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding:0 15px;
 	color:#fff;
 	font-size:17px;
 	font-weight:200;
-	background-color:transparent; 
+	background-color:transparent;
+	/*-- w3layouts --*/ 
 	border-bottom:5px solid #fff;
 	border-top-color:transparent;
 	border-left-color:transparent;
@@ -47,10 +76,11 @@ input#txtFirstName,input#txtLastName,input#txtAddr,input#txtUserName,input#txtEm
 	display:block;
 	outline:none;
 }
-input#txtFirstName:focus,#txtLastName:focus,input#txtAddr:focus,input#txtUserName:focus,
-input#txtEmail:focus,input#password1:focus,input#password2:focus,
-input#txtFirstName:hover,#txtLastName:hover,input#txtAddr:hover,input#txtUserName:hover,
-input#txtEmail:hover,input#password1:hover,input#password2:hover {
+input#txtName:focus,input#txtEmail:focus,input#password1:focus,input#password2:focus,input#txtName:hover,input#txtEmail:hover,input#password1:hover,input#password2:hover {
+	color:#fff;
+	border-bottom:5px solid #3970b0;
+}
+input#txtName:in-range{
 	color:#fff;
 	border-bottom:5px solid #3970b0;
 }
@@ -95,16 +125,23 @@ color: #000 !important;
 
 
 input.register {
-    width: 100%;
+    width: 335px;
+    margin: 30px auto;
     display: block;
-    height: 100%;
+    height: 50px;
     text-align: center;
-    font-size: 25px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: normal;
     color: #fff;
     background-color:#3970b0;
     border-color: transparent;
 	font-family: 'Raleway', sans-serif;
+	/*-- w3ls --*/
+	transition:all 0.5s ease-in-out;
+	-webkit-transition:all 0.5s ease-in-out;
+	-moz-transition:all 0.5s ease-in-out;
+	-o-transition:all 0.5s ease-in-out;
+	-ms-transition:all 0.5s ease-in-out;
 	cursor:pointer;
 }
 input.register:hover {
@@ -113,23 +150,26 @@ input.register:hover {
 }
 
 div.g-recaptcha {
-	width:100%;
-	text-align: center;
+	width:300px;
+
 	margin:0 auto;
 	display:block;
 	outline:none;
 }
-div#errFName,#errLName,div#errAddr,#errUserName,div#errEmail,div#errPwd,div#errCfpwd,div#errCaptcha{
+div#errName,div#errAddr,div#errEmail,div#errPwd,div#errCfpwd,div#errCaptcha{
+	margin:0 auto 5px;
 	color: red;
+	width: 330px;
 }
 
 .title-register{
-	height: 100%;
+	height: 100px;
     background-color: rgba(218, 76, 50, 0.712);
     border-block-end: 10px solid tomato;
 }
 
 .title-register div{
+    padding: 20px 0px 20px 0px;
     font-size: 40px;
     font-weight: bold;
     color: white;

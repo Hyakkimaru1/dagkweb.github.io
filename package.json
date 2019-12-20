@@ -18,12 +18,9 @@
   },
   "homepage": "https://github.com/Hyakkimaru1/dagkweb.github.io#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "express-handlebars": "^3.1.0",
-    "express-handlebars-sections": "^1.0.1",
-    "express-session": "^1.17.0",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1"
   }

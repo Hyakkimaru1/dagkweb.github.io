@@ -1,7 +1,5 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
-const hbs_sections = require('express-handlebars-sections');
-const session = require('express-session');
 const morgan = require('morgan');
 require('express-async-errors');
 
@@ -13,33 +11,21 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  // cookie: {
-  //     secure: true
-  // }
-}))
-
 app.engine('hbs', exphbs({
   defaultLayout: 'main.hbs',
-  layoutsDir: 'views/_layouts',
-  helpers: {
-    section: hbs_sections(),
-  }
+  layoutsDir: 'views/_layouts'
 }));
 app.use(express.static(__dirname + '/resources'));
 app.set('view engine', 'hbs');
-
-require('./middlewares/locals.mdw')(app);
-require('./middlewares/routes.mdw')(app);
-
 
 app.get('/', (req, res) => {
   // res.end('hello from expressjs');
   res.render('home');
 })
+
+app.use('/account', require('./routes/user/user.route'));
+app.use('/product', require('./routes/users/product.route'));
+app.use('/categories', require('./routes/users/categories.route'));
 
 app.use((req, res, next) => {
   // res.render('vwError/404');
