@@ -4,16 +4,12 @@ $(document).ready(function(){
       e.preventDefault();
       var flag = true;
   
-      if (!$("#txtEmail").val()) {
-        $("#errEmail").text("Email is empty!");
-        flag = false;
-      }
-      else if(false){//kiem tra tu server
-        $("#errEmail").text("This email hasn't register!");
+      if (!$("#txtUserName").val()) {
+        $("#errUserName").text("UserName is empty!");
         flag = false;
       }
       else{
-        $("#errEmail").text("");
+        $("#errUserName").text("");
         flag = true;
       }
       
@@ -22,31 +18,13 @@ $(document).ready(function(){
         $("#errPwd").text("Password is empty!");
         flag = false;
       }
-      else if(false){//kiem tra password tu server
-        $("#errPwd").text("Password was wrong!");
-        flag = false;
-      }
       else{
         $("#errPwd").text("");
         flag = true;
       }
-
-      if(flag){
-        if ($("#txtEmail").val() === 'user' && $('#password1').val()==='user'){
-          this.submit();
-          flagLogin = true;
-        }
-        else{
-          $("#errPwd").text("Email or password was wrong!");
-        }
+      if(flag)
+      {
+        this.submit();
       }
     });
-  });
-
-  $( '.navbar' ).ready(function() {
-    if(flagLogin==true) {
-      $('#login').html('<i class="fa fa-user-circle fa-lg"></i>');
-     
-      $('#signup').html('<b> LOG OUT <b>');
-    }
   });
