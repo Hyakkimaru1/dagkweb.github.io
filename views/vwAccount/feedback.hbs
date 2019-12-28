@@ -1,7 +1,17 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/account.css">
+<link rel="stylesheet" href="/css/feedback.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/account.js"></script>
+<script src="/js/feedback.js"></script>
+{{/section}}
+
 <nav aria-label="breadcrumb" style="margin-top: 40px;">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="/account">My Account</a></li>
+        <li class="breadcrumb-item"><a href="/user/profile">My Account</a></li>
         <li class="breadcrumb-item active" aria-current="page">Feedback</li>
     </ol>
 </nav>
@@ -13,14 +23,14 @@
             <div class="sidenav">
                 <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
                 <div class="dropdown-container-pf" style="display: none;">
-                    <a class="item" href="/account">Background</a>
-                    <a class="item" href="/account/changepwd">Change Password</a>
+                    <a class="item" href="/user/profile">Background</a>
+                    <a class="item" href="/user/changepwd">Change Password</a>
                 </div>
-                <a href="/account/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
-                <a href="/account/feedback" style="color: blue;"><i class="fa fa-bell"></i>Feedback</a>
-                <a href="/account/cartBidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
-                <a href="/account/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
-                <a href="/account/manageProductSeller"><i class="fa fa-archive"></i>Manage products</a>
+                <a href="/user/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
+                <a href="/user/feedback" style="color: blue;"><i class="fa fa-bell"></i>Feedback</a>
+                <a href="/user/cartBidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
+                <a href="/user/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
+                <a href="/user/manageProductSeller"><i class="fa fa-archive"></i>Manage products</a>
             </div>
         </div>
         <div class="col-sm-9">

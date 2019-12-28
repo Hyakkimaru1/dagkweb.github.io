@@ -5,7 +5,7 @@ const restrict = require('../../middlewares/auth.mdw');
 
 const router = express.Router();
 
-router.get('/register', async (req, res) => {
+router.get('/register',(req, res) => {
   res.render('vwAccount/register');
 });
 
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
   const user = await userModel.singleByUsername(req.body.username);
   if (user === null)
     throw new Error('Invalid  username or password.');
-  console.log(user);
+  
   const rs = bcrypt.compareSync(req.body.password, user.password);
   if (rs === false)
     return res.render('vwAccount/login', {
@@ -46,7 +46,7 @@ router.post('/login', async (req, res) => {
   delete user.password;
   req.session.isAuthenticated = true;
   req.session.authUser = user;
-
+  console.log(user);
   const url = req.query.retUrl || '/';
   res.redirect(url); 
 });
