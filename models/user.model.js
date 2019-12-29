@@ -29,5 +29,10 @@ module.exports = {
     const condition = { id_user: entity.id_user };
     delete entity.id_user;
     return db.patch('nguoidung', entity, condition);
-  }
+  },
+  patchByEmail: entity => {
+    const condition = { email: entity.email };
+    delete entity.email;
+    return db.patch('nguoidung', entity, condition);
+  },
 };

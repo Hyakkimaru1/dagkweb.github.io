@@ -5,7 +5,7 @@ const userModel = require('../../models/user.model');
 const router = express.Router();
 
 router.get('/profile', (req, res) => {
-  res.render('vwAccount/profile');
+  res.render('vwAccount/vwProfile/profile');
 })
 
 router.post('/profile', async (req, res) => {
@@ -14,7 +14,7 @@ router.post('/profile', async (req, res) => {
 
   const user = await userModel.singleByEmail(req.body.email);
   if (!(user === null))
-    return res.render('vwAccount/profile', {
+    return res.render('vwAccount/vwProfile/profile', {
       err_message: 'The new email is duplicate! You can use the another email.'
     });
 
@@ -30,18 +30,18 @@ router.post('/profile', async (req, res) => {
   req.session.authUser.addr = update_entity.addr;
   req.session.authUser.email = update_entity.email;
 
-  res.render('vwAccount/profile',{
+  res.render('vwAccount/vwProfile/profile',{
     success_message: 'Your Information has been saved'
   });
   
 })
 
 router.get('/cartBidding', (req, res) => {
-    res.render('vwAccount/cartBidding');
+    res.render('vwAccount/vwProfile/cartBidding');
 })
 
 router.get('/changepwd', (req, res) => {
-  res.render('vwAccount/changePwd');
+  res.render('vwAccount/vwProfile/changePwd');
 })
 
 router.post('/changepwd', async (req, res) => {
@@ -53,7 +53,7 @@ router.post('/changepwd', async (req, res) => {
   console.log(user.password);
   const rs = bcrypt.compareSync(entity.curpassword, user.password);
   if (rs === false)
-    return res.render('vwAccount/changePwd', {
+    return res.render('vwAccount/vwProfile/changePwd', {
       err_message: 'The current password was wrong.'
     });
 
@@ -65,21 +65,21 @@ router.post('/changepwd', async (req, res) => {
   console.log(entity);
   
   const result = await userModel.patch(entity);
-  res.render('vwAccount/changePwd', {
+  res.render('vwAccount/vwProfile/changePwd', {
     success_message: 'Your password has been changed successfully!'
   });
 });
 
 router.get('/feedback', (req, res) => {
-  res.render('vwAccount/feedback');
+  res.render('vwAccount/vwProfile/feedback');
 })
 
 router.get('/successfulBid', (req, res) => {
-  res.render('vwAccount/successfulBid');
+  res.render('vwAccount/vwProfile/successfulBid');
 })
 
 router.get('/wishlist', (req, res) => {
-  res.render('vwAccount/wishlist');
+  res.render('vwAccount/vwProfile/wishlist');
 })
 
 //seller's views

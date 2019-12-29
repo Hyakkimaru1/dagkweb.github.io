@@ -35,6 +35,15 @@
 				{{err_message}}
 			</div>
 			{{/if}}
+
+			{{#if success_message}}
+			<div class="alert alert-success" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{success_message}}
+			</div>
+			{{/if}}
 			<form class="form-login" method="POST" id="frmLogin" name="frmLogin" autocomplete="off">
 
 				<div class="row mb-3 w-75 m-auto mb-5">
@@ -53,7 +62,7 @@
 
 				<div class="row mb-3 w-75 m-auto mb-5">
 					<div class="col-12 pl-3 pr-3">
-						<a href="forgotPwd.html"><small>Forgot your password?</small></a>
+						<a href="/account/forgotPwd"><small>Forgot your password?</small></a>
 						<a href="/account/register" style="float: right;"><small>No account? Register!</small></a>
 					</div>
 				</div>
