@@ -5,7 +5,6 @@
 
 {{#section 'js'}}
 <script src="/js/account.js"></script>
-<script src="/js/feedback.js"></script>
 {{/section}}
 
 <nav aria-label="breadcrumb" style="margin-top: 40px;">
@@ -38,56 +37,41 @@
                 <div class="content">
                     <h2>Feedback</h2>
                     <hr>
-                    <div style="margin-bottom: 10px;">Rating: <b> 3 </b></div>
-
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col" id="id">#</th>
-                                <th scope="col" id="name">Name</th>
-                                <th scope="col" id="point">Point</th>
-                                <th scope="col" id="fb">Feedback</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="align-middle" scope="row">1</th>
-                                <td class="align-middle">Mark</td>
-                                <td class="align-middle">+1</td>
-                                <td class="align-middle">
-                                    <div id="item">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum odio
-                                        sapiente maxime eos minima eum odit autem molestiae nobis, perspiciatis nam porro, 
-                                        iusto culpa, debitis cumque! Eius fugit ab sunt?
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">2</th>
-                                <td class="align-middle">Park</td>
-                                <td class="align-middle">+1</td>
-                                <td class="align-middle">
-                                    <div id="item">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum odio
-                                        sapiente maxime eos minima eum odit autem molestiae nobis, perspiciatis nam porro, 
-                                        iusto culpa, debitis cumque! Eius fugit ab sunt?
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th class="align-middle" scope="row">3</th>
-                                <td class="align-middle">Larry</td>
-                                <td class="align-middle">+1</td>
-                                <td class="align-middle">
-                                    <div id="item">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum odio
-                                        sapiente maxime eos minima eum odit autem molestiae nobis, perspiciatis nam porro, 
-                                        iusto culpa, debitis cumque! Eius fugit ab sunt?
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="mb-3">Rating: <b> {{authUser.diem_DG}} </b></div>
+                    <hr>
+                    {{#if this.empty}}
+                    <div><b>You haven't feedback yet.</b></div>
+                    {{else}}
+                        <div class="mb-2"><h3>Detail:</h3></div>
+                        <div class="row">
+                        {{#each this.feedback}}
+                        
+                        <div class="col-4 mb-3">
+                            
+                            {{#if diem_DG}}
+                            <div class="card h-100 border-success text-white">
+                                <div class="card-header bg-success">{{maskName}}</div>
+                                <div class="card-body">
+                                    <div class="text-dark">Feedback: <br>{{nhan_xet_DG}}</div>
+                                </div>
+                                <div class="card-footer bg-success border-success">Time: {{timeCreate}}</div>
+                            </div>
+                            {{else}}
+                            <div class="card h-100 border-danger text-white">
+                                <div class="card-header bg-danger">{{maskName}}</div>
+                                <div class="card-body">
+                                    <div class="text-dark">Feedback: <br>{{nhan_xet_DG}}</div>
+                                </div>
+                                <div class="card-footer bg-danger border-danger">Time: {{timeCreate}}</div>
+                            </div>
+                            {{/if}}
+                            
+                        </div>
+                        
+                        {{/each}}
+                        </div>
+                         
+                    {{/if}}
                 </div>
             </div>
         </div>

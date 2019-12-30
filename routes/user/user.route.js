@@ -1,12 +1,13 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const userModel = require('../../models/user.model');
+const moment = require('moment')
 
 const router = express.Router();
 
 router.get('/profile', (req, res) => {
   res.render('vwAccount/vwProfile/profile');
-})
+});
 
 router.post('/profile', async (req, res) => {
 
@@ -34,15 +35,11 @@ router.post('/profile', async (req, res) => {
     success_message: 'Your Information has been saved'
   });
   
-})
-
-router.get('/cartBidding', (req, res) => {
-    res.render('vwAccount/vwProfile/cartBidding');
-})
+});
 
 router.get('/changepwd', (req, res) => {
   res.render('vwAccount/vwProfile/changePwd');
-})
+});
 
 router.post('/changepwd', async (req, res) => {
   const entity = req.body;
@@ -70,30 +67,85 @@ router.post('/changepwd', async (req, res) => {
   });
 });
 
-router.get('/feedback', (req, res) => {
-  res.render('vwAccount/vwProfile/feedback');
-})
+router.get('/feedback', async (req, res) => {
+  const rows = await userModel.getFeedback(req.session.authUser.id_user);
+  if(rows.length > 0){
+    //console.log(rows);
+    for(const row of rows){
+      row.diem_DG = row.diem_DG === 1;
+      const user = await userModel.single(row.id_nguoi_duoc_DG);
+      //console.log(user);
+      row.maskName = user.username.replace(/\w(?=\w{3})/g, "*");
+      delete row.id_nguoi_duoc_DG;
+      //row.timeCreate = row.timeCreate.replace(/T/, ' ').replace(/\..+/,; '');
+      row.timeCreate = moment(row.timeCreate).format('DD/MM/YYYY');
+      delete row.id_nguoi_duoc_DG;
+    }
+  }
+  console.log(rows);
+  res.render('vwAccount/vwProfile/feedback',{
+    feedback: rows,
+    empty: rows.length === 0,
+  });
+});
+
+router.get('/cartBidding', (req, res) => {
+  res.render('vwAccount/vwProfile/cartBidding');
+});
 
 router.get('/successfulBid', (req, res) => {
   res.render('vwAccount/vwProfile/successfulBid');
-})
+});
 
-router.get('/wishlist', (req, res) => {
-  res.render('vwAccount/vwProfile/wishlist');
-})
+router.get('/wishlist', async (req, res) => {
+  const rows = await userModel.getWishlist(req.session.authUser.id_user);
+  if(rows.length > 0) {
+    for(const row of rows){
+      //kiem tra xem da co nguoi thang hay chua
+      row.isNguoiThang = row.nguoiThang !== null;
+      delete row.nguoiThang;
+      //tinh toan thoi gian con lai
+      if(row.isNguoiThang === false){
+        let seconds = moment(row.timeEnd).unix() - moment().unix();
+        console.log(seconds);
+        const day = Math.floor(seconds / (24*60*60));
+        console.log(day);
+        seconds = seconds % (24*60*60);
+        console.log(seconds);
+        if(seconds > 0){
+          const hour = moment.utc(seconds * 1000).format('hh');
+          const minute = moment.utc(seconds * 1000).format('mm');
+          const second = moment.utc(seconds * 1000).format('ss');
+
+          row.timeOut = day.toString() + 'd ' + hour + 'h ' + minute + 'm '+ second + 's';
+        }
+        else
+        row.timeOut = '0d 0h 0m 0s';
+      }
+      else
+        row.timeOut = '0d 0h 0m 0s';
+      delete row.timeEnd;
+    }
+  }
+  //console.log(rows);
+  res.render('vwAccount/vwProfile/wishlist',{
+    products: rows,
+    empty: rows.length === 0,
+  });
+});
 
 //seller's views
 
 router.get('/manageProductSeller',(req, res) =>{
   res.render('vwAccount/manageProductSeller');
-})
+});
 
 router.get('/manageProductSeller/sellerSoldItems',(req, res) =>{
   res.render('vwAccount/sellerSoldItems');
-})
+});
 
 router.get('/manageProductSeller/post_productSeller',(req, res) =>{
   res.render('vwAccount/post_productSeller');
-})
+});
 
 module.exports = router;
