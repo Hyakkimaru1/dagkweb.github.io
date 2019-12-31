@@ -38,4 +38,5 @@ module.exports = {
   },
   getFeedback: id => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = '${id}'`),
   getWishlist: id => db.load(`select id,ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiThang from sanpham JOIN sp_yeu_thich ON id = id_SP AND id_NM = '${id}'`),
+  getWonlist: id => db.load(`select id,ten_SP,gia_HienTai,moTaSP,nguoiBan from sanpham where nguoiThang = '${id}'`),
 };

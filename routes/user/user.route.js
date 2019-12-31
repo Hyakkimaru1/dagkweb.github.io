@@ -93,8 +93,24 @@ router.get('/cartBidding', (req, res) => {
   res.render('vwAccount/vwProfile/cartBidding');
 });
 
-router.get('/successfulBid', (req, res) => {
-  res.render('vwAccount/vwProfile/successfulBid');
+router.get('/successfulBid', async (req, res) => {
+  const rows = await userModel.getWonlist(req.session.authUser.id_user);
+
+  console.log(rows);
+  if(rows.length > 0){
+    for(const row of rows){
+      console.log(row);
+      const Seller = await userModel.single(row.nguoiBan);
+      if(Seller !== null){
+        row.nameSeller = Seller.firstname + " " + Seller.lastname;
+        console.log(row);
+      }
+    }
+  }
+  res.render('vwAccount/vwProfile/successfulBid',{
+    products: rows,
+    empty: rows.length === 0,
+  });
 });
 
 router.get('/wishlist', async (req, res) => {
