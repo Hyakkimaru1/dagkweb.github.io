@@ -41,41 +41,10 @@
             <div><b>Your wishlist is empty!</b></div>
             {{else}}
             {{#each this.products}}
-            {{#if isNguoiThang}}
-            <div class="out-of-stock">
-                <a class="item" href="product.html">
-                    <div class="card-body shadow-sm p-3 mb-5 bg-white rounded" style="min-width: 689px; height:195px;">
-                        <div class="row oos">
-                            <div class="col-sm-2">
-                                <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
-                                    alt="" class="categories">
-                            </div>
-                            <div class="col-sm-10">
-                                <h5 class="item-title">{{ten_SP}}</h5>
-                                <div class="item-content">{{moTaSP}}</div>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p style="font-size: 15px; font-weight: 700;">Buy now: {{gia_MuaNgay}}</p><br>
-                                        <p style="font-size: 15px; font-weight:700;">Close in </p>
-                                        <p id="timeOut">{{timeOut}} </p>
-                                    </div>
-                                        
-                                    <div class="col-sm-6">
-                                        <button type="button" class="btn btn-outline-primary rounded-pill">View this
-                                            lot</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            {{else}}
-
+            {{#if isDuration}}
+            
             <div class="in-stock">
-                <a class="item" href="product.html">
-                    <div class="card-body shadow-sm p-3 mb-5 bg-white rounded" style="min-width: 689px; height:195px;">
+                    <div class="card-body shadow-sm mb-5 p-3 bg-white rounded h-100 w-100">
                         <div class="row">
                             <div class="col-sm-2" href="product.html">
                                 <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
@@ -86,12 +55,14 @@
                                 <div class="item-content">{{moTaSP}}</div>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p style="font-size: 15px; font-weight: 700;">Buy now: {{gia_MuaNgay}}</p><br>
+                                        <p style="font-size: 15px; font-weight: 700;">Buy now: {{format gia_MuaNgay}}đ</p><br>
                                         <p style="font-size: 15px; font-weight:700;">Close in</p>
                                         <p id="timeOut">{{timeOut}}</p>
                                     </div>
                                     <div class="col-sm-6">
-                                        <button type="button" class="btn btn-outline-danger rounded-pill">Delete this item</button>
+                                        <button type="button" class="btn btn-outline-primary rounded-pill" onclick="window.location.href='/product/?id={{id}}'">View this
+                                        lot</button>
+                                        <button type="button" class="btn btn-outline-danger rounded-pill" onclick="window.location.href='/user/wishlist/del/{{id}}'">Delete this item</button>
                                     </div>
                                 </div>
                             </div>
@@ -99,6 +70,38 @@
                     </div>
                 </a>
             </div>
+
+            {{else}}
+
+            <div class="out-of-stock">
+                <div class="card-body shadow-sm mb-5 p-3 bg-white rounded h-100 w-100">
+                    <div class="row oos">
+                        <div class="col-sm-2">
+                            <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
+                                alt="" class="categories">
+                        </div>
+                        <div class="col-sm-10">
+                            <h5 class="item-title">{{ten_SP}}</h5>
+                            <div class="item-content">{{moTaSP}}</div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p style="font-size: 15px; font-weight: 700;">Buy now: {{format gia_MuaNgay}}đ</p><br>
+                                    <p style="font-size: 15px; font-weight:700;">Close in </p>
+                                    <p id="timeOut">{{timeOut}} </p>
+                                </div>
+                                    
+                                <div class="col-sm-6">
+                                    <button type="button" class="btn btn-outline-primary rounded-pill" onclick="window.location.href='/product/?id={{id}}'">View this
+                                        lot</button>
+                                    <button type="button" class="btn btn-outline-danger rounded-pill" onclick="window.location.href='/user/wishlist/del/{{id}}'">Delete this item</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
             {{/if}}
             {{/each}}
             {{/if}}

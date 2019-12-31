@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
+const numeral = require('numeral');
 const morgan = require('morgan');
 require('express-async-errors');
 
@@ -54,7 +55,8 @@ app.engine('hbs', exphbs({
         default:
           return operator.inverse(this);
       }
-    }
+    },
+    format: val => numeral(val).format('0,0'),
   }
 }));
 

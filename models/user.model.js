@@ -25,6 +25,7 @@ module.exports = {
   },
   add: entity => db.add('nguoidung', entity),
   del: id => db.del('nguoidung', { id_user: id }),
+  delFavorProduct: (idUser,id) => db.delSpecial('sp_yeu_thich',[{id_NM :idUser}, {id_SP: id}]),
   patch: entity => {
     const condition = { id_user: entity.id_user };
     delete entity.id_user;

@@ -101,17 +101,19 @@ router.get('/wishlist', async (req, res) => {
   const rows = await userModel.getWishlist(req.session.authUser.id_user);
   if(rows.length > 0) {
     for(const row of rows){
-      //kiem tra xem da co nguoi thang hay chua
-      row.isNguoiThang = row.nguoiThang !== null;
-      delete row.nguoiThang;
       //tinh toan thoi gian con lai
-      if(row.isNguoiThang === false){
-        let seconds = moment(row.timeEnd).unix() - moment().unix();
-        console.log(seconds);
+      let seconds = moment(row.timeEnd).unix() - moment().unix();
+
+      //kiem tra xem san pham con dau gia hay khong
+      row.isDuration = row.nguoiThang === null && seconds > 0;
+      delete row.nguoiThang;
+
+      if(row.isDuration === true){        
+        //console.log(seconds);
         const day = Math.floor(seconds / (24*60*60));
-        console.log(day);
+        //console.log(day);
         seconds = seconds % (24*60*60);
-        console.log(seconds);
+        //console.log(seconds);
         if(seconds > 0){
           const hour = moment.utc(seconds * 1000).format('hh');
           const minute = moment.utc(seconds * 1000).format('mm');
@@ -119,8 +121,6 @@ router.get('/wishlist', async (req, res) => {
 
           row.timeOut = day.toString() + 'd ' + hour + 'h ' + minute + 'm '+ second + 's';
         }
-        else
-        row.timeOut = '0d 0h 0m 0s';
       }
       else
         row.timeOut = '0d 0h 0m 0s';
@@ -133,6 +133,11 @@ router.get('/wishlist', async (req, res) => {
     empty: rows.length === 0,
   });
 });
+
+router.get('/wishlist/del/:id', async (req, res) => {
+  const result = await userModel.delFavorProduct(req.session.authUser.id_user,+req.params.id);
+  res.redirect('/user/wishlist');
+})
 
 //seller's views
 
