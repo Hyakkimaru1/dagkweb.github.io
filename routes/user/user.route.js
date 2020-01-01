@@ -89,8 +89,51 @@ router.get('/feedback', async (req, res) => {
   });
 });
 
-router.get('/cartBidding', (req, res) => {
-  res.render('vwAccount/vwProfile/cartBidding');
+router.get('/cartBidding', async (req, res) => {
+  const rows = await userModel.getCartBidding(req.session.authUser.id_user);
+  if (rows.length > 0) {
+    for (let row of rows) {
+      //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan
+      const sp = await userModel.getSP(row.id_SP);
+      console.log(sp);
+      row.tenSP = sp.tenSP;
+      row.gia_MuaNgay = sp.gia_MuaNgay;
+      row.moTaSP = sp.moTaSP;
+      row.nguoiBan = sp.nguoiBan;
+      row.timeEnd = sp.timeEnd;
+      row.nguoiThang = sp.nguoiThang;
+
+      //tinh toan thoi gian con lai
+      let seconds = moment(row.timeEnd).unix() - moment().unix();
+
+      //kiem tra xem san pham con dau gia hay khong
+      row.isDuration = row.nguoiThang === null && seconds > 0;
+
+      if (row.isDuration === true) {
+        //console.log(seconds);
+        const day = Math.floor(seconds / (24 * 60 * 60));
+        //console.log(day);
+        seconds = seconds % (24 * 60 * 60);
+        //console.log(seconds);
+        if (seconds > 0) {
+          const hour = moment.utc(seconds * 1000).format('hh');
+          const minute = moment.utc(seconds * 1000).format('mm');
+          const second = moment.utc(seconds * 1000).format('ss');
+
+          row.timeOut = day.toString() + 'd ' + hour + 'h ' + minute + 'm ' + second + 's';
+        }
+      }
+      else
+        row.timeOut = '0d 0h 0m 0s';
+      delete row.timeEnd;
+      
+    }
+  }
+  console.log(rows);
+  res.render('vwAccount/vwProfile/cartBidding',{
+    products: rows,
+    empty: rows.length === 0,
+  });
 });
 
 router.get('/successfulBid', async (req, res) => {
