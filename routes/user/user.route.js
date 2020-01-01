@@ -73,7 +73,7 @@ router.get('/feedback', async (req, res) => {
     //console.log(rows);
     for(const row of rows){
       row.diem_DG = row.diem_DG === 1;
-      const user = await userModel.single(row.id_nguoi_duoc_DG);
+      const user = await userModel.single(row.id_nguoi_DG);
       //console.log(user);
       row.maskName = user.username.replace(/\w(?=\w{3})/g, "*");
       delete row.id_nguoi_duoc_DG;
@@ -111,6 +111,58 @@ router.get('/successfulBid', async (req, res) => {
     products: rows,
     empty: rows.length === 0,
   });
+});
+
+router.post('/wonBid-fb', async (req, res) => {
+  console.log(req.query);
+  console.log(req.body);
+  const row = await userModel.selectID_DG(req.query.idSP,req.session.authUser.id_user);
+  console.log(row);
+  //neu nhu chua danh gia thi thuc hien danh gia
+  if(row === null){
+    const entity = {};
+    entity.id_nguoi_DG = req.session.authUser.id_user;
+    entity.id_nguoi_duoc_DG = req.query.idSeller;
+    entity.id_sp_duoc_dg = req.query.idSP;
+    entity.nhan_xet_DG = req.body.feedback;
+    entity.diem_DG = +req.body.point;
+    entity.timeCreate = moment().format('YYYY/MM/DD HH:mm:ss');
+    console.log(entity);
+    const dg = await userModel.addDG(entity);
+    console.log(dg);
+
+    //cap nhat lai diem danh gia trong bang nguoidung
+    const user = await userModel.single(entity.id_nguoi_duoc_DG);
+    const diem_dg_moi = entity.diem_DG + user.diem_DG;
+    const obj = {};
+    obj.id_user = user.id_user;
+    obj.diem_DG = diem_dg_moi;
+    const rs = await userModel.patch(obj);
+  }
+  else {//neu da co danh gia thi sua lai danh gia
+    const obj1 = {};
+    obj1.id_DG = row.id_DG;
+    obj1.diem_DG = +req.body.point;
+
+    const obj2 ={};
+    obj2.id_DG = row.id_DG;
+    obj2.nhan_xet_DG = req.body.feedback;
+
+    const [rs1,rs2] = await Promise.all([
+      userModel.patch_dg(obj1),
+      userModel.patch_dg(obj2)
+    ]);
+
+    //cap nhat lai diem danh gia
+    const user = await userModel.single(req.query.idSeller);
+    const diem_dg_moi = obj1.diem_DG + user.diem_DG;
+    const obj3 = {};
+    obj3.id_user = user.id_user;
+    obj3.diem_DG = diem_dg_moi;
+    const rs = await userModel.patch(obj3);
+
+  }
+  res.redirect('/user/successfulBid');
 });
 
 router.get('/wishlist', async (req, res) => {

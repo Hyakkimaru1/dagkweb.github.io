@@ -23,6 +23,13 @@ module.exports = {
 
     return rows[0];
   },
+  selectID_DG: async (idSP,idUser) =>{ 
+    const rows = await db.load(`select id_DG from chi_tiet_DG where id_nguoi_DG = '${idUser}' and id_sp_duoc_dg ='${idSP}'`); 
+    if(rows.length === 0)
+      return null;
+    return rows[0];
+  },
+  addDG: entity => db.add('chi_tiet_dg',entity),
   add: entity => db.add('nguoidung', entity),
   del: id => db.del('nguoidung', { id_user: id }),
   delFavorProduct: (idUser,id) => db.delSpecial('sp_yeu_thich',[{id_NM :idUser}, {id_SP: id}]),
@@ -30,6 +37,11 @@ module.exports = {
     const condition = { id_user: entity.id_user };
     delete entity.id_user;
     return db.patch('nguoidung', entity, condition);
+  },
+  patch_dg: entity => {
+    const condition = { id_DG: entity.id_DG };
+    delete entity.id_DG;
+    return db.patch('chi_tiet_dg', entity, condition);
   },
   patchByEmail: entity => {
     const condition = { email: entity.email };
