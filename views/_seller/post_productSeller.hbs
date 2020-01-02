@@ -1,0 +1,45 @@
+
+  <div class="container mt-3" style="background-color: white;">
+    <p style="margin-bottom: 6px;font-size: 22px;color: #333;">Thêm 1 sản phẩm mới</p>
+    <p style="font-size: 12px;color: #999;">Vui lòng chọn ngành hàng phù hợp cho sản phẩm của bạn.</p>
+    <hr> 
+    
+    <span id="productNameNull"  style="border: 1;margin-left:122px;color:red;"></span>
+    <form action="/seller/add_product2" id='nameCate_Product' method="POST">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text" style="background-color: #4d4dff;color: white;">Tên sản phẩm</span>
+      </div>
+      <input type="text" class="form-control" name="productName" id="productName">
+    </div>
+    <br>
+    <p style="margin-bottom: 6px;font-size: 15px;color: #333;">
+      Ngành hàng
+    </p>
+    <div class="row">
+      <div class="col-sm-6" style="overflow-y: scroll; height: 250px;" >
+        <ul class="list-group" id="cateParent">
+          {{#each rows}}
+          <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="choose(this,{{id}})"><p>{{ten_DM_cha}}</p> <i class="fas fa-arrow-right float-right"></i></li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-sm-6" style="overflow-y: scroll; height: 250px;" >
+        {{#each rows}}
+        <ul class="list-group" style="display: none;" id="cateChild{{id}}">
+          {{#each Child}}
+         <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this,{{id}})"><p>{{ten_DM}}</p></li>
+          {{/each }}
+        </ul>
+        {{/each}}
+      </div>
+    </div>
+    <br>
+    <p>Selected:</p>
+    <p id="selected" style="color: red;display: inline;" ></p><p id="selected1" style="color: red;display: inline;"></p><p id="selected2" style="color: red;display: inline;"></p>
+    <input style="display: none;" type="text" name="id_DM_cha" id="id_DM_cha">
+    <input style="display: none;" type="text" name="id" id="id_DM_con">
+    </form>
+    <br>
+    <button type="button" class="btn btn-outline-primary" id="btNext">Tiếp theo</button>
+  </div>

@@ -1,20 +1,33 @@
-var imgsourcedisl = ['https://image.flaticon.com/icons/svg/149/149190.svg','https://image.flaticon.com/icons/svg/148/148809.svg'];
-var imgsourcelike = ['https://image.flaticon.com/icons/svg/149/149189.svg','https://image.flaticon.com/icons/svg/148/148808.svg'];
-var i=1;
-function rate(x){
-    i=i*-1;
-if(x==document.getElementById("like")){
-    $("#like").attr("src",imgsourcelike[1]);
-    $("#dislike").attr("src",imgsourcedisl[0]);
-   $("#rate1").show();
-   $("#rate").hide();
-}
-else{
-    $("#dislike").attr("src",imgsourcedisl[1]);
-    $("#like").attr("src",imgsourcelike[0]);
-    $("#rate").show();
-    $("#rate1").hide();
-}
-}
+$(document).ready(function () {
+    $('#form-feedback').on('submit', function (e) {
+        e.preventDefault();
+        var flag1 = true;
+        var flag2 = true;
+        var textareaVal = $("#message-text").val();
+
+        //check radio input
+        if ($('input[type=radio][name=point]:checked').length == 0) {
+            $("#warning-p").show();
+            flag1 = false;
+        }
+        else {
+            $("#warning-p").hide();
+            flag1 = true;
+        }
+
+        //check the value
+        if (textareaVal == "") {
+            $("#warning-fb").show(); // if textarea value is empty then show the warning text
+            flag2 = false;
+        }
+        else {
+            $("#warning-fb").hide(); // else textaer value is not empty then hide the warning text
+            flag2 = true;
+        }
+        if (flag1 && flag2) {
+            this.submit();
+        }
+    });
+});
 
 

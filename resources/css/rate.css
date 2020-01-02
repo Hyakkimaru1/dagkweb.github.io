@@ -1,0 +1,17 @@
+[type=radio] { 
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+/* icon STYLES */
+[type=radio] + i {
+    font-size: 50px;
+    cursor: pointer;
+}
+  
+/* CHECKED STYLES */
+[type=radio]:checked + i {
+    font-size: 80px;
+}

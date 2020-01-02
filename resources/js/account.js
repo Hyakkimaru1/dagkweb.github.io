@@ -15,18 +15,30 @@ for (i = 0; i < dropdown.length; i++) {
 }
 
 $(document).ready(function(){
+  $(".alert").fadeTo(3000,0).slideUp(500, function () {
+    $(this).remove();
+  });
   $('#form-manage').on('submit', function(e){
     e.preventDefault();
     var flag = true;
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; //Regular Expressions
-    if (!$("#FullName").val()) {
-        $("#errFullName").text("Name is empty!");
+    if (!$("#firstname").val()) {
+        $("#errFirstName").text("First name is empty!");
         flag = false;
     }
     else{
-      $("#errFullName").text("");
+      $("#errFirstName").text("");
       flag = true;
     }
+
+    if (!$("#lastname").val()) {
+      $("#errLastName").text("Last name is empty!");
+      flag = false;
+  }
+  else{
+    $("#errLastName").text("");
+    flag = true;
+  }
     
     if (!$("#Addr").val()) {
       $("#errAddr").text("Address is empty!");
@@ -50,28 +62,8 @@ $(document).ready(function(){
       $("#errEmail").text("");
       flag = true;
     }
-    if (!$("#date-of-birth").val()) {
-      $("#errDate").text("Date is empty!");
-      flag = false;
-    }
-    else{
-      $("#errDate").text("");
-      flag = true;
-    }
     if(flag){
       this.submit();
     }
   });
 });
-
-$(document).ready( function() {
-  $('#falseinput').click(function(){
-    $("#fileinput").click();
-  });
-
-  $('#fileinput').on('change',function() {
-    alert(window.URL.createObjectURL($('#fileinput').files[0]));
-    $('#avatar').attr('src', window.URL.createObjectURL($('#fileinput').files[0]));
-  });
-});
-

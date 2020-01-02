@@ -16,11 +16,10 @@ $(document).ready(function(){
     });
 });
 
-
 var count;
 CKEDITOR.replace( 'description' );
 
-
+var getFileMain;
 //input file 1
 var input = document.getElementById( 'file1' );
 var infoArea = document.getElementById( 'nameFile1' );
@@ -34,7 +33,7 @@ function showFileName( event ) {
   
   // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
   var files = input.files[0];
-  
+  getFileMain = files;
   if (!validImageTypes.includes(files['type'])) {
     // invalid file type code goes here.
     Swal.fire('Chọn file là file ảnh (có đuôi png/jpeg)');
@@ -42,7 +41,15 @@ function showFileName( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea.textContent = files.name;
+    readURL(this);
   }
+  $('#bt_del1').click(function(){
+    infoArea.textContent = 'Ảnh bìa';
+    $('#viewImg1').hide();
+    input.files[0] = undefined;
+    getFileMain = undefined;
+    count--;
+  })
 }
 
 //input file 2
@@ -66,7 +73,14 @@ function showFileName2( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea2.textContent = files.name;
+    readURL2(this);
   }
+  $('#bt_del2').click(function(){
+    infoArea2.textContent = 'Choose a file';
+    $('#viewImg2').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 3
@@ -91,7 +105,14 @@ function showFileName3( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea3.textContent = files.name;
+    readURL3(this);
   }
+  $('#bt_del3').click(function(){
+    infoArea3.textContent = 'Choose a file';
+    $('#viewImg3').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 4
@@ -115,7 +136,14 @@ function showFileName4( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea4.textContent = files.name;
+    readURL4(this);
   }
+  $('#bt_del4').click(function(){
+    infoArea4.textContent = 'Choose a file';
+    $('#viewImg4').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 5
@@ -139,7 +167,14 @@ function showFileName5( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea5.textContent = files.name;
+    readURL5(this);
   }
+  $('#bt_del5').click(function(){
+    infoArea5.textContent = 'Choose a file';
+    $('#viewImg5').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 6
@@ -163,7 +198,14 @@ function showFileName6( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea6.textContent = files.name;
+    readURL6(this);
   }
+  $('#bt_del6').click(function(){
+    infoArea6.textContent = 'Choose a file';
+    $('#viewImg6').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 7
@@ -187,7 +229,14 @@ function showFileName7( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea7.textContent = files.name;
+    readURL7(this);
   }
+  $('#bt_del7').click(function(){
+    infoArea7.textContent = 'Choose a file';
+    $('#viewImg7').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 }
 
 //input file 8
@@ -211,7 +260,14 @@ function showFileName8( event ) {
   else {
   // use fileName however fits your app best, i.e. add it into a div
     infoArea8.textContent = files.name;
+    readURL8(this);
   }
+  $('#bt_del8').click(function(){
+    infoArea8.textContent = 'Choose a file';
+    $('#viewImg8').hide();
+    input.files[0] = undefined;
+    count--;
+  })
 
 }
 
@@ -265,10 +321,19 @@ $('#btSubmit').click(function(){
     if (description === '' || $('#firstPrice').val() === '' || $('#stepPrice').val() == ''|| count<3){
       if (count<3)
       {
-        Swal.fire('Vui lòng thêm ít nhất 3 hình');
+          Swal.fire('Vui lòng thêm ít nhất 3 hình');
+        
       }
       else {
-        Swal.fire('Vui lòng  nhập đầy đủ thông tin');
+        console.log(getFileMain);
+        if (getFileMain == undefined)
+        {
+          Swal.fire('Vui lòng chọn ảnh bìa');
+        }
+        else {
+          Swal.fire('Vui lòng nhập đầy đủ thông tin');
+        }
+        
       }
     }
     else {
@@ -286,7 +351,21 @@ $('#btSubmit').click(function(){
               Swal.fire('Giá bán ngay phải là số nguyên không âm');
               return;
             }
-          }    
+          } 
+          
+          if ($('#dateEnd').val()===""){
+            Swal.fire('Vui lòng chọn ngày kết thúc');
+            return;
+          }
+          else {
+            const dateEnd = new Date($('#dateEnd').val()).getTime();
+            const dateNow = new Date().getTime();
+            if (dateEnd < (dateNow + 259200))
+            {
+              Swal.fire('Vui lòng chọn ngày kết thúc từ 3 ngày từ ngày hiện tại');
+              return;
+            }
+          }
 
           if (parseInt($('#firstPrice').val())>0 && parseInt($('#stepPrice').val())>0)
           {
@@ -294,10 +373,116 @@ $('#btSubmit').click(function(){
           }
           else {
             Swal.fire('Vui lòng nhập tiền là số không âm');
+            return;
           }
+          
         }
       else {
         Swal.fire('Vui lòng nhập tiền là số');
       }
     }
 });
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg1').show();
+      $('#img1').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL2(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg2').show();
+      $('#img2').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL3(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg3').show();
+      $('#img3').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL4(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg4').show();
+      $('#img4').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL5(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg5').show();
+      $('#img5').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL6(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg6').show();
+      $('#img6').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL7(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg7').show();
+      $('#img7').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+function readURL8(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#viewImg8').show();
+      $('#img8').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}

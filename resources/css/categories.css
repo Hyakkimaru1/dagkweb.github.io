@@ -1,5 +1,5 @@
 .categories{
-    max-width: 100%;
+    max-width: 84.5px;
     max-height: 100%;
     width: auto;
     height: auto;
@@ -33,6 +33,10 @@ p{
     font-size: 13px;
 }
 
+.listCategories{
+    color: #999;
+}
+
 #categories a{
     color:black;
     font-family: "ProximaNova", Arial, sans-serif;
@@ -46,6 +50,7 @@ p{
 .sticky {
     position: fixed;
     top: 60px;
+    width: 283px;
 }
 
 .scroll{
