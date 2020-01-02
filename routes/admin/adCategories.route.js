@@ -75,11 +75,13 @@ res.redirect(`/admin/categories/`+id);
 
 router.get('/:id', async (req, res) => {
   const rows = await categoryModel.allChild(req.params.id);
+  const name = await categoryModel.name(req.params.id);
   res.render('_admin/manageCategoryChild',{
     showMenuAdmin:true,
     active_category: true,
     isChild: req.params.id,
     categories: rows,
+    name: name [0],
     empty: rows.length === 0
     
   });

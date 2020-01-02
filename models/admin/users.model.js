@@ -6,7 +6,7 @@ module.exports = {
 
   single: id => db.load(`select * from nguoidung where id_user = ${id}`),
   add: entity => db.add('nguoidung', entity),
-  del: id => db.del('nguoidung', { id: id }),
+  del: id => db.del('nguoidung', { id_user: id }),
  
   patch: entity => {
     const condition = { id_user: entity.id_user };

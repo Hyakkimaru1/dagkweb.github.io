@@ -12,4 +12,10 @@ module.exports = function (app) {
 
     app.use('/seller', require('../routes/users/seller.route'));
 
+    app.use('/admin/categories', require('../routes/admin/adCategories.route'));
+
+    app.use('/admin/users', require('../routes/admin/adUsers.route'));
+
+    app.use('/admin/products', require('../routes/admin/adProducts.route'));
+
 };

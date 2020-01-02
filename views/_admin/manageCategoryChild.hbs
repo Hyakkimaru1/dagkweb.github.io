@@ -1,7 +1,7 @@
 <div class="col-sm-9" style="margin-top: 20px;">
   <div class="content_menu">
     <div class="content">
-      <h3>Child categoris of  </h3>
+      <h3> {{name.ten_DM_cha}} </h3>
       <hr>
       
       <div class=" d-flex">
@@ -41,8 +41,7 @@
           <tr>
             <th scope="row"><input type="checkbox" name="vehicle1" value="Bike"> STT</th>
             <th scope="col">Categories's name</th>
-            <th scope="col">Amount of a product</th>
-            <th scope="col"></th>
+            <th scope="col">Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -50,9 +49,7 @@
           <tr>
             <th scope="row"><input type="checkbox" name="vehicle1" value="Bike"> {{id}}</th>
             <td><a href="/admin/categories/{{id_DM_cha}}">{{ten_DM}}</a></td>
-
-            <td>2223</td>
-            <td class=" text-right">
+            <td class=" text-left">
               <a class=" btn btn-outline-primary btn-sm" href="/admin/categories/{{id_DM_cha}}/edit/{{id}}"><i class="fa fa-pencil-square" ></i>
                </a>
             </td>

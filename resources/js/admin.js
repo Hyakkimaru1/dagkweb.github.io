@@ -1,11 +1,11 @@
 
 
-function check(){
-    var name = $("#ten_DM_cha").val();
-    console.log($("#ten_DM_cha").val());
-    if(name == "") return false;
-    return true;
-}
+// function check(){
+//     var name = $("#ten_DM_cha").val();
+//     console.log($("#ten_DM_cha").val());
+//     if(name == "") return false;
+//     return true;
+// }
 
 $('#addC').click(function() {
     if(!check()){
@@ -42,7 +42,7 @@ function myFunction() {
                 icon: "success",
               });
             } else {
-              swal("Canceled upgrade!");
+              swal("Cancelled upgrade!");
             }
           });
         }
@@ -64,7 +64,7 @@ function myFunction() {
                   icon: "success",
                 });
               } else {
-                swal("Canceled degrade!");
+                swal("Cancelled degrade!");
               }
             });
           }

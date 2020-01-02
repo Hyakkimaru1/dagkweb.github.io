@@ -14,7 +14,7 @@ module.exports = {
   addChild: entity => db.add('danhmuc', entity),
   singleChild: (idCha,id) => db.load(`select * from danhmuc where id = ${id} and id_DM_cha=${idCha}`),
   allChild: id  => db.load(`select * from danhmuc where id_DM_cha = ${id}`),
-  
+  name:id => db.load(`select ten_DM_cha from danhmuc_cha where id = ${id} `),
 
 
 
@@ -30,7 +30,9 @@ module.exports = {
   single: id => db.load(`select * from danhmuc_cha where id = ${id}`),
   add: entity => db.add('danhmuc_cha', entity),
   del: id => db.del('danhmuc_cha', { id: id }),
- 
+  
+
+
   patch: entity => {
     const condition = { id: entity.id };
     delete entity.id;

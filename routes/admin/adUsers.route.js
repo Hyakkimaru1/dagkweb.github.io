@@ -43,7 +43,7 @@ for (const i of rows)
   })
   
   router.post('/del', async (req, res) => {
-    const result = await userModel.del(req.body.id);
+    const result = await userModel.del(req.body.id_user);
    
     res.redirect('/admin/users');
   })
