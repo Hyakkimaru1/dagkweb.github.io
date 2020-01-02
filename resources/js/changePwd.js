@@ -14,17 +14,11 @@ function check()
     {
         document.getElementById("errCurPwd").innerHTML = "";
     }
-    //is current password match with account's password saved in database? 
 
     //check new password
     if(New=="")
     {
         document.getElementById("errNewPwd").innerHTML = "Please fill out new password!";
-        flag = false;
-    }
-    else if(New.length < 6)
-    {
-        document.getElementById("errNewPwd").innerHTML = "Password must have 6-8 characters.";
         flag = false;
     }
     else
@@ -47,20 +41,48 @@ function check()
     {
         document.getElementById("errRetypePwd").innerHTML = "";
     }
-    
-    if(flag)
-    {
-        //change password in database
-
-        //then
-        Swal.fire({
-            position: 'center',
-            type: 'success',
-            title: 'Your password has been changed successfully.',
-            showConfirmButton: false,
-            timer: 2000
-        }).then(function() {
-            window.location.href="home.html";
-        });            
-    }
+    return flag;
 }
+
+$(document).ready(function(){
+    $('#form-manage').on('submit', function (e) {
+        e.preventDefault();
+        var flag = true;
+        if (!$("#curPwd").val()) {
+            $("#errCurPwd").text("Please fill out current password!");
+            flag = false;
+        }
+        else {
+            $("#errCurPwd").text("");
+            flag = true;
+        }
+
+        //check new password
+        if (!$("#newPwd").val()) {
+            $("#errNewPwd").text("Please fill out new password!");
+            flag = false;
+        }
+        else {
+            $("#errNewPwd").text("");
+            flag = true;
+        }
+
+        //check confirm password
+        if (!$("#retypePwd").val()) {
+            $("#errRetypePwd").text("Please retype password!");
+            flag = false;
+        }
+        else if(!($("#retypePwd").val()===$("#newPwd").val())){
+            $("#errRetypePwd").text("Password Don't Match!");
+            flag = false;
+        }
+        else {
+            $("#errRetypePwd").text("");
+            flag = true;
+        }
+
+        if (flag) {
+            this.submit();
+        }
+    });
+  });

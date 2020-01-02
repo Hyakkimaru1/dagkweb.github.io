@@ -4,11 +4,7 @@ $(document).ready(function(){
     var flag = true;
 
     if (!$('#password1').val()) {
-      $("#errPwd").text(" Password is empty!");
-      flag = false;
-    }
-    else if($('#password1').val().length < 6){
-      $("#errPwd").text(" Password must have 6-8 characters.");
+      $("#errPwd").text("Password is empty!");
       flag = false;
     }
     else{
@@ -17,11 +13,11 @@ $(document).ready(function(){
     }
 
     if (!$('#password2').val()) {
-      $("#errCfpwd").text(" Confirm Password is empty!");
+      $("#errCfpwd").text("Confirm Password is empty!");
       flag = false;
     }
     else if($('#password1').val() != $("#password2").val()){
-      $("#errCfpwd").text(" Password don't match.");
+      $("#errCfpwd").text("Password don't match.");
       flag = false;
     }
     else{

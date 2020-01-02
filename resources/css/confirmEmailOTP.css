@@ -1,12 +1,11 @@
 input#txtOTP {
-	width:300px;
+	width:50%;
 	height:50px;
 	padding:0 15px;
 	color:#fff;
 	font-size:17px;
 	font-weight:200;
 	background-color:transparent;
-	/*-- w3layouts --*/ 
 	border-bottom:5px solid #fff;
 	border-top-color:transparent;
 	border-left-color:transparent;
@@ -23,8 +22,6 @@ input#txtOTP:focus,input#txtOTP:hover {
 
 button.validate {
     display: inline-block;
-    width: 180px;
-    margin-right: 20px;
     text-align: center;
     font-size: 17px;
     font-weight: bold;
@@ -33,18 +30,11 @@ button.validate {
     border-color: transparent;
     border-radius: 10px;
 	font-family: 'Raleway', sans-serif;
-	/*-- w3ls --*/
-	transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
 	cursor:pointer;
 }
 
 button.cancel {
     display: inline-block;
-    margin-left: 20px;
     text-align: center;
     font-size: 17px;
     font-weight: bold;
@@ -53,11 +43,5 @@ button.cancel {
     border-color: transparent;
     border-radius: 10px;
 	font-family: 'Raleway', sans-serif;
-	/*-- w3ls --*/
-	transition:all 0.5s ease-in-out;
-	-webkit-transition:all 0.5s ease-in-out;
-	-moz-transition:all 0.5s ease-in-out;
-	-o-transition:all 0.5s ease-in-out;
-	-ms-transition:all 0.5s ease-in-out;
 	cursor:pointer;
 }

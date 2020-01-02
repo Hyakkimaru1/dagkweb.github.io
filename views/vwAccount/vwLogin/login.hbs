@@ -1,0 +1,78 @@
+{{#section 'css'}}
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+<!-- /fonts -->
+<!-- css -->
+<link href="/css/register.css" rel='stylesheet' type='text/css' media="all">
+<link href="/css/login.css" rel='stylesheet' type='text/css' media="all">
+<!-- /css -->
+{{/section}}
+
+{{#section 'js'}}
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="/js/login.js" type="text/javascript"></script>
+{{/section}}
+
+<div class="container w-90" style="margin-top: 100px; margin-bottom: 100px">
+	<div class="row ">
+		<div class="col-3">
+		</div>
+		<div class="col-6 border border-dark">
+			<div class="row h-20 mb-3">
+				<div class="col-12 p-0">
+					<div class="title-login">
+						<div><i class="fa fa-buysellads" aria-hidden="true"></i> Auction Online</div>
+					</div>
+				</div>
+			</div>
+
+			{{#if err_message}}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{err_message}}
+			</div>
+			{{/if}}
+
+			{{#if success_message}}
+			<div class="alert alert-success" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				{{success_message}}
+			</div>
+			{{/if}}
+			<form class="form-login" method="POST" id="frmLogin" name="frmLogin" autocomplete="off">
+
+				<div class="row mb-3 w-75 m-auto mb-5">
+					<div class="col-12 pl-3 pr-3">
+						<input type="text" id="txtUserName" name="username" placeholder="UserName" autofocus>
+						<div class="error" id="errUserName"></div>
+					</div>
+				</div>
+
+				<div class="row mb-3 w-75 m-auto mb-5">
+					<div class="col-12 pl-3 pr-3">
+						<input type="password" placeholder="Password" name="password" id="password1">
+						<div class="error" id="errPwd"></div>
+					</div>
+				</div>
+
+				<div class="row mb-3 w-75 m-auto mb-5">
+					<div class="col-12 pl-3 pr-3">
+						<a href="/account/forgotPwd"><small>Forgot your password?</small></a>
+						<a href="/account/register" style="float: right;"><small>No account? Register!</small></a>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-12 p-0">
+						<input type="submit" class="login" value="LOG IN">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

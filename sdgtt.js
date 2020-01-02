@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
+const numeral = require('numeral');
 const morgan = require('morgan');
 require('express-async-errors');
 
@@ -13,6 +14,14 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: {
+  //     secure: true
+  // }
+}))
 app.use(express.static('resources'));
 
 app.engine('hbs', exphbs({
@@ -47,19 +56,21 @@ app.engine('hbs', exphbs({
         default:
           return operator.inverse(this);
       }
-    }
+    },
+    format: val => numeral(val).format('0,0'),
   }
 }));
 
 app.set('view engine', 'hbs');
 
+require('./middlewares/locals.mdw')(app);
+require('./middlewares/routes.mdw')(app);
+
+
 app.get('/', (req, res) => {
   // res.end('hello from expressjs');
   res.render('home');
 })
-
-require('./middlewares/route.mdw')(app);
-
 
 app.use((req, res, next) => {
   // res.render('vwError/404');

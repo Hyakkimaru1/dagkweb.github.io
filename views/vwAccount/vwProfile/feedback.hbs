@@ -1,0 +1,79 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/account.css">
+<link rel="stylesheet" href="/css/feedback.css">
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/account.js"></script>
+{{/section}}
+
+<nav aria-label="breadcrumb" style="margin-top: 40px;">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/user/profile">My Account</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Feedback</li>
+    </ol>
+</nav>
+<div class="container mt-3 mb-5">
+    <div class="row mt-2">
+        <div class="col-sm-3">
+            <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
+            <hr>
+            <div class="sidenav">
+                <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
+                <div class="dropdown-container-pf" style="display: none;">
+                    <a class="item" href="/user/profile">Background</a>
+                    <a class="item" href="/user/changepwd">Change Password</a>
+                </div>
+                <a href="/user/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
+                <a href="/user/feedback" style="color: blue;"><i class="fa fa-bell"></i>Feedback</a>
+                <a href="/user/cartBidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
+                <a href="/user/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
+                <a href="/user/manageProductSeller"><i class="fa fa-archive"></i>Manage products</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="content_menu">
+                <div class="content">
+                    <h2>Feedback</h2>
+                    <hr>
+                    <div class="mb-3">Rating: <b> {{authUser.diem_DG}} </b></div>
+                    <hr>
+                    {{#if this.empty}}
+                    <div><b>You haven't feedback yet.</b></div>
+                    {{else}}
+                        <div class="mb-2"><h3>Detail:</h3></div>
+                        <div class="row">
+                        {{#each this.feedback}}
+                        
+                        <div class="col-4 mb-3">
+                            
+                            {{#if diem_DG}}
+                            <div class="card h-100 border-success text-white">
+                                <div class="card-header bg-success">{{maskName}}</div>
+                                <div class="card-body">
+                                    <div class="text-dark">Feedback: <br>{{nhan_xet_DG}}</div>
+                                </div>
+                                <div class="card-footer bg-success border-success">Time: {{timeCreate}}</div>
+                            </div>
+                            {{else}}
+                            <div class="card h-100 border-danger text-white">
+                                <div class="card-header bg-danger">{{maskName}}</div>
+                                <div class="card-body">
+                                    <div class="text-dark">Feedback: <br>{{nhan_xet_DG}}</div>
+                                </div>
+                                <div class="card-footer bg-danger border-danger">Time: {{timeCreate}}</div>
+                            </div>
+                            {{/if}}
+                            
+                        </div>
+                        
+                        {{/each}}
+                        </div>
+                         
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
