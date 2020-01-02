@@ -31,8 +31,9 @@ app.use('/account', require('./routes/user/user.route'));
 app.use('/product', require('./routes/users/product.route'));
 app.use('/categories', require('./routes/users/categories.route'));
 app.use('/account', require('./routes/account.route'));
-app.use('/admin', require('./routes/admin/user.route'));
-
+app.use('/admin/categories', require('./routes/admin/adCategories.route'));
+app.use('/admin/users', require('./routes/admin/adUsers.route'));
+app.use('/admin/products', require('./routes/admin/adProducts.route'));
 
 app.use((req, res, next) => {
   // res.render('vwError/404');

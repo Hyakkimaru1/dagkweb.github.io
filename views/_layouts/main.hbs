@@ -22,8 +22,8 @@
   <link rel="stylesheet" href="/css/error.css">
   <link rel="stylesheet" href="/css/feedback.css">
   <link rel="stylesheet" href="/css/wishlist.css">
-  <link rel="stylesheet" href="css/product.css">
-  <link rel="stylesheet" href="css/categories.css">
+  <link rel="stylesheet" href="/css/product.css">
+  
   
 </head>
 
@@ -85,7 +85,7 @@
             <a class="nav-link" href="#">Most view</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin">ADMIN</a>
+            <a class="nav-link" href="/admin/categories">ADMIN</a>
           </li>
         </ul>
 
@@ -121,7 +121,7 @@
                
                 <div class="sidenav ">
                     <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container-pf" style="display: block;">
+                    <div class="dropdown-container-pf d-flex flex-column" >
                         <a class=" {{#if active_bg}}is_active{{/if}} " href="/account">Background</a>
                         <a class="{{#if active_changePW}}is_active{{/if}}" href="/account/changePW">Change Password</a>
                     </div>
@@ -157,9 +157,9 @@
         <h1>Administrator</h1>
         <hr>
         <div class="sidenav">
-          <a class="{{#if active_user}}is_active{{/if}}" href="/admin" ><i class="fa fa-user-circle"></i></i>User</a>
-          <a  class="{{#if active_category}}is_active{{/if}}" href="/admin/category" ><i class="fa fa-archive"></i>Category</a>
-          <a  class="{{#if active_product}}is_active{{/if}}" href="/admin/product" ><i class="fa fa-shopping-bag"></i>Product</a>
+          <a class="{{#if active_user}}is_active{{/if}}" href="/admin/users" ><i class="fa fa-user-circle"></i></i>User</a>
+          <a  class="{{#if active_category}}is_active{{/if}}" href="/admin/categories" ><i class="fa fa-archive"></i>Category</a>
+          <a  class="{{#if active_product}}is_active{{/if}}" href="/admin/products" ><i class="fa fa-shopping-bag"></i>Product</a>
         </div>
       </div>
       {{{body}}}
@@ -238,7 +238,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- Optional JavaScript -->
+    <script src="/js/admin.js" ></script>
   <script src="/js/account.js" ></script>
   <script src="/js/categories.js" ></script>
   <script src="/js/changePwd.js" ></script>
