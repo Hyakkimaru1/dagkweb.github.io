@@ -1,110 +1,206 @@
 <div class="container mt-3 p-4" style="background-color: white;min-width: 1140px;">
-    <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Thông tin cơ bản</p>
-    <br>
-    <form action="/seller/post" class=" text-right" id="form" method="POST">
-      <div class="row" id="tenSanPham">
-        <div class="col-md-2">
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Tên sản phẩm</span>
-        </div>
-        <div class="col-md-8">
-          <input type="text" class="form-control" name="productName" id="productName">
-        </div>
-
+  <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Thông tin cơ bản</p>
+  <br>
+  <form action="/seller/post/3" class=" text-right" id="form" method="POST" enctype="multipart/form-data">
+  
+    <div class="row" id="tenSanPham">
+      <div class="col-md-2">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Tên sản phẩm</span>
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" name="productName" id="productName">
       </div>
 
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Mô tả sản phẩm</span>
-        </div>
-        <div class="col-md-8">
-          <textarea name="description" id="description"></textarea>
-        </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-2">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Mô tả sản phẩm</span>
       </div>
-      <div class="row mt-3">
-        <div class="col-md-2">
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá khởi điểm</span>
-        </div>
-        <div class="col-md-8">
-          <input type="text" class="form-control" name="firstPrice" id="firstPrice" placeholder="VNĐ">
-        </div>
-
+      <div class="col-md-8">
+        <textarea name="description" id="description"></textarea>
       </div>
-      <div class="row mt-3">
-        <div class="col-md-2">
-
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Bước giá</span>
-        </div>
-        <div class="col-md-8">
-          <input type="text" class="form-control" name="stepPrice" id="stepPrice" placeholder="VNĐ">
-        </div>
-
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-2">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá khởi điểm</span>
       </div>
-      <div class="row mt-3">
-
-        <div class="col-md-2">
-
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá bán ngay</span>
-        </div>
-        <div class="col-md-1 pr-5">
-          <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
-            id="checkBuying" name="checkBuying" value="true">
-        </div>
-        <div class="col-md-3">
-          <input type="text" class="form-control" name="buyingNow" id="buyingNow" placeholder="VNĐ">
-        </div>
-        <div class="col-md-3">
-          <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Gia hạn tự động</span>
-        </div>
-        <div class="col-md-1">
-          <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
-            id="checkAuto" value="true" name="checkAuto">
-        </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" name="firstPrice" id="firstPrice" placeholder="VNĐ">
       </div>
-        <div class="row mt-3">
-            <div class="col-md-2">
 
-                <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Chọn ảnh</span>
-              </div>
-            <div class="col-md-2 text-center">
-                <input type="file" id="file1" name="coverImg" />
-                <label for="file1" id="nameFile1">Ảnh bìa</label>
-            </div>
-            <div class="col-md-2 text-center">
-                <input type="file" id="file2" name="img2" />
-                <label for="file2" id="nameFile2">choose a file</label>
-            </div>
-            <div class="col-md-2 text-center">
-                <input type="file" id="file3" name="img3"/>
-                <label for="file3" id="nameFile3">choose a file</label>
-            </div>
-            <div class="col-md-2 text-center">
-                <input type="file" id="file4" name="img4"/>
-                <label for="file4" id="nameFile4">choose a file</label>
-            </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-2">
+
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Bước giá</span>
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" name="stepPrice" id="stepPrice" placeholder="VNĐ">
+      </div>
+
+    </div>
+       <div class="row mt-3">
+      <div class="col-md-2">
+
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Ngày hết hạn</span>
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+       <div class="col-sm-6">
+            <input type="text" name="dateEnd" class="form-control datetimepicker-input" id="dateEnd" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
+        </div>
+        <script type="text/javascript">
+            flatpickr("#dateEnd", {minDate: "today", enableTime: true,
+    dateFormat: "Y-m-d H:i"});
+        </script>
+    </div>
+      </div>
+
+    </div>
+    <div class="row mt-3">
+
+      <div class="col-md-2">
+
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá bán ngay</span>
+      </div>
+      <div class="col-md-1 pr-5">
+        <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
+          id="checkBuying" name="checkBuying" value="true">
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" name="buyingNow" id="buyingNow" placeholder="VNĐ">
+      </div>
+      <div class="col-md-3">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Gia hạn tự động</span>
+      </div>
+      <div class="col-md-1">
+        <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
+          id="checkAuto" value="true" name="checkAuto">
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-2">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Chọn ảnh</span>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file1" name="coverImg" />
+        <label for="file1" id="nameFile1">Ảnh bìa</label>
+        <div class="card shadow" style="display: none;" id="viewImg1">
+          <div class="card-body">
+          <img  id="img1" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del1"></i>
           </div>
-          <div class="row mt-3">
-              <div class="col-md-2">
-                </div>
-              <div class="col-md-2 text-center">
-                  <input type="file" id="file5" name="img5"/>
-                  <label for="file5" id="nameFile5">choose a file</label>
-              </div>
-              <div class="col-md-2 text-center">
-                  <input type="file" id="file6" name="img6" />
-                  <label for="file6" id="nameFile6">choose a file</label>
-              </div>
-              <div class="col-md-2 text-center">
-                  <input type="file" id="file7" name="img7"/>
-                  <label for="file7" id="nameFile7">choose a file</label>
-              </div>
-              <div class="col-md-2 text-center">
-                  <input type="file" id="file8" name="img8"/>
-                  <label for="file8" id="nameFile8">choose a file</label>
-              </div>
-            </div>
-            <button type="button" class="btn btn-outline-danger" id="btSubmit">Xác nhận</button>
-            <br>
-            
-    </form>
-  </div>
-  </div>
+        </div>
+        
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file2" name="img" />
+        <label for="file2" id="nameFile2">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg2">
+          <div class="card-body">
+          <img  id="img2" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file3" name="img" />
+        <label for="file3" id="nameFile3">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg3">
+          <div class="card-body">
+          <img  id="img3" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del3"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file4" name="img" />
+        <label for="file4" id="nameFile4">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg4">
+          <div class="card-body">
+          <img  id="img4" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del4"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file5" name="img" />
+        <label for="file5" id="nameFile5">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg5">
+          <div class="card-body">
+          <img  id="img5" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del5"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file6" name="img" />
+        <label for="file6" id="nameFile6">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg6">
+          <div class="card-body">
+          <img  id="img6" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del6"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file7" name="img" />
+        <label for="file7" id="nameFile7">choose a file</label>
+        <div class="card shadow" style="display: none;" id="viewImg7">
+          <div class="card-body">
+          <img  id="img7" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del7"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 text-center">
+        <input type="file" id="file8" name="img" />
+        <label for="file8" id="nameFile8">choose a file</label>
+         <div class="card shadow" style="display: none;" id="viewImg8">
+          <div class="card-body">
+          <img  id="img8" src="#" alt="your image" width="100px" height="100px"/>
+          <br>
+          <i class="fas fa-trash-alt" id="bt_del8"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <br>
+    <button type="button" class="btn btn-outline-danger" id="btSubmit">Xác nhận</button>
+    <br>
+
+  </form>
+</div>
+
+
+
+{{#section 'css'}}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+{{/section}}
+{{#section 'jsHead'}}
+
+{{/section}}
+{{#section 'js'}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+
+{{/section}}
+

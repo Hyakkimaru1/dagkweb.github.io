@@ -1,5 +1,20 @@
 const express = require('express');
 const categoryModel = require('../../models/categories.model');
+const multer  = require('multer');
+const mkdirp = require('mkdirp')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const dir = './public/imgs/'+req.params.id
+
+    mkdirp(dir, err => cb(err, dir))
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})  
+ 
+var upload = multer({ storage})
 
 const router = express.Router();
 
@@ -15,18 +30,27 @@ router.get('/add_product', async (req, res) => {
         }
       }
   }
-  console.log(rows);
   res.render('_seller/post_productSeller',{rows,layout:'seller_layout'});
 })
 
-router.post('/post', (req, res) => {
-  console.log(req.body);
+
+
+var fields = [
+  {name: 'coverImg',maxCount: '1'},
+  {name: 'img',maxCount:'7'}
+];
+
+router.post('/add_product2', (req, res) => {
   res.render('_seller/information_productSeller',{layout:'seller_layout'});
 })
 
-router.post('/add_product2', (req, res) => {
+router.post('/post/:id',function (req, res){
+  console.log(req);
+  upload.fields(fields)(req, res, err => {
   console.log(req.body);
-  res.render('_seller/information_productSeller',{layout:'seller_layout'});
+  if (err) { }
+  res.send('ok');
+  });
 })
 
 

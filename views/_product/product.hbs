@@ -1,3 +1,47 @@
+{{#section 'jsHead'}}
+ <script>
+  var i = 0;
+  var imgsource = [];
+
+  {{#each imgsource}}
+    imgsource.push('{{this}}');
+  {{/each}}
+  function changeImg(x){
+    if (x == document.getElementById("changimgR")){
+        $('#smallPic').children().eq(i).css('border','0')
+       
+        i++;
+        if (i>(imgsource.length - 1))
+            i=0;
+        document.getElementById("mainPic").setAttribute("src",imgsource[i]);
+        $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+        
+    }
+    else {
+        $('#smallPic').children().eq(i).css('border','0')
+        i--;
+        if (i<0)
+            i=imgsource.length - 1;
+        document.getElementById("mainPic").setAttribute("src",imgsource[i]);   
+        $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+    }
+}
+
+function pic(x){
+    $('#smallPic').children().eq(i).css('border','0')
+    for (var j = 0;j<imgsource.length;j++)
+    {   console.log(imgsource[j] +' va '+x.src)
+        if(imgsource[j]==x.src)
+        {
+            i=j;
+        }
+    }
+    $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+    document.getElementById("mainPic").setAttribute("src",x.src);
+}
+</script>
+{{/section}}
+
 <div class="container mt-3 mb-5" id="content">
   <div id="link">
     <a href="#">
@@ -21,17 +65,17 @@
       <h1 style="font-weight:700; font-size: 30px;display: inline;">{{rows.ten_SP}}</h1>
       <div class="row mt-4">
         <div class="col-sm-4">
-          <div class="text-center">
-            <img style="margin-top: 120px;" class="rounded-circle" width="80px" height="80px"
-              src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg"
+          <div  class="text-center">
+            <img style="margin-top: 100px;  margin-left: auto; margin-right: auto;" class="rounded-circle" width="80px" height="80px"
+              src="{{Seller.avatar}}"
               alt="">
             <br>
             <p class="product" style="font-size:20px;">Seller:</p> <br>
             <p class="product" style="font-size:20px;">* *</p>
-            <p class="product" style="font-size:20px;" id="nameSeller">{{username_Seller}}</p>
+            <p class="product" style="font-size:20px;" id="nameSeller">{{Seller.username}}</p>
             <br>
             <i class="far fa-heart fa-2x " style="color: #15AABF"></i>
-            <p style="font-size:20px;" id="voteSeller">{{diem_DG_Seller}}</p>
+            <p style="font-size:20px;" id="voteSeller">{{Seller.diem_DG}}</p>
             <p class="product" style="font-size:20px;">%</p>
           </div>
           <br>
@@ -57,16 +101,11 @@
             </div>
           </div>
           <div class="mr-5 text-center" id="smallPic">
-            <img class="mr-2 mr-"
-              src="https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg"
-              width="65px" height="65px" alt="..." style="border: 2px solid #00AEEF;" onclick="pic(this)">
+            {{#each imgsource}}
             <img class="mr-2"
-              src="https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg"
-              width="65px" height="65px" alt="..." onclick="pic(this)">
-            <img class="mr-2"
-              src="https://nypdecider.files.wordpress.com/2019/06/one-punch-man.jpg?quality=90&strip=all&w=646&h=431&crop=1"
-              width="65px" height="65px" alt="..." onclick="pic(this)">
-
+              src="{{this}}"
+              width="65px" height="65px" alt="..."  onclick="pic(this)">
+            {{/each}}
           </div>
           <div style="margin-top: 90px;">
             <div class="text-center">

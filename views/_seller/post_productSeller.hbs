@@ -28,7 +28,7 @@
         {{#each rows}}
         <ul class="list-group" style="display: none;" id="cateChild{{id}}">
           {{#each Child}}
-         <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this)"><p>{{ten_DM}}</p></li>
+         <li class="list-group-item  btn btn-light text-left" style="border: none;"  onclick="chooseChild(this,{{id}})"><p>{{ten_DM}}</p></li>
           {{/each }}
         </ul>
         {{/each}}

@@ -1,5 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const hbs_sections = require('express-handlebars-sections');
+const session = require('express-session');
 const morgan = require('morgan');
 require('express-async-errors');
 
@@ -17,6 +19,8 @@ app.engine('hbs', exphbs({
   defaultLayout: 'main.hbs',
   layoutsDir: 'views/_layouts',
   helpers: {
+    format: val => numeral(val).format('0,0'),
+    section: hbs_sections(),
     ifa: function(v1, operator, v2, options) {
 
       switch (operator) {
