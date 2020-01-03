@@ -68,9 +68,15 @@ require('./middlewares/routes.mdw')(app);
 
 
 app.get('/', (req, res) => {
+  
   // res.end('hello from expressjs');
-  res.render('home');
+  res.render('home',{
+    showMenuAcc:false,
+    showMenuAdmin: false
+  });
 })
+
+
 
 app.use((req, res, next) => {
   // res.render('vwError/404');

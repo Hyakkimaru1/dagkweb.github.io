@@ -83,7 +83,9 @@ router.post('/login', async (req, res) => {
 
   const user = await userModel.singleByUsername(req.body.username);
   if (user === null)
-    throw new Error('Invalid username or password.');
+    return res.render('vwAccount/vwLogin/login', {
+      err_message: 'Invalid username or password.'
+    });
   console.log(user);
   //account chua duoc active
   if(user.isActive === 0){

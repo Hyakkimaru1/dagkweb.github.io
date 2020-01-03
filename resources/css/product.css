@@ -57,8 +57,17 @@
     position: relative;
     top: 0px;
     left:0px ; 
-    height: 400px;
+   
 }
+
+
+.item img, .out-of-stock img{
+    position: relative;
+    top: 0px;
+    left:0px ; 
+    height: 126px !important; 
+}
+
  .description:active{
     border: none;
     background-color: #00aeef;

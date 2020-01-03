@@ -1,40 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title> Auction</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-
-  <link rel="icon" href="/images/duckk.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <link rel="stylesheet" href="/css/home.css">
-  <link rel="stylesheet" href="/css/categories.css">
-  <link rel="stylesheet" href="/css/error.css">
-  <link rel="stylesheet" href="/css/feedback.css">
-  <link rel="stylesheet" href="/css/wishlist.css">
-  <link rel="stylesheet" href="/css/product.css">
-    <link rel="stylesheet" href="/css/account.css">
-  
+  <link rel="stylesheet" href="/resources/css/account.css">
+  <link rel="stylesheet" href="/resources/css/home.css">
 
-  {{{_sections.css}}}
-  {{{_sections.jsHead}}}
-
-  
+  <title>Auction Online</title>
 </head>
 
-<body >
-
+<body>
   <!-- Navbar menu -->
 
-  <div class="navbar" style="font-size: 15px;">
+  <div class="navbar">
     <nav class="navbar navbar-expand-md navbar-light fixed-top " style="background-color: #ecffff;">
       <div class="dropdown">
         <a class="px-2 dropdown-toggle button2" data-toggle="dropdown" style="color: black;">
@@ -73,131 +55,121 @@
         </ul>
         </a>
       </div>
-
-      <a class="navbar-brand" href="/"> <b>AUTION</b> </a>
-
+      <a class="navbar-brand" href="home.html"> <b>AUTION</b> </a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/categories">Hot items</a>
+            <a class="nav-link" href="categories.html">Hot items</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Most view</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/admin/categories">ADMIN</a>
+            <a class="nav-link" href="#">Help</a>
           </li>
         </ul>
-
-
         <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" id="search" style="display: inline-block;width: 610px;" type="text"
+          <input class="form-control mr-sm-2" style="display: inline-block;width: 610px;" type="text"
             placeholder="Search" aria-label="Search">
         </form>
         <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
-        <form id="frmLogout" method="post" action="/account/logout"></form>
-        {{#if isAuthenticated}}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Hi, <b>{{authUser.lastname}}!</b>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/user/profile">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              Profile
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">
-              <i class="fa fa-sign-out" aria-hidden="true"></i>
-              Logout
-            </a>
-          </div>
-        </li>
-        {{else}}
-        <a class="nav-link px-2 right" id="login" href="/account/login"> <b>LOGIN</b> </a>
-        <a class="nav-link pr-1 right" id="signup" href="/account/register"><b>SIGNUP</b></a>
-        {{/if}}
-
-        
-        
+        <a class="nav-link px-2 right" id="login" href="account.html"> <b>LOGIN</b> </a>
+        <a class="nav-link pr-1 right" id="signup" href="home.html"><b>SIGNUP</b></a>
         <a href="cartBidding.html"><img src="https://image.flaticon.com/icons/svg/726/726496.svg" class="cart"
             alt=""></a>
-
       </div>
     </nav>
   </div>
 
-{{#if showMenuAcc}}
-<div class="container-account">
-<nav aria-label="breadcrumb" style="margin-top: 40px;">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Feedback</li>
-        </ol>
-    </nav>
-    <div class="container mt-3 mb-5">
-        <div class="row mt-2">
-            <div class="col-sm-3">
-                <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
-                <hr>
-               
-                <div class="sidenav ">
-                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container-pf d-flex flex-column" >
-                        <a class=" {{#if active_bg}}is_active{{/if}} " href="/account">Background</a>
-                        <a class="{{#if active_changePW}}is_active{{/if}}" href="/account/changePW">Change Password</a>
-                    </div>
-                    <a class="{{#if active_wl}}is_active{{/if}}" href="/account/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
-                    <a class="{{#if active_fb}}is_active{{/if}}" href="/account/feedback" ><i class="fa fa-bell"></i>Feedback</a>
-                    <a class="{{#if active_bd}}is_active{{/if}}" href="/account/bidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
-                    <a class="{{#if active_sb}}is_active{{/if}}" href="/account/successfulBid"><i class="fas fa-dollar-sign"></i>Succesful auction</a>
-                    <a class="{{#if active_mp}}is_active{{/if}}" href="/account/manageProduct"><i class="fa fa-archive"></i>Manage products</a>
-                </div>
-            </div>
-            
-                {{{body}}}
-                
-            
-        </div>
-    </div>
-    </div>
-
-
-
-{{else if showMenuAdmin}}
-<div class=" container-admin">
-<nav aria-label="breadcrumb" style="margin-top: 40px;">
+  <nav aria-label="breadcrumb" style="margin-top: 40px;">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="account.html">Admin</a></li>
-      <li class="breadcrumb-item active" aria-current="page">User</li>
+      <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Background</li>
     </ol>
   </nav>
   <div class="container mt-3 mb-5" style="display: block;">
     <div class="row mt-2">
       <div class="col-sm-3">
-        <h1>Administrator</h1>
+        <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
         <hr>
         <div class="sidenav">
-          <a class="{{#if active_user}}is_active{{/if}}" href="/admin/users" ><i class="fa fa-user-circle"></i></i>User</a>
-          <a  class="{{#if active_category}}is_active{{/if}}" href="/admin/categories" ><i class="fa fa-archive"></i>Category</a>
-          <a  class="{{#if active_product}}is_active{{/if}}" href="/admin/products" ><i class="fa fa-shopping-bag"></i>Product</a>
+          <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
+          <div class="dropdown-container-pf">
+            <a class="item" href="account.html" style="color: blue;">Background</a>
+            <a class="item" href="changePwd.html">Change Password</a>
+          </div>
+          <a href="wishlist.html"><i class="fa fa-list-alt"></i>Wishlist</a>
+          <a href="feedback.html"><i class="fa fa-bell"></i>Feedback</a>
+          <a href="cartBidding.html"><i class="fa fa-shopping-bag"></i>Bid product</a>
+          <a href="successfulBid.html"><i class="fa fa-usd"></i>Succesful auction</a>
+          <a href="manageProductSeller.html"><i class="fa fa-archive"></i>Manage products</a>
         </div>
       </div>
-      {{{body}}}
+      <div class="col-sm-6">
+        <div class="content_menu">
+          <div class="content">
+            <h3>My profile</h3>
+            <div> Manage your personal informations</div>
+            <hr>
+            <form id="form-manage" action="#" method="post">
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label col-form-label-sm">FullName</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control form-control-sm" id="FullName" placeholder
+                    value="Park Hang-seo">
+                  <span class="error" id="errFullName"></span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label col-form-label-sm">Address</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control form-control-sm" id="Addr" placeholder
+                    value="123/321 The gioi Viet Nam">
+                  <span class="error" id="errAddr"></span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control form-control-sm" id="Email" placeholder
+                    value="abc123@gmail.com">
+                  <span class="error" id="errEmail"></span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 col-form-label col-form-label-sm">Date of birth</label>
+                <div class="col-sm-9">
+                  <input type="date" class="form-control form-control-sm" id="date-of-birth">
+                  <span class="error" id="errDate"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-9">
+                  <button type="submit" class="btn btn-primary" id="btnSubmit">Save</button>
+                  <button type="button" class="btn btn-primary ml-3"
+                    onclick="window.location.href='home.html'">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div style="margin-left: 30px;">
+          <img id="avatar" src="resources/images/content.jpg" width="150px" height="150px"
+            class="rounded-circle center-block">
+          <button id="falseinput" type="button" class="btn btn-dark pg-10 center-block w-150"
+            style="width: 150px;">Change picture</button>
+          <input id="fileinput" type="file" style="display:none;" />
+        </div>
+      </div>
     </div>
-  </div> 
-</div>
-{{else}}
-
-
-  {{{body}}}
-  {{/if}}
+  </div>
   <!-- FOOTER -->
   <footer class="footer section bg-dark text-white">
     <div class="container a1">
@@ -239,7 +211,7 @@
           <p class="text-gray">Join our mailing list. We write rarely, but only the best content.</p>
           <form>
             <div class="form-row">
-              <div class="col-12"><input type="email" id="emailAddress" class="form-control mb-2" placeholder="Email Address" name="email"
+              <div class="col-12"><input type="email" class="form-control mb-2" placeholder="Email Address" name="email"
                   required=""></div>
               <div class="col-12"><button type="submit" class="btn btn-secondary shadow-soft btn-block"
                   data-loading-text="Sending"><span>Subscribe</span></button></div>
@@ -249,28 +221,19 @@
         </div>
       </div>
       <hr>
-      <div class="copyright text-center mt-5">©
+      <div class="copyright text-center mt-5">
         <script>
           document.write(new Date().getFullYear())
-        </script>2019<span><a href="https://themesberg.com">Themesberg</a>. All rights reserved.</span></div>
+        </script>
+        <span><a href="https://themesberg.com">Themesberg</a>. All rights reserved.</span></div>
     </div>
   </footer>
 
-
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  {{{_sections.jsBody}}}
- {{{_sections.adUser}}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <!-- Optional JavaScript -->
-    <script src="/js/admin.js" ></script>
-  <script src="/js/account.js" ></script>
-  {{{_sections.js}}}
-  <script src="/js/categories.js" ></script>
-  <script src="/js/product.js"></script>
+  <script src="resources/js/account.js"></script>
+  <script src="resources/js/login.js"></script>
 </body>
+
 </html>

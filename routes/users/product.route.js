@@ -26,11 +26,8 @@ router.get('/:id', async (req, res) => {
         checkLogin = true;
     }
   } catch (error) {
-    
+
   }
-
- 
-
   //get link img
   let imgsource = [];
   for (let c of linkImg)
@@ -163,6 +160,5 @@ router.get('/err', (req, res) => {
 
   throw new Error('error occured');
 })
-
 
 module.exports = router;

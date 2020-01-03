@@ -1,0 +1,68 @@
+<div class="col-sm-9" style="margin-top: 20px;">
+  <div class="content_menu">
+    <div class="content">
+      <h3>All category </h3>
+      <hr>
+      
+      <div class=" d-flex">
+        <button class="btn btn-secondary btn-sm dropdown-toggle my-2 mr-3" type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Filter
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" style="display: inline-block;width: 550px;" type="text"
+            placeholder="Search" aria-label="Search">
+        </form>
+        {{!-- <a  id="addCategory" class="btn btn-info my-2 mr-3 py-0 text-center" style="width:auto; height: 38px;">+ Add item</a> --}}
+
+
+<a  href="/admin/categories/add" class="btn btn-info my-2 mr-3 py-0 text-center" style="width:auto; height: 38px;">+ Add item</a>
+
+<form id="addCat" method="POST" style="display: none;">  
+  <input name="ten_DM_cha" type="text" id="ten_DM_cha">
+  <button id="addC" type="submit" > </button>
+</form>
+
+
+      </div>
+{{#if this.empty}}
+      <div class="card-body">
+        <p class="card-text">
+          Không có dữ liệu.
+        </p>
+      </div>
+      {{else}}
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="row"><input type="checkbox" name="vehicle1" value="Bike"> STT</th>
+            <th scope="col">Categories's name</th>
+            <th scope="col">Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.categories}}
+          <tr>
+            <th scope="row"><input type="checkbox" name="vehicle1" value="Bike"> {{id}}</th>
+            <td><a href="/admin/categories/{{id}}">{{ten_DM_cha}}</a></td>
+            <td class=" text-left">
+              <a class=" btn btn-outline-primary btn-sm" href="/admin/categories/edit/{{id}}"><i class="fa fa-pencil-square" ></i>
+               </a>
+            </td>
+          </tr>
+          {{/each}}  
+
+        </tbody>
+      </table>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
