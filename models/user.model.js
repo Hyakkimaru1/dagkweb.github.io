@@ -59,5 +59,7 @@ module.exports = {
       return null;
 
     return rows[0];
-  }
+  },
+  getDetailRating: idSeller => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
+  getTotalRating: idSeller => db.load(`select count(*) as diem_DG from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
 };

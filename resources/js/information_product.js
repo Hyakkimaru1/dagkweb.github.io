@@ -318,7 +318,7 @@ function countImg(){
 $('#btSubmit').click(function(){
     countImg();
     var description = CKEDITOR.instances.description.getData();
-    if (description === '' || $('#firstPrice').val() === '' || $('#stepPrice').val() == ''|| count<3){
+    if (description === '' || $('#firstPrice').val() === '' || $('#stepPrice').val() == ''|| count<3 || $('#weightPro').val() == ''){
       if (count<3)
       {
           Swal.fire('Vui lòng thêm ít nhất 3 hình');
@@ -337,7 +337,8 @@ $('#btSubmit').click(function(){
       }
     }
     else {
-      if ($.isNumeric($('#firstPrice').val()) && $.isNumeric($('#stepPrice').val()))
+
+      if ($.isNumeric($('#firstPrice').val()) && $.isNumeric($('#stepPrice').val()) && $.isNumeric($('#weightPro').val()))
         {
           if (checkBuyNow)
           {
@@ -351,7 +352,13 @@ $('#btSubmit').click(function(){
               Swal.fire('Giá bán ngay phải là số nguyên không âm');
               return;
             }
-          } 
+          }
+
+          if (parseFloat($('#weightPro').val()) < 0)
+          {
+            Swal.fire('Trọng lượng phải là số không âm');
+              return;
+          }
           
           if ($('#dateEnd').val()===""){
             Swal.fire('Vui lòng chọn ngày kết thúc');
@@ -378,7 +385,7 @@ $('#btSubmit').click(function(){
           
         }
       else {
-        Swal.fire('Vui lòng nhập tiền là số');
+        Swal.fire('Vui lòng nhập tiền và trọng lượng là số');
       }
     }
 });

@@ -23,7 +23,7 @@ app.use(session({
   // }
 }))
 app.use(express.static('resources'));
-
+app.use(express.static('public'));
 app.engine('hbs', exphbs({
   defaultLayout: 'main.hbs',
   layoutsDir: 'views/_layouts',

@@ -1,18 +1,7 @@
 <div class="container mt-3 p-4" style="background-color: white;min-width: 1140px;">
-  <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Thông tin cơ bản</p>
+  <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Bổ sung thông tin cơ bản</p>
   <br>
-  <form action="/seller/post/3" class=" text-right" id="form" method="POST" enctype="multipart/form-data">
-  
-    <div class="row" id="tenSanPham">
-      <div class="col-md-2">
-        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Tên sản phẩm</span>
-      </div>
-      <div class="col-md-8">
-        <input type="text" class="form-control" name="productName" id="productName">
-      </div>
-
-    </div>
-
+  <form action="/seller/post/{{id}}" class=" text-right" id="form" method="POST" enctype="multipart/form-data">
     <div class="row mt-3">
       <div class="col-md-2">
         <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Mô tả sản phẩm</span>
@@ -40,23 +29,34 @@
       </div>
 
     </div>
+    <div class="row mt-3">
+      <div class="col-md-2">
+
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">Tình trạng</span>
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" name="status" id="status" placeholder="Mới, cũ %,đồ cỗ,...">
+      </div>
+
+    </div>
        <div class="row mt-3">
       <div class="col-md-2">
 
         <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Ngày hết hạn</span>
       </div>
-      <div class="col-md-8">
-        <div class="row">
-       <div class="col-sm-6">
+      <div class="col-md-3">
             <input type="text" name="dateEnd" class="form-control datetimepicker-input" id="dateEnd" data-toggle="datetimepicker" data-target="#datetimepicker5"/>
-        </div>
         <script type="text/javascript">
             flatpickr("#dateEnd", {minDate: "today", enableTime: true,
-    dateFormat: "Y-m-d H:i"});
+    dateFormat: "Y-m-d H:i:S"});
         </script>
-    </div>
       </div>
-
+      <div class="col-md-2">
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Trọng lượng</span>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" name="weightPro" id="weightPro" placeholder="gam">
+      </div>
     </div>
     <div class="row mt-3">
 
@@ -184,7 +184,6 @@
 
   </form>
 </div>
-
 
 
 {{#section 'css'}}

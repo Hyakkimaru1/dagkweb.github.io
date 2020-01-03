@@ -83,6 +83,23 @@ function chooseChild(i,id){
 $('#btNext').click(function() { 
     if ($('#productName').val() !== '' && $('#selected1').text() !=='')
     {
-        $('#nameCate_Product').submit();
+        Swal.fire({
+            title: 'Bạn có muốn thêm sản phẩm?',
+            icon: 'question',
+            iconHtml: '?',
+            confirmButtonText: 'YES',
+            cancelButtonText: 'NO',
+            showCancelButton: true,
+            showCloseButton: true
+          }).then((result) => {
+            if (result.value) {
+              Swal.fire(
+                $('#nameCate_Product').submit()
+              )
+            }
+            else {
+            }
+          });
+        
     }
 });
