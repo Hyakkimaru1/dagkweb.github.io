@@ -13,7 +13,7 @@ $(document).ready(function(){
         flag = true;
       }
       
-      if(!$('#password1').val())
+      if(flag && !$('#password1').val())
       {
         $("#errPwd").text("Password is empty!");
         flag = false;

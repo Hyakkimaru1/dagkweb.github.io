@@ -16,7 +16,7 @@ function check()
     }
 
     //check new password
-    if(New=="")
+    if(flag && New=="")
     {
         document.getElementById("errNewPwd").innerHTML = "Please fill out new password!";
         flag = false;
@@ -27,7 +27,7 @@ function check()
     }
     
     //check confirm password
-    if(Retype=="")
+    if(flag && Retype=="")
     {
         document.getElementById("errRetypePwd").innerHTML = "Please retype password!"
         flag = false;

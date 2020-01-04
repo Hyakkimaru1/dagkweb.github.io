@@ -2,6 +2,8 @@ const restrict = require('../middlewares/auth.mdw');
 
 module.exports = function (app) {
 
+    app.use('/search',require('../routes/search.route'));
+
     app.use('/account', require('../routes/user/user.register.route'));
 
     app.use('/user',restrict, require('../routes/user/user.route'));
