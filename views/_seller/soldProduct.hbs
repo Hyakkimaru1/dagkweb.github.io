@@ -32,12 +32,22 @@
             <p style="font-size: 15px; font-weight: 700;">You sold: {{format gia_HienTai}}đ</p><br>
           </div>
           <div class="col-sm-6">
-            <button type="button" class="btn btn-outline-primary rounded-pill"
-              onclick="window.location.href='/product/{{id}}'">View this lot</button>
-            <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
-              data-target="#exampleModal{{id}}" data-whatever="@mdo">
-              Rate this bidder
-            </button>
+            <div class="row">
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-primary rounded-pill"
+                  onclick="window.location.href='/product/{{id}}'">View this lot</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
+                  data-target="#exampleModal{{id}}" data-whatever="@mdo">
+                  Rate this bidder
+                </button>
+              </div>
+              <div class="col-12">
+                <button type="button" class="btn btn-outline-danger rounded-pill"
+                  onclick="window.location.href='/seller/delSoldPro?idSP={{id}}&idBidder={{nguoiCanDG}}'">Delete</button>
+              </div>
+            </div>
             <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
               <div class="modal-dialog" role="document">

@@ -397,7 +397,6 @@ router.post('/soldPro-fb', async (req, res) => {
 
     //cap nhat lai diem danh gia
     const totalRating = await userModel.getTotalRating(req.query.idBidder);
-    console.log()
     const NumberOfRating = totalRating[0].total;
     console.log(NumberOfRating);
     const detailOfRating = await userModel.getDetailRating(req.query.idBidder);
@@ -414,4 +413,75 @@ router.post('/soldPro-fb', async (req, res) => {
   res.redirect('/seller/sold');
 });
 
+router.get('/delSoldPro',async (req,res) =>{
+  //đổi isPay của sản phẩm
+  let entity_del = req.query;
+  delete entity_del.idBidder;
+  entity_del.isPay = 0;
+  const rs = await productModel.patchIsPay(entity_del);
+
+  //đánh giá bidder không trả tiền
+  const feedback = 'Người thắng không thanh toán';
+  const diem_DG = -1;
+
+  const row = await userModel.selectID_DG(req.query.idSP,req.session.authUser.id_user);
+  //console.log(row);
+  //neu nhu chua danh gia thi thuc hien danh gia
+  if(row === null){
+    const entity = {};
+    entity.id_nguoi_DG = req.session.authUser.id_user;
+    entity.id_nguoi_duoc_DG = req.query.idBidder;
+    entity.id_sp_duoc_dg = req.query.idSP;
+    entity.nhan_xet_DG = feedback;
+    entity.diem_DG = diem_DG;
+    entity.timeCreate = moment().format('YYYY/MM/DD HH:mm:ss');
+    console.log(entity);
+    const dg = await userModel.addDG(entity);
+    console.log(dg);
+
+    //cap nhat lai diem danh gia trong bang nguoidung
+    const totalRating = await userModel.getTotalRating(entity.id_nguoi_duoc_DG);
+    const NumberOfRating = totalRating[0].total;
+    const detailOfRating = await userModel.getDetailRating(entity.id_nguoi_duoc_DG);
+    let diem_dg_moi = 0;
+    for(const rate of detailOfRating){
+      diem_dg_moi += rate.diem_DG;
+    }
+    const obj = {};
+    obj.id_user = entity.id_nguoi_duoc_DG;
+    obj.diem_DG = 100*diem_dg_moi/NumberOfRating;
+    const rs = await userModel.patch(obj);
+  }
+  else {//neu da co danh gia thi sua lai danh gia
+    const obj1 = {};
+    obj1.id_DG = row.id_DG;
+    obj1.diem_DG = diem_DG;
+
+    const obj2 ={};
+    obj2.id_DG = row.id_DG;
+    obj2.nhan_xet_DG = feedback;
+
+    const [rs1,rs2] = await Promise.all([
+      userModel.patch_dg(obj1),//sua lai diem
+      userModel.patch_dg(obj2) //sua lai noi dung danh gia
+    ]);
+
+    //cap nhat lai diem danh gia
+    const totalRating = await userModel.getTotalRating(req.query.idBidder);
+    const NumberOfRating = totalRating[0].total;
+    console.log(NumberOfRating);
+    const detailOfRating = await userModel.getDetailRating(req.query.idBidder);
+    let diem_dg_moi = 0;
+    for(const rate of detailOfRating){
+      diem_dg_moi += rate.diem_DG;
+    }
+    const obj3 = {};
+    obj3.id_user = req.query.idBidder;
+    obj3.diem_DG = 100*diem_dg_moi/NumberOfRating;
+    const rs = await userModel.patch(obj3);
+
+  }
+  res.redirect('/seller/sold');
+
+});
 module.exports = router;

@@ -4,7 +4,7 @@ const config = require('../config/default.json');
 module.exports = {
   soldProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid
   from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP and sp.gia_HienTai = c.gia LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )
-  where (sp.nguoiThang IS NOT NULL or sp.nguoiGiuGia is not null)	AND sp.nguoiBan=${id}
+  where (isPay = 1 AND sp.nguoiThang IS NOT NULL or (sp.nguoiGiuGia is not null and now() - timeEnd >= 0))	AND sp.nguoiBan=${id}
 	group by sp.id`),
   
   sellingProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
@@ -64,5 +64,10 @@ module.exports = {
     const entity = { gia,id_SP,id_NM}
     return db.add('chi_tiet_ra_gia', entity)
   },
-  isBanCurUser:   (id_NM,id_sp) =>  db.load(`SELECT * FROM cam_nguoi_mua WHERE id_sp = ${id_sp} AND id_NM = ${id_NM}`), 
+  isBanCurUser:   (id_NM,id_sp) =>  db.load(`SELECT * FROM cam_nguoi_mua WHERE id_sp = ${id_sp} AND id_NM = ${id_NM}`),
+  patchIsPay: entity => {
+    const condition = { id: entity.idSP };
+    delete entity.id_DG;
+    return db.patch('sanpham', entity, condition);
+  },
 };
