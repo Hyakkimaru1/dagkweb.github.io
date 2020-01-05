@@ -32,6 +32,8 @@ module.exports = {
   },
   addDG: entity => db.add('chi_tiet_dg',entity),
   add: entity => db.add('nguoidung', entity),
+  addBan: entity => db.add('cam_nguoi_mua', entity),
+  addFavourite: entity => db.add('sp_yeu_thich', entity),
   del: id => db.del('nguoidung', { id_user: id }),
   delFavorProduct: (idUser,id) => db.delSpecial('sp_yeu_thich',[{id_NM :idUser}, {id_SP: id}]),
   patch: entity => {
@@ -62,4 +64,5 @@ module.exports = {
   },
   getDetailRating: idSeller => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
   getTotalRating: idSeller => db.load(`select count(*) as diem_DG from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
+  getHadFavorite: (id_NM,id_SP) => db.load(`select * from sp_yeu_thich where id_SP = ${id_SP} and id_NM = ${id_NM}`),
 };

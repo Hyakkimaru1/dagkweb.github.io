@@ -29,6 +29,7 @@ module.exports = {
   addLinkAnh: entity => db.add('anh_cua_sanpham', entity),
   add: entity => db.add('sanpham', entity),
   del: id => db.del('sanpham', { ProID: id }),
+  delBidder: entity => db.delSpecial2('chi_tiet_ra_gia', entity.id_SP,entity.id_NM),
   patch: (entity,id) => {
     const condition = { id: id };
     delete entity.primaryAuto;
@@ -37,13 +38,14 @@ module.exports = {
   getLinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id}`),
   totalProductNeedInf: id => db.load(`select count(*) from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
   getAllDetail: id => db.load(`select * from chi_tiet_ra_gia ct join nguoidung nd where ct.id_NM = nd.id_user and ct.id_SP = ${id} ORDER BY ct.id DESC`),
-  getBidderPrice: id => db.load(`select nd.* 
+  getBidderPrice: id => db.load(`select * 
   from nguoidung nd join chi_tiet_ra_gia ct
-  where nd.id_user = ct.id_NM and ct.gia >= (select MAX(gia) 
+  where ct.id_SP = ${id}  and nd.id_user = ct.id_NM and ct.gia >= (select MAX(gia) 
                                           from chi_tiet_ra_gia 
                                           where id_SP = ${id}) `),
   addPriceTable: (gia,id_SP,id_NM) => {
     const entity = { gia,id_SP,id_NM}
     return db.add('chi_tiet_ra_gia', entity)
-  } 
+  },
+  isBanCurUser:   (id_NM,id_sp) =>  db.load(`SELECT * FROM cam_nguoi_mua WHERE id_sp = ${id_sp} AND id_NM = ${id_NM}`), 
 };
