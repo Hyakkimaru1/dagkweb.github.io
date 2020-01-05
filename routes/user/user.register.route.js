@@ -98,11 +98,6 @@ router.post('/login', async (req, res) => {
     });
   }
 
-  if(!(user.timeEndBidder === null))
-    return res.render('vwAccount/vwLogin/login', {
-      err_message: 'Your account has been banned. Use another one to login.'
-    });
-
   const rs = bcrypt.compareSync(req.body.password, user.password);
   if (rs === false)
     return res.render('vwAccount/vwLogin/login', {
