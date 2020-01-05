@@ -22,6 +22,14 @@ router.post('/register', async (req, res) => {//chua check recaptcha
     });
   }
 
+  //kiem tra username moi co trung hay khong?
+  const user = await userModel.singleByUsername(req.body.username);
+  if (!(user === null)){
+    return res.render('vwAccount/vwRegister/register', {
+      err_message: 'That username already exists!'
+    });
+  }
+
   //bat dau tao account de luu xuong database
   const N = 10;
   const hash = bcrypt.hashSync(req.body.raw_password, N);
