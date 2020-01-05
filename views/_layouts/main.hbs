@@ -134,13 +134,7 @@
 
 {{#if showMenuAcc}}
 <div class="container-account">
-<nav aria-label="breadcrumb" style="margin-top: 40px;">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-            <li class="breadcrumb-item"><a href="account.html">My Account</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Feedback</li>
-        </ol>
-    </nav>
+<br><br><br>
     <div class="container mt-3 mb-5">
         <div class="row mt-2">
             <div class="col-sm-3">
@@ -161,9 +155,7 @@
         <a class="{{#if isactive_feedback}}is_active{{/if}}" href="/user/feedback"><i class="fa fa-bell"></i>Feedback</a>
         <a class="{{#if cartBidding}}is_active{{/if}}" href="/user/cartBidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
         <a class="{{#if successfulBid}}is_active{{/if}}" href="/user/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
-        {{#if isSeller}}
-        <a class="{{#if manageProductSeller}}is_active{{/if}}" href="/seller/my_product"><i class="fa fa-archive"></i>Manage products</a>
-        {{/if}}
+        <a class="{{#if manageProductSeller}}is_active{{/if}}" href="/user/checkSeller"><i class="fa fa-archive"></i>Manage products</a>
       </div>
     </div>
              <div class="col-sm-9">

@@ -53,8 +53,9 @@ module.exports = {
   },
   getFeedback: id => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = '${id}'`),
   getWishlist: id => db.load(`select id,ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiThang from sanpham JOIN sp_yeu_thich ON id = id_SP AND id_NM = '${id}'`),
-  getWonlist: id => db.load(`select id,ten_SP,gia_HienTai,moTaSP,nguoiBan from sanpham where nguoiThang = '${id}'`),
-  getCartBidding: id => db.load(`select id_SP , gia from chi_tiet_ra_gia where id_NM = '${id}'`),
+  getWonlist: id => db.load(`select id,ten_SP,gia_HienTai,moTaSP,nguoiBan from sanpham where nguoiThang = '${id}' OR (nguoiGiuGia = '${id}' AND now() - timeEnd >= 0)`),
+  getCartBidding: id => db.load(`select id_SP , gia from chi_tiet_ra_gia ct1 where timeCreate = (
+     select MAX(timeCreate) from chi_tiet_ra_gia ct2 where ct2.id_NM = '${id}'  AND ct1.id_NM = ct2.id_NM)`),
   getSP: async id => {
   const rows = await db.load(`select ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan,nguoiThang from sanpham where id ='${id}'`);
     if (rows.length === 0)
@@ -62,7 +63,7 @@ module.exports = {
 
     return rows[0];
   },
-  getDetailRating: idSeller => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
-  getTotalRating: idSeller => db.load(`select count(*) as diem_DG from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
+  getDetailRating: id_nguoi_duoc_dg => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = ${id_nguoi_duoc_dg}`),
+  getTotalRating: id_nguoi_duoc_dg => db.load(`select count(*) as total from chi_tiet_dg where id_nguoi_duoc_DG = ${id_nguoi_duoc_dg}`),
   getHadFavorite: (id_NM,id_SP) => db.load(`select * from sp_yeu_thich where id_SP = ${id_SP} and id_NM = ${id_NM}`),
 };
