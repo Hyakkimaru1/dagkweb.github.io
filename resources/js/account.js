@@ -31,7 +31,7 @@ $(document).ready(function(){
       flag = true;
     }
 
-    if (!$("#lastname").val()) {
+    if (flag && !$("#lastname").val()) {
       $("#errLastName").text("Last name is empty!");
       flag = false;
   }
@@ -40,7 +40,7 @@ $(document).ready(function(){
     flag = true;
   }
     
-    if (!$("#Addr").val()) {
+    if (flag && !$("#Addr").val()) {
       $("#errAddr").text("Address is empty!");
       flag = false;
     }
@@ -49,7 +49,7 @@ $(document).ready(function(){
       flag = true;
     }
 
-    if (!$("#Email").val()) {
+    if ( flag && !$("#Email").val()) {
       $("#errEmail").text("Email is empty!");
       flag = false;
       

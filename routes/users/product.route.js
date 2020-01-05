@@ -1,103 +1,57 @@
 const express = require('express');
 const productModel = require('../../models/product.model');
 const userModel = require('../../models/user.model');
+const moment = require('moment');
+const numeral = require('numeral');
 const router = express.Router();
 
-router.get('/all', async (req, res) => {
-
-  const rows = await productModel.all();
-  console.log(rows);
-
-  // let time = rows[0].timeEnd;
-  var now = new Date().getTime();
-  var check = true;
-  if (1578069800000 - now > 0) {
-    cheack = true;
-  }
-  else {
-    check = false;
-  }
-  var gia_MuaNgay = 6969;
-  var check_MuaNgay;
-  if (gia_MuaNgay > 0) {
-    check_MuaNgay = true;
-  }
-  else {
-    check_MuaNgay = false;
-  }
-  //var minium_Bid = gia_HienTai + buocGia;
-  res.render('_product/product', {
-    id: 1, ten_SP: 'Mint - in undamaged sealed original box',
-    usename_Seller: 'Duy',
-    username_Bidder: 'Duy Nek',
-    timeEnd: '1578069800000',
-    gia_HienTai: '666',
-    diem_DG_Seller: '99',
-    diem_DG_Bidder: '100',
-    moTaSP: 'Set from 2010 Sealed, mint. One small price tag on front',
-    timeCreate: 'January 18, 2015',
-    all_riviews_Seller: '100',
-    minium_Bid: '777',
-    gia_MuaNgay,
-    check_MuaNgay,
-    check
-  });
-
 
 router.get('/:id', async (req, res) => {
-  const rows = await productModel.single(req.params.id);
-  const Seller = await userModel.single(rows[0].nguoiBan);
-  let timeEnd = new Date(rows[0].timeEnd).getTime();
-  let now = new Date().getTime();
-  let check = true;
-  if (timeEnd - now > 0) {
-    cheack = true;
-  }
-  else {
-    check = false;
-  }
-  let gia_MuaNgay = +rows[0].gia_MuaNgay;
-  let check_MuaNgay;
-  if (gia_MuaNgay > 0) {
-    check_MuaNgay = true;
-  }
-  else {
-    check_MuaNgay = false;
-  }
-  let canSell = true;
-  if (rows[0].nguoiThang != null)
-      canSold = false;
-  let minium_Bid = +rows[0].gia_HienTai + +rows[0].buocGia;
-  console.log(Seller);
-  const imgsource = ['https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg','https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg','https://vuviphimmoi.com/wp-content/uploads/2019/11/One-Punch-Man-OVA--750x453.jpg'];
-  res.render('_product/product', {
-    rows :rows[0],
-    imgsource,
-    username_Bidder: 'Duy',
-    Seller: Seller[0],
-    diem_DG_Bidder: '100',
-    all_riviews_Seller: '8',
-    minium_Bid,
-    check_MuaNgay,
-    check,
-    canSell
-  });
-})
-
-router.post('/:id', async (req, res) => {
-
-  console.log(req.body);
-  const rows = await productModel.patch(req.body,req.params.id);
-  if (rows.length === 0) {
+  const [rows,linkImg] = await Promise.all([
+    productModel.single(req.params.id),
+    productModel.getLinkImg(req.params.id)
+  ]);
+  
+  //if product is not providding info product
+  if (rows[0].boSungThongTin === 0){
+    //error
     throw new Error('error occured');
   }
-  res.redirect(req.params.id);
-})
 
+  let checkLogin = false;
 
-router.get('/:id', async (req, res) => {
-  const rows = await productModel.single(req.params.id);
-  const Seller = await userModel.single(rows[0].nguoiBan);
+  try {
+    if ( req.session.authUser.id_user != undefined && req.session.authUser.id_user != null)
+    {
+        checkLogin = true;
+    }
+  } catch (error) {
+
+  }
+  //get link img
+  let imgsource = [];
+  for (let c of linkImg)
+  {
+    imgsource.push("/imgs/"+req.params.id+"/"+c.link_anh);
+  }
+  //get Main picture
+  const MainPic = imgsource[0]; 
+
+  //seller, chi tiet cac luot ra gia,Bidder giu gia cao nhat, chi tiet danh gia seller, tong luot danh gia
+  const [Seller,AllDetailPrice,BidderPrice,detailRateSeller,totalRatingSeller] = await Promise.all([
+    userModel.single(rows[0].nguoiBan),
+    productModel.getAllDetail(req.params.id),
+    productModel.getBidderPrice(req.params.id),
+    userModel.getDetailRating(rows[0].nguoiBan),
+    userModel.getTotalRating(rows[0].nguoiBan)
+  ]);
+ 
+  let curUser = null;
+  if (checkLogin){
+    curUser = await userModel.single(req.session.authUser.id_user);
+  }
+
+  //check time End 
   let timeEnd = new Date(rows[0].timeEnd).getTime();
   let now = new Date().getTime();
   let check = true;
@@ -107,6 +61,9 @@ router.get('/:id', async (req, res) => {
   else {
     check = false;
   }
+  const timeCreate = moment(rows[0].timeCreate).format('HH:mm:ss DD-MM-YYYY').toString();
+  const timeCreateSeller = moment(Seller.timeCreateSeller).format('HH:mm:ss DD-MM-YYYY').toString();
+  //check can buy now
   let gia_MuaNgay = +rows[0].gia_MuaNgay;
   let check_MuaNgay;
   if (gia_MuaNgay > 0) {
@@ -115,31 +72,75 @@ router.get('/:id', async (req, res) => {
   else {
     check_MuaNgay = false;
   }
+
+  //check can shell
   let canSell = true;
   if (rows[0].nguoiThang != null)
       canSold = false;
   let minium_Bid = +rows[0].gia_HienTai + +rows[0].buocGia;
-  console.log(Seller);
-  const imgsource = ['https://assets.catawiki.nl/assets/2019/5/22/e/f/8/ef80885e-c5c1-421a-b4c7-78b677059ca3.jpg','https://cdnmedia.baotintuc.vn/Upload/DMDnZyELa7xUDTdLsa19w/files/2019/10/thutuong/vietnam/joker.jpg','https://vuviphimmoi.com/wp-content/uploads/2019/11/One-Punch-Man-OVA--750x453.jpg'];
+ 
+  //mask all name in view
+  BidderPrice[0].usernameMask = BidderPrice[0].username.substr(BidderPrice[0].username.length - 3);
+  Seller.usernameMask = Seller.username.substr(Seller.username.length-3);
+  for (const c of AllDetailPrice){
+    c.usernameMask = c.username.substr(c.username.length-3);
+    c.timePriced = moment(c.timeCreate).format('HH:mm:ss DD-MM-YYYY').toString();
+    c.Money = numeral(c.gia).format('0,0');
+  }
   res.render('_product/product', {
-    rows :rows[0],
+    BidderPrice: BidderPrice[0],
+    AllDetailPrice,
+    detailRateSeller,
+    totalRatingSeller: totalRatingSeller[0].diem_DG,
+    checkLogin,
+    timeCreate,
+    timeCreateSeller,
+    rows:rows[0],
     imgsource,
-    username_Bidder: 'Duy',
-    Seller: Seller[0],
-    diem_DG_Bidder: '100',
-    all_riviews_Seller: '8',
+    Seller,
     minium_Bid,
     check_MuaNgay,
     check,
-    canSell
+    canSell,
+    MainPic
   });
 })
 
 router.post('/:id', async (req, res) => {
+  try {
+    if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null)
+    {
+      throw new Error('Wanted');
+    }
+    curUser = await userModel.single(req.session.authUser.id_user);
+    if (curUser.diem_DG < 80)
+    {
+      throw new Error('Wanted');
+    }
+    
+  } catch (error) {
+    throw new Error('Wanted');
+  }
+  
+  const product = await productModel.single(req.params.id);
+  let timeEnd = product[0].timeEnd;
+  if (product[0].giaHan === 1)
+  {
+    const now = new Date().getTime();
+    const timeEndProduct = new Date(timeEnd).getTime();
+    if ((timeEndProduct - now) < 300*1000)
+    { 
+      timeEnd = moment(new Date(timeEndProduct+300000)).format('YYYY-MM-DD HH:mm:ss').toString();
+    }
+  }
 
-  console.log(req.body);
-  const rows = await productModel.patch(req.body,req.params.id);
-  if (rows.length === 0) {
+  req.body.timeEnd = timeEnd;
+  const [rows,addPriceTable] = await Promise.all([ 
+    productModel.patch(req.body,req.params.id),
+    productModel.addPriceTable(req.body.gia_HienTai,req.params.id,curUser.id_user)
+  ]);
+ 
+  if (rows.length === 0 || addPriceTable.length === 0) {
     throw new Error('error occured');
   }
   res.redirect(req.params.id);
@@ -160,5 +161,4 @@ router.get('/err', (req, res) => {
   throw new Error('error occured');
 })
 
-})
 module.exports = router;

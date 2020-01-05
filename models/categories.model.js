@@ -28,7 +28,7 @@ module.exports = {
     const sql = `select dm.id,dm.ten_DM, count(sell.id) as num_of_products
     from danhmuc dm left join dmsp dp on dm.id = dp.id_DM left join danhmuc_cha  dmc on  dm.id_DM_cha = dmc.id LEFT JOIN (SELECT id
       FROM sanpham
-      WHERE TIMEDIFF(timeEnd,NOW()) > 0 AND ISNULL(nguoiThang)) AS	sell ON dp.id_SP = sell.id
+      WHERE boSungThongTin = 1 and TIMEDIFF(timeEnd,NOW()) > 0 AND ISNULL(nguoiThang)) AS	sell ON dp.id_SP = sell.id
     where dmc.id = ${id_Cha} 
     group by dm.id,dm.ten_DM`;
     return db.load(sql);

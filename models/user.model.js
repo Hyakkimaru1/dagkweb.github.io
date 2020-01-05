@@ -52,12 +52,14 @@ module.exports = {
   getFeedback: id => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = '${id}'`),
   getWishlist: id => db.load(`select id,ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiThang from sanpham JOIN sp_yeu_thich ON id = id_SP AND id_NM = '${id}'`),
   getWonlist: id => db.load(`select id,ten_SP,gia_HienTai,moTaSP,nguoiBan from sanpham where nguoiThang = '${id}'`),
-  getCartBidding: id => db.load(`select id_SP , gia from chi_tiet_ra_gia where id_NM = '${id}' and isEnd = 0`),
+  getCartBidding: id => db.load(`select id_SP , gia from chi_tiet_ra_gia where id_NM = '${id}'`),
   getSP: async id => {
   const rows = await db.load(`select ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan,nguoiThang from sanpham where id ='${id}'`);
     if (rows.length === 0)
       return null;
 
     return rows[0];
-  }
+  },
+  getDetailRating: idSeller => db.load(`select * from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
+  getTotalRating: idSeller => db.load(`select count(*) as diem_DG from chi_tiet_dg where id_nguoi_duoc_DG = ${idSeller}`),
 };

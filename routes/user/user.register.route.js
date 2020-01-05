@@ -97,7 +97,12 @@ router.post('/login', async (req, res) => {
       err_message: 'Your account does not activate!'
     });
   }
-    
+
+  if(!(user.timeEndBidder === null))
+    return res.render('vwAccount/vwLogin/login', {
+      err_message: 'Your account has been banned. Use another one to login.'
+    });
+
   const rs = bcrypt.compareSync(req.body.password, user.password);
   if (rs === false)
     return res.render('vwAccount/vwLogin/login', {

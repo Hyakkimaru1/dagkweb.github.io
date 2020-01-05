@@ -1,19 +1,20 @@
 const express = require('express');
 const categoryModel = require('../../models/categories.model');
 const productModel = require('../../models/product.model');
+const userModel = require('../../models/user.model');
 const multer  = require('multer');
-const mkdirp = require('mkdirp');
-
-
-
+const mkdirp = require('mkdirp')
+var uplodedImages = [];
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    const dir = './public/imgs/'+req.params.id
+    const dir = './public/imgs/'+req.params.id;
 
     mkdirp(dir, err => cb(err, dir))
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now())
+    var newFileName = file.fieldname + '-' + Date.now();
+    cb(null,newFileName);
+    uplodedImages.push(newFileName);
   }
 })  
  
@@ -21,7 +22,13 @@ var upload = multer({ storage})
 
 const router = express.Router();
 
+//Check xem nguoi ban du dieu kien de vo trang hay khong (totalProductNeedInf < 3)
 router.get('/add_product', async (req, res) => {
+  
+
+  const seller = await userModel.single(req.session.authUser.id_user);
+ 
+
   const rows = await categoryModel.allCategoryPapa();
   const rowsChild = await categoryModel.all();
   for (const i of rows){
@@ -43,15 +50,62 @@ var fields = [
   {name: 'img',maxCount:'7'}
 ];
 
-router.post('/add_product2', (req, res) => {
-  res.render('_seller/information_productSeller',{layout:'seller_layout'});
+router.post('/add_product2',async (req, res) => {
+  //req.session.authUser.id_user;
+  let entity = {
+    ten_SP: req.body.productName.toString()
+  }
+  const row =  await productModel.addStep1(entity,req.session.authUser.id_user);
+  entity = {};
+  entity = {
+    id_DM:req.body.id,
+    id_SP: row.insertId
+  }
+  const rowDmsp = await productModel.addDmsp(entity);
+  res.render('_seller/information_productSeller',{layout:'seller_layout',id:entity.id_SP});
 })
 
-router.post('/post/:id',function (req, res){
-  console.log(req);
-  upload.fields(fields)(req, res, err => {
-  console.log(req.body);
+router.post('/post/:id', function (req, res){
+  uplodedImages = [];
+  upload.fields(fields)(req, res, async err => {
   if (err) { }
+  let buyingNow = req.body.buyingNow;
+  let checkAuto = 0;
+  if (buyingNow === ''){
+    buyingNow = null;
+  }
+  console.log(req.body);
+  try {
+    if (req.body.checkAuto === 'true'){
+        checkAuto =  1;
+        console.log(checkAuto);
+      }
+  } catch (error) {
+  }
+  
+  let entity = {
+    moTaSP: req.body.description.toString(),
+    gia_KhoiDiem: req.body.firstPrice,
+    buocGia: req.body.stepPrice,
+    timeEnd: req.body.dateEnd,
+    gia_MuaNgay: buyingNow,
+    giaHan: checkAuto,
+    tinhTrang: req.body.status.toString(),
+    trongLuong: req.body.weightPro,
+    boSungThongTin: 1
+  }
+  
+  const row = await productModel.patch(entity,req.params.id);
+ 
+  let rowLink;
+  for (let temp = 0; temp < uplodedImages.length;temp++){
+    entity = {
+      id_sp: req.params.id,
+      link_anh: uplodedImages[temp].toString()
+    }
+    rowLink = await productModel.addLinkAnh(entity);
+  }
+
   res.send('ok');
   });
 })

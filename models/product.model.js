@@ -18,14 +18,13 @@ module.exports = {
     return rows[0].total;
   },
   countByCatCanSell: async id_DM => {
-    const rows = await db.load(`select count(*) as total from dmsp JOIN sanpham ON id_SP = id where id_DM = ${id_DM}  AND TIMEDIFF(timeEnd,NOW()) > 0 AND ISNULL(nguoiThang)`)
+    const rows = await db.load(`select count(*) as total from dmsp JOIN sanpham ON id_SP = id where  boSungThongTin = 1 and id_DM = ${id_DM}  AND TIMEDIFF(timeEnd,NOW()) > 0 AND ISNULL(nguoiThang)`)
     return rows[0].total;
   },
   pageByCatCanSell: (id_DM,id_Cha, offset) => db.load(`
-  select *, count(c.id_SP) as num_of_bid
-  from sanpham sp join dmsp d on d.id_SP = sp.id join danhmuc dm on dm.id = d.id_DM LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP and sp.gia_HienTai = c.gia LEFT JOIN nguoidung n on n.id_user = c.id_NM 
-  where dm.id_DM_cha = ${id_Cha} and dm.id = ${id_DM} and (TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang)
-	group by sp.id 
+  select * 
+  from sanpham sp join dmsp on id_SP = sp.id join danhmuc dm on dm.id = id_DM 
+  where dm.id_DM_cha = ${id_Cha} and sp.boSungThongTin = 1 and dm.id = ${id_DM} and (TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang)
   limit ${config.paginate.limit} offset ${offset}`),
 
 
@@ -42,11 +41,26 @@ module.exports = {
 
 
   single: id => db.load(`select * from sanpham where id = ${id}`),
+  addStep1: (entity,nguoiBan) => db.addStep1('sanpham', entity,nguoiBan),
+  addDmsp: entity => db.add('dmsp', entity),
+  addLinkAnh: entity => db.add('anh_cua_sanpham', entity),
   add: entity => db.add('sanpham', entity),
   del: id => db.del('sanpham', { ProID: id }),
   patch: (entity,id) => {
     const condition = { id: id };
     delete entity.primaryAuto;
     return db.patch('sanpham', entity, condition);
-  }
+  },
+  getLinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id}`),
+  totalProductNeedInf: id => db.load(`select count(*) from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
+  getAllDetail: id => db.load(`select * from chi_tiet_ra_gia ct join nguoidung nd where ct.id_NM = nd.id_user and ct.id_SP = ${id} ORDER BY ct.id DESC`),
+  getBidderPrice: id => db.load(`select nd.* 
+  from nguoidung nd join chi_tiet_ra_gia ct
+  where nd.id_user = ct.id_NM and ct.gia >= (select MAX(gia) 
+                                          from chi_tiet_ra_gia 
+                                          where id_SP = ${id}) `),
+  addPriceTable: (gia,id_SP,id_NM) => {
+    const entity = { gia,id_SP,id_NM}
+    return db.add('chi_tiet_ra_gia', entity)
+  } 
 };
