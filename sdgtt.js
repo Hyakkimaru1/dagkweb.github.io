@@ -80,7 +80,8 @@ app.get('/', (req, res) => {
 
 app.use((req, res, next) => {
   // res.render('vwError/404');
-  res.render('error', { layout: 'error' });
+  const err = `404 - The Page can't be found`;
+  res.render('error', { layout: 'error',err });
 })
 
 app.use((err, req, res, next) => {
