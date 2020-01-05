@@ -84,12 +84,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/categories">Hot items</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Most view</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/admin/categories">ADMIN</a>
-          </li>
         </ul>
 
 
@@ -107,6 +101,12 @@
             Hi, <b>{{authUser.lastname}}!</b>
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            {{#if isAdmin}}
+            <a class="dropdown-item" href="/admin/categories">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Manage 
+            </a>
+            {{/if}}
             <a class="dropdown-item" href="/user/profile">
               <i class="fa fa-user" aria-hidden="true"></i>
               Profile
@@ -170,13 +170,7 @@
 
 {{else if showMenuAdmin}}
 <div class=" container-admin">
-<nav aria-label="breadcrumb" style="margin-top: 40px;">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-      <li class="breadcrumb-item"><a href="account.html">Admin</a></li>
-      <li class="breadcrumb-item active" aria-current="page">User</li>
-    </ol>
-  </nav>
+<br><br><br>
   <div class="container mt-3 mb-5" style="display: block;">
     <div class="row mt-2">
       <div class="col-sm-3">

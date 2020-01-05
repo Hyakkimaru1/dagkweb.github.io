@@ -12,7 +12,7 @@ $(document).ready(function(){
       flag = true;
     }
 
-    if (!$('#password2').val()) {
+    if (flag &&!$('#password2').val()) {
       $("#errCfpwd").text("Confirm Password is empty!");
       flag = false;
     }

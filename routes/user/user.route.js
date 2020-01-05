@@ -110,6 +110,7 @@ router.get('/feedback', async (req, res) => {
 
 router.get('/cartBidding', async (req, res) => {
   const rows = await userModel.getCartBidding(req.session.authUser.id_user);
+  console.log(rows);
   if (rows.length > 0) {
     for (let row of rows) {
       //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan

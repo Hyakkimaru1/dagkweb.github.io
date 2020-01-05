@@ -86,7 +86,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   // res.render('vwError/index');
   console.error(err.stack);
-  res.status(500).render('error', { layout: 'error' });
+  res.status(500).render('error', { layout: 'error',err });
 })
 
 const PORT = 3000;

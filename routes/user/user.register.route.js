@@ -86,7 +86,7 @@ router.post('/login', async (req, res) => {
     return res.render('vwAccount/vwLogin/login', {
       err_message: 'Invalid username or password.'
     });
-  console.log(user);
+  //console.log(user);
   //account chua duoc active
   if(user.isActive === 0){
     const data = nodeMailer.sendOTP(user.email);
@@ -107,7 +107,7 @@ router.post('/login', async (req, res) => {
   delete user.password;
   req.session.isAuthenticated = true;
   req.session.authUser = user;
-  console.log(user);
+  req.session.isAdmin = user.Permission === 2;
   const url = req.query.retUrl || '/';
   res.redirect(url); 
 });
