@@ -62,7 +62,8 @@ router.get('/:id/:id2', async (req, res) => {
     categoryModel.allChildCanSell(id_Cha),
     productModel.countByCatCanSell(id_DM),
     productModel.pageByCatCanSell(id_DM,id_Cha, offset),
-    categoryModel.categoryPapa(id_DM)
+    categoryModel.categoryPapa(id_DM),
+   
   ]);
   for (const c of lcCategories) {
     if (c.id === +req.params.id2) {

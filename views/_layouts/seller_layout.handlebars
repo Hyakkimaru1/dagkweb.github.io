@@ -5,11 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="/images/duckk.png">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
   <link rel="stylesheet" href="/css/information_product.css">
+   <link rel="stylesheet" href="/css/home.css">
   <link rel="stylesheet" href="/css/post_product.css">
+  <link rel="stylesheet" href="/css/categories.css">
+  <link rel="stylesheet" href="/css/account.css">
+  <link rel="stylesheet" href="/css/product.css">
+    
   {{{_sections.css}}}
   {{{_sections.jsHead}}}
   <title>Đăng sản phẩm</title>
@@ -34,16 +42,23 @@
             alt="">
           <p class="navbar-text ml-2 m-1"> Super man</p>
         </div>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="/account">Hồ sơ</a>
-          <a class="dropdown-item" href="/">Đăng xuất</a>
-        </div>
+        <div class="dropdown-menu dropdown-menu-right" style="margin-top:0px" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/user/profile">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              Profile
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              Logout
+            </a>
+          </div>
       </div>
       
       <div style="border-left: 1px solid #E8E8EC; height: 30px;" class="ml-4 mr-4"></div>
       <div class="dropdown">
           <img src="/img/icons8-squared-menu-50.png" width="30px" height="30px" data-toggle="dropdown">
-        <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right text-right" style="top:28px" aria-labelledby="dropdownMenuButton">
           <a style="color: #007BFF;" class="dropdown-item" href="manageProductSeller.html">Products  <i class="fas fa-gift" style="color: #007BFF;"></i></a>
           <a class="dropdown-item" href="sellerSoldItems.html" style="color: rgb(240, 196, 53);">Sold <i style="color: rgb(240, 196, 53);" class="fas fa-wallet"></i></a>
         </div>
@@ -53,9 +68,28 @@
     </div>
     </div>
   </nav>
+{{#if showMenuSeller}}
+<div class="container mt-3 mb-5" style="display: block;">
+    <div class="row mt-2">
+        <div class="col-sm-3">
+            <h3 class="title"><i class="fa fa-address-book"></i>Manage Product</h3>
+            <hr>
+            <div class="sidenav">
+                <a {{#if my_product}} style="color: blue; "{{/if}} href="/seller/my_product" ><i class="fa fa-shopping-bag"></i>My products</a>
+                <a {{#if sold}} style="color: blue; "{{/if}} href="/seller/sold"><i class="fa fa-usd"></i>Sold products</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            {{{body}}}
+        </div>
+    </div>
+</div>
 
+
+
+{{else}}
 {{{body}}}
-
+{{/if}}
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.js"></script>
   <script src="/js/information_product.js"></script>

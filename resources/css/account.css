@@ -18,7 +18,7 @@ font-size: 15px;
     color: blue !important;
 }
 /* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-pf {
+.sidenav a, .drop-pf {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -31,7 +31,12 @@ font-size: 15px;
     cursor: pointer;
     outline: none;
 }
-.title i,.sidenav a i,.dropdown-pf i{
+
+.sidenav a:active{
+    color:blue;
+}
+
+.title i,.sidenav a i,.drop-pf i{
     width: 50px;
 }
 
@@ -45,16 +50,16 @@ font-size: 15px;
 }
   
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container-pf {
-    display: block;
+.drop-container-pf {
+    
     padding-left: 25%;
 }
 
-.dropdown-container-pf a{
+.drop-container-pf a{
     max-width: 100%;
 }
 
-.sidenav a:hover, a:active, .dropdown-container-pf a:hover {
+.sidenav a:hover, a:active, .drop-container-pf a:hover {
     color: blue;
 }
 
@@ -74,7 +79,7 @@ font-size: 15px;
     color: rgb(212, 94, 113);
 }
 
-.fa-dollar-sign{
+.fa-usd{
     color: yellow;
 }
 
@@ -85,9 +90,7 @@ font-size: 15px;
 
 
 .rounded-circle{
-    display: block;
-    margin-top: 100px;
-    margin-bottom: 50px;
+    
 }
 
 .content_menu{

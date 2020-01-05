@@ -1,23 +1,23 @@
+
 {{#section 'css'}}
 <link rel="stylesheet" href="/css/wishlist.css">
 <link rel="stylesheet" href="/css/account.css">
 <link rel="stylesheet" href="/css/rate.css">
 {{/section}}
 
+
 {{#section 'js'}}
 <script src="/js/rate.js"></script>
 <script src="/js/account.js"></script>
 {{/section}}
 
- <div class="content" id="scroll">
-      <h4>BIDS HISTORY</h4>
-      <hr>
-      {{#if this.empty}}
-      <div><b>You didn't won before!</b></div>
-      {{else}}
-      {{#each this.products}}
-      
-      <div class="in-stock">
+<h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
+                        <br>
+                        <hr class="mt-1">
+
+{{#each result}}
+ <div class="in-stock">
+   
         <div class="card-body shadow-sm p-3 mb-5 bg-white rounded h-100 w-100">
           <div class="row">
             <div class="col-sm-2">
@@ -29,15 +29,15 @@
               <div class="item-content">{{moTaSP}}</div>
               <div class="row">
                 <div class="col-sm-6">
-                  <p style="font-size: 15px; font-weight: 700;">Seller: {{nameSeller}}</p><br>
-                  <p style="font-size: 15px; font-weight: 700;">You won with: {{format gia_HienTai}}đ</p><br>
+                  <p style="font-size: 15px; font-weight: 700;">Bidder: ****{{lastname}}</p><br>
+                  <p style="font-size: 15px; font-weight: 700;">You sold: {{format gia_HienTai}}đ</p><br>
                 </div>
                 <div class="col-sm-6">
                   <button type="button" class="btn btn-outline-primary rounded-pill"
                     onclick="window.location.href='/product/{{id}}'">View this lot</button>
                   <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
                     data-target="#exampleModal" data-whatever="@mdo">
-                    Rate this item
+                    Rate this bidder
                   </button>
                   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,6 +94,5 @@
           </div>
         </div>
       </div>
-      {{/each}}
-      {{/if}}
-    </div>
+
+{{/each }}

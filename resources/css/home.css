@@ -179,8 +179,43 @@
 
    display: block; 
     background: #00aeef;
+   
     color: #fff;
 }
+
+.card_banner2{
+    margin-top: -0.5rem;
+    margin-left:40rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6rem;
+    line-height: 1.5;
+    font-weight: 700;
+    position: absolute;
+
+   display: block; 
+    background: #00aeef;
+    color: #fff;
+}
+
+.card_banner3{
+    display: none;
+}
+
+.r2{
+    
+    margin-top: -0.5rem;
+    margin-left:40rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6rem;
+    line-height: 1.5;
+    font-weight: 700;
+    position: absolute;
+
+   display: block; 
+    background: #f30944;
+    color: #fff;
+}
+
 .card-body {
     padding-top: 0.5rem;
     padding-left: 0.5rem;

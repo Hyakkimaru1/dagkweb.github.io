@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
       err_message: 'Your account does not activate!'
     });
   }
-    
+
   const rs = bcrypt.compareSync(req.body.password, user.password);
   if (rs === false)
     return res.render('vwAccount/vwLogin/login', {
