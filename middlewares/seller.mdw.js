@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
     return res.redirect(`/account/login?retUrl=${req.originalUrl}`);
   }
 
-  if (req.session.authUser.permission !== 1) {
+  if (!(req.session.authUser.Permission === 1)) {
     throw Error('You are not seller!');
   }
 
