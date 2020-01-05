@@ -1,7 +1,10 @@
 const express = require('express');
 const categoryModel = require('../../models/categories.model');
+const productModel = require('../../models/product.model');
 const multer  = require('multer');
-const mkdirp = require('mkdirp')
+const mkdirp = require('mkdirp');
+
+
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -94,5 +97,28 @@ router.post('/del', async (req, res) => {
 })
 
 
+router.get('/my_product', async (req, res) => {
+  console.log(req.session.authUser.id_user);
+  const result = await productModel.sellingProduct(req.session.authUser.id_user);
+  res.render('_seller/sellingProduct',{
+    layout:'seller_layout',
+    showMenuSeller:true,
+    my_product: true,
+    result
+  
+  });
+ 
+})
+
+router.get('/sold', async (req, res) => {
+  const result = await productModel.soldProduct(req.session.authUser.id_user);
+  res.render('_seller/soldProduct',{
+    layout:'seller_layout',
+    showMenuSeller:true,
+    sold: true,
+    result
+  });
+ 
+})
 
 module.exports = router;

@@ -143,31 +143,37 @@
     <div class="container mt-3 mb-5">
         <div class="row mt-2">
             <div class="col-sm-3">
-                <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
-                <hr>
-               
-                <div class="sidenav ">
-                    <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
-                    <div class="dropdown-container-pf d-flex flex-column" >
-                        <a class=" {{#if active_bg}}is_active{{/if}} " href="/account">Background</a>
-                        <a class="{{#if active_changePW}}is_active{{/if}}" href="/account/changePW">Change Password</a>
-                    </div>
-                    <a class="{{#if active_wl}}is_active{{/if}}" href="/account/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
-                    <a class="{{#if active_fb}}is_active{{/if}}" href="/account/feedback" ><i class="fa fa-bell"></i>Feedback</a>
-                    <a class="{{#if active_bd}}is_active{{/if}}" href="/account/bidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
-                    <a class="{{#if active_sb}}is_active{{/if}}" href="/account/successfulBid"><i class="fas fa-dollar-sign"></i>Succesful auction</a>
-                    <a class="{{#if active_mp}}is_active{{/if}}" href="/account/manageProduct"><i class="fa fa-archive"></i>Manage products</a>
-                </div>
-            </div>
-            
+      <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
+      <hr>
+
+       
+
+      <div class="sidenav" >
+        <div>
+        <div class="drop-pf "><i class="fa fa-user-circle"></i>My profile</div>
+        <div class="drop-container-pf">
+          <a class="{{#if profile}}is_active{{/if}}" href="/user/profile">Background</a>
+          <a class="{{#if changepwd}}is_active{{/if}}" href="/user/changepwd">Change Password</a>
+        </div>
+        </div>
+        <a class="{{#if wishlist}}is_active{{/if}}" href="/user/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
+        <a class="{{#if isactive_feedback}}is_active{{/if}}" href="/user/feedback"><i class="fa fa-bell"></i>Feedback</a>
+        <a class="{{#if cartBidding}}is_active{{/if}}" href="/user/cartBidding"><i class="fa fa-shopping-bag"></i>Bid product</a>
+        <a class="{{#if successfulBid}}is_active{{/if}}" href="/user/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
+        {{#if isSeller}}
+        <a class="{{#if manageProductSeller}}is_active{{/if}}" href="/seller/my_product"><i class="fa fa-archive"></i>Manage products</a>
+        {{/if}}
+      </div>
+    </div>
+             <div class="col-sm-9">
                 {{{body}}}
                 
-            
+            </div>
         </div>
     </div>
     </div>
 
-
+{{else if showMenuSeller}}
 
 {{else if showMenuAdmin}}
 <div class=" container-admin">

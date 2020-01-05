@@ -6,38 +6,12 @@
 {{#section 'js'}}
 <script src="/js/account.js"></script>
 {{/section}}
-
-<nav aria-label="breadcrumb" style="margin-top: 40px;">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/" style="color: #007bff;">Home</a></li>
-        <li class="breadcrumb-item"><a href="/user/profile" style="color: #007bff;">My Account</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Bid product</li>
-    </ol>
-</nav>
-<div class="container mt-3 mb-5" style="display: block;">
-    <div class="row mt-2">
-        <div class="col-sm-3">
-            <h3 class="title"><i class="fa fa-address-book"></i>Mysterios</h3>
-            <hr>
-            <div class="sidenav">
-                <div class="dropdown-pf"><i class="fa fa-user-circle"></i>My profile</div>
-                <div class="dropdown-container-pf" style="display: none;">
-                    <a class="item" href="/user/profile">Background</a>
-                    <a class="item" href="/user/changepwd">Change Password</a>
-                </div>
-                <a href="/user/wishlist"><i class="fa fa-list-alt"></i>Wishlist</a>
-                <a href="/user/feedback"><i class="fa fa-bell"></i>Feedback</a>
-                <a href="/user/cartBidding" style="color: blue;"><i class="fa fa-shopping-bag"></i>Bid product</a>
-                <a href="/user/successfulBid"><i class="fa fa-usd"></i>Succesful auction</a>
-                <a href="/user/manageProductSeller"><i class="fa fa-archive"></i>Manage products</a>
-            </div>
-        </div>
-        <div class="col-sm-9" id="scroll">
-            <h4>Wishlist</h4>
+  <div class="content" id="scroll">
+            <h4>Bidding</h4>
             <div>Your favorite products.</div>
             <hr class="mt-3">
             {{#if this.empty}}
-            <div><b>Your wishlist is empty!</b></div>
+            <div><b>Your don't have any bidding item!</b></div>
             {{else}}
             {{#each this.products}}
             {{#if isDuration}}
@@ -74,5 +48,4 @@
             {{/each}}
             {{/if}}
         </div>
-    </div>
-</div>
+
