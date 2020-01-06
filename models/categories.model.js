@@ -44,6 +44,4 @@ module.exports = {
   from danhmuc_cha`),
   allCategoryChild: () => db.load(`select ten_DM_cha,dmc.id as id_Cha, ten_DM, dm.id as id_Con from danhmuc dm join danhmuc_cha dmc on dm.id_DM_cha = dmc.id`),
 
-  
-
 };

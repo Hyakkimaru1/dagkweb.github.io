@@ -159,5 +159,54 @@ module.exports = {
                 console.log('Message sent: ' + info.response);
             }
         });
+    },
+    sendMailEndWin: (seller,user,namePro,price) => {
+        let username = user.username.substr(user.username.length - 3);
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'You win product'+namePro,
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>You win product "${namePro}" for ${price}</p><br><h3>congratulations!</h3>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: seller.email,
+            subject: 'Time ends product '+namePro,
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>User "***${username}" win your product "${namePro}" for ${price} when time ends</p><br><h3>congratulations!</h3>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    },
+    sendSellerEnd: (seller,namePro) => {
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: seller.email,
+            subject: 'Time ends product '+namePro,
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>your "${namePro}" did not have person win`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
     }
 };

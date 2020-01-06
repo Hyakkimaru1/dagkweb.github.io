@@ -70,10 +70,15 @@
           </li>
         </ul>
 
-
-        <form id="frmSearch" action="/search" method="get" class="form-inline mt-2 mt-md-0" onsubmit="return validate()">
-          <input class="form-control mr-sm-2" id="search" name="keyword" type="text"
+        <form id="frmSearch" action="/search" method="get" class="form-inline mt-2 mt-md-0 mr-sm-4" onsubmit="return validate()">
+          <input class="form-control mr-sm-2" size="40" id="search" name="keyword" type="text"
             placeholder="Search" aria-label="Search">
+            <select class="custom-select mr-sm-2" name="selectCat">
+                <option selected value="-1">All categories</option>
+                {{#each cat}}
+                  <option value="{{id}}">{{ten_DM_cha}}</option>
+                {{/each}}
+              </select>
           <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>
         </form>
         

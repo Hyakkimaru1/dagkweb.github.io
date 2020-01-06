@@ -71,7 +71,7 @@ ORDER BY gia_HienTai DESC limit 5`),
     return db.patch('sanpham', entity, condition);
   },
   getLinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id}`),
-  totalProductNeedInf: id => db.load(`select count(*) from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
+  totalProductNeedInf: id => db.load(`select count(*) as total from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
   getAllDetail: id => db.load(`select * from chi_tiet_ra_gia ct join nguoidung nd where ct.id_NM = nd.id_user and ct.id_SP = ${id} ORDER BY ct.id DESC`),
   getBidderPrice: id => db.load(`select * 
   from nguoidung nd join chi_tiet_ra_gia ct
@@ -95,4 +95,5 @@ ORDER BY gia_HienTai DESC limit 5`),
     delete entity.id_DG;
     return db.patch('sanpham', entity, condition);
   },
+  getallProductNeedSend: _ => db.load('SELECT * FROM sanpham WHERE ISNULL(nguoiThang) AND  (TIMEDIFF(timeEnd,NOW()) < 0) AND SendMail = 0'),
 };

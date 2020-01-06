@@ -8,7 +8,7 @@
     "database": "sdgtt"
   },
   "paginate": {
-    "limit": 1
+    "limit": 4
   },
   "newProduct":{
     "time": 10

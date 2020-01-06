@@ -410,12 +410,9 @@ router.post('/:id/addFavourite', async (req, res) => {
       throw new Error('Wanted');
     }
     curUser = await userModel.single(req.session.authUser.id_user);
-    if (curUser.diem_DG < 80) {
-      throw new Error('Wanted');
-    }
 
   } catch (error) {
-    throw new Error('Wanted');
+    throw new ERR_HTTP_HEADERS_SENT('set');
   }
 
   let noBanCurUser = await productModel.isBanCurUser(req.session.authUser.id_user, req.params.id);
