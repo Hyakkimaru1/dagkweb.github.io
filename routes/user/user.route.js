@@ -1,6 +1,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const userModel = require('../../models/user.model');
+const productModel = require('../../models/product.model');
 const moment = require('moment');
 
 const router = express.Router();
@@ -113,10 +114,16 @@ router.get('/cartBidding', async (req, res) => {
   console.log(rows);
   if (rows.length > 0) {
     for (let row of rows) {
+
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id_SP);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id_SP + "/" + link_anh[0].link_anh + ".jpg";
+
       //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan
       const sp = await userModel.getSP(row.id_SP);
      
-      row.tenSP = sp.tenSP;
+      row.tenSP = sp.ten_SP;
       row.gia_MuaNgay = sp.gia_MuaNgay;
       row.moTaSP = sp.moTaSP;
       row.nguoiBan = sp.nguoiBan;
@@ -149,6 +156,7 @@ router.get('/cartBidding', async (req, res) => {
       
     }
   }
+  console.log(rows);
 
   res.render('vwAccount/vwProfile/cartBidding',{
     showMenuAcc:true,
@@ -164,11 +172,14 @@ router.get('/successfulBid', async (req, res) => {
  
   if(rows.length > 0){
     for(const row of rows){
-   
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh + ".jpg";
+      //ten seller
       const Seller = await userModel.single(row.nguoiBan);
       if(Seller !== null){
         row.nameSeller = Seller.firstname + " " + Seller.lastname;
-      
       }
     }
   }
@@ -255,6 +266,11 @@ router.get('/wishlist', async (req, res) => {
   const rows = await userModel.getWishlist(req.session.authUser.id_user);
   if(rows.length > 0) {
     for(const row of rows){
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh + ".jpg";
+
       //tinh toan thoi gian con lai
       let seconds = moment(row.timeEnd).unix() - moment().unix();
 

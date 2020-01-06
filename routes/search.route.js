@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
         //link ảnh
         const link_anh = await productModel.getLinkImg(row.id);
         console.log(link_anh);
-        row.link = "/imgs/" + row.id + "/" + link_anh[0];
+        row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh + ".jpg";
 
         //lay ten nguoi bid
         const user = await userModel.single(row.nguoiGiuGia);
