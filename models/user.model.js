@@ -24,6 +24,13 @@ module.exports = {
 
     return rows[0];
   },
+  singleLike: async (id_SP,id_NM) =>{
+    const rows = await db.load(`select * from sp_yeu_thich where id_SP = ${id_SP} AND id_NM =${id_NM}`);
+    if (rows.length === 0)
+      return null;
+
+    return rows[0];
+  },
   selectID_DG: async (idSP,idUser) =>{ 
     const rows = await db.load(`select id_DG from chi_tiet_DG where id_nguoi_DG = '${idUser}' and id_sp_duoc_dg ='${idSP}'`); 
     if(rows.length === 0)

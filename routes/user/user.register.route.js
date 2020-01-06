@@ -12,7 +12,7 @@ router.get('/register',(req, res) => {
   res.render('vwAccount/vwRegister/register');
 });
 
-router.post('/register', async (req, res) => {//chua check recaptcha
+router.post('/register', async (req, res) => {
 
   //kiem tra email moi co trung hay khong?
   const user = await userModel.singleByEmail(req.body.email);
