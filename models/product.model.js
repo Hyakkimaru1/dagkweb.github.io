@@ -3,13 +3,13 @@ const config = require('../config/default.json');
 
 module.exports = {
   soldProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid
-  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP and sp.gia_HienTai = c.gia LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )
+  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )
   where (isPay = 1 AND sp.nguoiThang IS NOT NULL or (sp.nguoiGiuGia is not null and now() - timeEnd >= 0))	AND sp.nguoiBan=${id}
 	group by sp.id`),
 
   
   sellingProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
-  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP and sp.gia_HienTai = c.gia LEFT JOIN nguoidung n on n.id_user = c.id_NM 
+  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = c.id_NM 
   where  (TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang) AND sp.nguoiBan=${id}
 	group by sp.id `),
   all: () => db.load('select * from sanpham'),
@@ -23,8 +23,8 @@ module.exports = {
     return rows[0].total;
   },
   pageByCatCanSell: (id_DM,id_Cha, offset) => db.load(`
-  select *, count(c.id_SP) as num_of_bid
-  from sanpham sp join dmsp d on d.id_SP = sp.id join danhmuc dm on dm.id = d.id_DM LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP and sp.gia_HienTai = c.gia LEFT JOIN nguoidung n on n.id_user = c.id_NM 
+  select sp.*,c.id_NM,n.lastname ,c.id_SP, count(c.id_SP) as num_of_bid
+  from sanpham sp join dmsp d on d.id_SP = sp.id join danhmuc dm on dm.id = d.id_DM LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia
   where dm.id_DM_cha = ${id_Cha} and dm.id = ${id_DM} and (TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang)
 	group by sp.id 
   limit ${config.paginate.limit} offset ${offset}`),
