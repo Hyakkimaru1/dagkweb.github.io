@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const userModel = require('../../models/user.model');
 const productModel = require('../../models/product.model');
 const moment = require('moment');
+const productModel = require('../../models/product.model');
 
 const router = express.Router();
 
@@ -117,7 +118,7 @@ router.get('/cartBidding', async (req, res) => {
     throw Error('Bạn không phải là bidder/seller!');
   }
   const rows = await userModel.getCartBidding(req.session.authUser.id_user);
-  console.log(rows);
+ 
   if (rows.length > 0) {
     for (let row of rows) {
 
@@ -158,7 +159,7 @@ router.get('/cartBidding', async (req, res) => {
       }
       else
         row.timeOut = '0d 0h 0m 0s';
-      delete row.timeEnd;
+  
       
     }
   }
@@ -306,10 +307,10 @@ router.get('/wishlist', async (req, res) => {
       }
       else
         row.timeOut = '0d 0h 0m 0s';
-      delete row.timeEnd;
+     
     }
   }
-  //console.log(rows);
+  console.log(rows);
   res.render('vwAccount/vwProfile/wishlist',{
     showMenuAcc:true,
     wishlist:true,
