@@ -14,365 +14,328 @@
   </div>
 </div>
 
+
 <!-- CONTAINER -->
 
 <div class="main-contain container">
+  
+<div class="middle mt-5">
+  <h4>Advertising</h4>
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://www.rd.com/wp-content/uploads/2017/09/01_antiques_Secrets-from-Expert-Antiquers-on-Finding-and-Scoring-the-Real-Deals_554153533_Aris-Suwanmalee-768x464.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.wallpaperscraft.com/image/bike_motorcycle_side_view_yard_119512_1280x720.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://www.bmw-bavariamotors.in/sites/default/files/styles/nostyle/public/slider_banner_image/2019-05/1301x585-3.jpg?itok=OAT5Pi1b" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+</div>
+
   <div class="a my-4">
-    <h5>Top 5 items with most bids/ closing soon/ highest price</h5>
-    <div class="list_product row d-flex justify-content-around">
-      <a href="/product" class="shadow col-2 item">
+    <h3>Auction closing soon</h3>
+    <div class="list_product row d-flex justify-content-around ">
+      {{#each end}}
+      <a href="/product/{{id}}" class="shadow col-2 item">
         <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
             class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
+           <div class="card_banner" style="width: 2.5rem;">
+           {{num_of_bid}}
+          </div>
+         <div class="banner_new" id="a{{id}}" style="width: 2.5rem;">
+          New
           </div>
           <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
+            <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+          
+            <div class="card-subtitle text-muted mb-2 ">
+              <div id="block1">Buy now: </div>
+              <div id="block3">{{gia_MuaNgay}}</div>
             </div>
             <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
+              <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
+              <div class="bidder mt-2">****{{lastname}} </div>
             </div>
-            <div id="price"><strong>190$</strong> </div>
+            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
             <div class="time_remain align-content-lg-start">
               <strong>Close in </strong>
               <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
+                 <p id="{{id}}">
+                    <script>
+                      var countDownDate{{id}} = new Date("{{timeEnd}}").getTime();
+                      var countDownDate2{{id}} = new Date("{{timeCreate}}").getTime();
+
+                      var x{{id}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate{{id}} - now{{id}};
+
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        
+                        // Output the result in an element with id="demo"
+
+                        document.getElementById({{id}}).innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+                        // If the count down is over, write some text 
+                        if (distance < 0) {
+                          
+                          clearInterval(x{{id}});
+                          document.getElementById({{id}}).innerHTML = "EXPIRED";
+                        }
+                      }, 1000);
+
+
+                    var x2{{id}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance =   now{{id}}   - countDownDate2{{id}};
+                      
+                        // If the count down is over, write some text
+                        
+                        if (distance <1800000) {
+                          
+                          clearInterval(x2{{id}});
+                          document.getElementById("a"+{{id}} ).setAttribute('class','card_banner_new');
+                        }
+                      }, 1000);
+
+
+                    </script>
+                  </p>
               </time>
             </div>
           </div>
         </div>
       </a>
-
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for </h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{/each}}
     </div>
   </div>
 
-  <div class="a my-5">
-    <h5>Top 5 items with most bids/ closing soon/ highest price</h5>
-    <div class="list_product row d-flex justify-content-around">
-      <div class="shadow col-2 item">
+  <div class="a my-4">
+    <h3>Auction with the most bids</h3>
+    <div class="list_product row d-flex justify-content-around ">
+      {{#each bid}}
+      <a href="/product/{{id}}" class="shadow col-2 item">
         <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
             class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
+           <div class="card_banner" style="width: 2.5rem;">
+           {{num_of_bid}}
+          </div>
+         <div class="banner_new" id="a{{id}}" style="width: 2.5rem;">
+          New
           </div>
           <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
+            <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+          
+            <div class="card-subtitle text-muted mb-2 ">
+              <div id="block1">Buy now: </div>
+              <div id="block3">{{gia_MuaNgay}}</div>
             </div>
             <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
+              <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
+              <div class="bidder mt-2">****{{lastname}} </div>
             </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
+            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
+            <div class="time_remain align-content-lg-start">
               <strong>Close in </strong>
               <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
+                 <p id="2{{id}}">
+                    <script>
+                      var countDownDate{{id}} = new Date("{{timeEnd}}").getTime();
+                      var countDownDate2{{id}} = new Date("{{timeCreate}}").getTime();
 
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
+                      var x{{id}} = setInterval(function () {
 
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
 
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for someone who like antique</h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
-              </time>
-            </div>
-          </div>
-        </div>
-      </div>
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate{{id}} - now{{id}};
 
-      <div class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
-            class="card-img-top" alt="...">
-          <div class="card_banner">
-            106 bids
-          </div>
-          <div class="card-body">
-            <h5 class="card-title truncate2l">Car in 1970s very cool for </h5>
-            <div class=" smalldes">
-              <div id="block1">Post in: </div>
-              <div id="block2">25/6/2019 11:11</div>
-            </div>
-            <div class="card-subtitle text-muted ">
-              <div id="block1">Buy it now: </div>
-              <div id="block3">190$</div>
-            </div>
-            <div class="card-subtitle text-muted text-truncate">
-              <div id="block1">Bidder: </div>
-              <div class="bidder">Katashiwa Ohisa </div>
-            </div>
-            <div id="price"><strong>190$</strong> </div>
-            <div class="time_remain ">
-              <strong>Close in </strong>
-              <time class="time_close">
-                <span>4d</span>
-                <span>2h</span>
-                <span>42m</span>
-                <span>24s</span>
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        
+                        // Output the result in an element with id="demo"
+
+                        document.getElementById("2"+{{id}}).innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+                        // If the count down is over, write some text 
+                        if (distance < 0) {
+                          
+                          clearInterval(x{{id}});
+                          document.getElementById({{id}}).innerHTML = "EXPIRED";
+                        }
+                      }, 1000);
+
+
+                    var x2{{id}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance =   now{{id}}   - countDownDate2{{id}};
+                      
+                        // If the count down is over, write some text
+                        
+                        if (distance <1800000) {
+                          
+                          clearInterval(x2{{id}});
+                          document.getElementById("a"+{{id}}).setAttribute('class','card_banner_new');
+                        }
+                      }, 1000);
+
+
+                    </script>
+                  </p>
               </time>
             </div>
           </div>
         </div>
-      </div>
+      </a>
+      {{/each}}
     </div>
   </div>
+
+
+
+    <div class="a my-4">
+    <h3>Auction with the highest price</h3>
+    <div class="list_product row d-flex justify-content-around ">
+      {{#each price}}
+      <a href="/product/{{id}}" class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+           <div class="card_banner" style="width: 2.5rem;">
+           {{num_of_bid}}
+          </div>
+         <div class="banner_new" id="a{{id}}" style="width: 2.5rem;">
+          New
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+          
+            <div class="card-subtitle text-muted mb-2 ">
+              <div id="block1">Buy now: </div>
+              <div id="block3">{{gia_MuaNgay}}</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
+              <div class="bidder mt-2">****{{lastname}} </div>
+            </div>
+            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
+            <div class="time_remain align-content-lg-start">
+              <strong>Close in </strong>
+              <time class="time_close">
+                 <p id="3{{id}}">
+                    <script>
+                      var countDownDate{{id}} = new Date("{{timeEnd}}").getTime();
+                      var countDownDate2{{id}} = new Date("{{timeCreate}}").getTime();
+
+                      var x{{id}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate{{id}} - now{{id}};
+
+                        // Time calculations for days, hours, minutes and seconds
+                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        
+                        // Output the result in an element with id="demo"
+
+                        document.getElementById("3"+{{id}}).innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+                        // If the count down is over, write some text 
+                        if (distance < 0) {
+                          
+                          clearInterval(x{{id}});
+                          document.getElementById({{id}}).innerHTML = "EXPIRED";
+                        }
+                      }, 1000);
+
+
+                    var x2{{id}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance =   now{{id}}   - countDownDate2{{id}};
+                      
+                        // If the count down is over, write some text
+                        
+                        if (distance <1800000) {
+                          
+                          clearInterval(x2{{id}});
+                          document.getElementById("a"+{{id}}).setAttribute('class','card_banner_new');
+                        }
+                      }, 1000);
+
+
+                    </script>
+                  </p>
+              </time>
+            </div>
+          </div>
+        </div>
+      </a>
+      {{/each}}
+    </div>
+  </div>
+
+<div class="bot row my-4">
+  <div class=" col-4">
+ <img class="image" src="//laz-img-cdn.alicdn.com/images/ims-web/TB1JnG3e8r0gK0jSZFnXXbRRXXa.png" alt="Tổng hợp ưu đãi" data-spm-anchor-id="a2o4n.home.btm_promo.i0.1bcee182EMzKep">
+     
+  </div>
+
+<div class=" col-4">
+ <img class="image" src="//laz-img-cdn.alicdn.com/images/ims-web/TB1ejS4eYj1gK0jSZFuXXcrHpXa.png" alt="Mở thẻ city">
+       
+</div>
+
+<div class=" col-4">
+<img class="image" src="//laz-img-cdn.alicdn.com/images/ims-web/TB1GP94eYj1gK0jSZFuXXcrHpXa.png" alt="Mở thẻ standard-chartered">
+       
+</div>
+
+</div>
+ 
 </div>

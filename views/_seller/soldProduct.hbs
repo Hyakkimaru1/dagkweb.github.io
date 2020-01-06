@@ -1,4 +1,3 @@
-
 {{#section 'css'}}
 <link rel="stylesheet" href="/css/wishlist.css">
 <link rel="stylesheet" href="/css/account.css">
@@ -14,85 +13,91 @@
 <h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
                         <br>
                         <hr class="mt-1">
-
+{{#if empty}}
+<p>Bạn chưa bán được sản phẩm nào.</p>
+{{else }}
 {{#each result}}
- <div class="in-stock">
-   
-        <div class="card-body shadow-sm p-3 mb-5 bg-white rounded h-100 w-100">
-          <div class="row">
-            <div class="col-sm-2">
-              <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
-                alt="" class="categories">
-            </div>
-            <div class="col-sm-10">
-              <h5 class="item-title" href="product.html">{{ten_SP}}</h5>
-              <div class="item-content">{{moTaSP}}</div>
-              <div class="row">
-                <div class="col-sm-6">
-                  <p style="font-size: 15px; font-weight: 700;">Bidder: ****{{lastname}}</p><br>
-                  <p style="font-size: 15px; font-weight: 700;">You sold: {{format gia_HienTai}}đ</p><br>
-                </div>
-                <div class="col-sm-6">
-                  <button type="button" class="btn btn-outline-primary rounded-pill"
-                    onclick="window.location.href='/product/{{id}}'">View this lot</button>
-                  <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
-                    data-target="#exampleModal" data-whatever="@mdo">
-                    Rate this bidder
-                  </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">New
-                            message</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <form id="form-feedback" action="/user/wonBid-fb?idSP={{id}}&idSeller={{nguoiBan}}" class="form" >
-                            <div class=" form-group">
-                              <label for="message-text" class="col-form-label">Rate:</label>
-                            </div>
-                            <div class="d-flex justify-content-sm-center">
-                              <label class="pr-5">
-                                <input type="radio" name="point" value="-1">
-                                <i class="fa fa-thumbs-o-down text-danger text-size" aria-hidden="true"></i>
-                              </label>
-                              <label class="pl-5">
-                                <input type="radio" name="point" value="1">
-                                <i class="fa fa-thumbs-o-up text-success" aria-hidden="true"></i>
-                              </label>
-                            </div>
-                            <h5 style="color:red; display:none;" id="warning-p">Please choose atleast one.</h5>
-                            <div class="form-group">
-                              <label for="message-text" class="col-form-label">Feedback:</label>
-                              <textarea class="form-control" id="message-text" name="feedback"></textarea>
-                              <h5 style="color:red; display:none;" id="warning-fb">text area is empty</h5>
-                            </div>
+<div class="in-stock">
 
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-success">Send message</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  <div class="card-body shadow-sm p-3 mb-5 bg-white rounded h-100 w-100">
+    <div class="row">
+      <div class="col-sm-2">
+        <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg" alt=""
+          class="categories">
+      </div>
+      <div class="col-sm-10">
+        <h5 class="item-title" href="/product/{{id}}">{{ten_SP}}</h5>
+        <div class="item-content">{{moTaSP}}</div>
+        <div class="row">
+          <div class="col-sm-6">
+            <p style="font-size: 15px; font-weight: 700;">Bidder: ****{{lastname}}</p><br>
+            <p style="font-size: 15px; font-weight: 700;">You sold: {{format gia_HienTai}}đ</p><br>
+          </div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-primary rounded-pill"
+                  onclick="window.location.href='/product/{{id}}'">View this lot</button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
+                  data-target="#exampleModal{{id}}" data-whatever="@mdo">
+                  Rate this bidder
+                </button>
+              </div>
+              <div class="col-12">
+                <button type="button" class="btn btn-outline-danger rounded-pill"
+                  onclick="window.location.href='/seller/delSoldPro?idSP={{id}}&idBidder={{nguoiCanDG}}'">Delete</button>
               </div>
             </div>
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="col-sm-4">
+            <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New
+                      message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="form-feedback" action="/seller/soldPro-fb?idSP={{id}}&idBidder={{nguoiCanDG}}" class="form" method="POST">
+                      <div class=" form-group">
+                        <label for="message-text" class="col-form-label">Rate:</label>
+                      </div>
+                      <div class="d-flex justify-content-sm-center">
+                        <label class="pr-5">
+                          <input type="radio" name="point" value="-1">
+                          <i class="fa fa-thumbs-o-down text-danger text-size" aria-hidden="true"></i>
+                        </label>
+                        <label class="pl-5">
+                          <input type="radio" name="point" value="1">
+                          <i class="fa fa-thumbs-o-up text-success" aria-hidden="true"></i>
+                        </label>
+                      </div>
+                      <h5 style="color:red; display:none;" id="warning-p">Please choose atleast one.</h5>
+                      <div class="form-group">
+                        <label for="message-text" class="col-form-label">Feedback:</label>
+                        <textarea class="form-control" id="message-text" name="feedback"></textarea>
+                        <h5 style="color:red; display:none;" id="warning-fb">text area is empty</h5>
+                      </div>
 
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Send message</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
 {{/each }}
+{{/if}}

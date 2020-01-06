@@ -170,7 +170,7 @@
 }
 
 .card_banner{
-    top: 1rem;
+    margin-top: -0.5rem;
     padding: 0.25rem 0.5rem;
     font-size: 0.6rem;
     line-height: 1.5;
@@ -183,7 +183,26 @@
     color: #fff;
 }
 
+.card_banner_new{
+    margin-top: -0.5rem;
+    margin-left: 149px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.6rem;
+    line-height: 1.5;
+    font-weight: 700;
+    position: absolute;
+
+   display: block; 
+    background: #f852a5;
+   
+    color: #fff;
+}
+
+.banner_new{
+    display: none;}
+
 .card_banner2{
+    height:21px ;
     margin-top: -0.5rem;
     margin-left:40rem;
     padding: 0.25rem 0.5rem;
@@ -228,13 +247,13 @@
 .truncate2l{
     overflow: hidden;
     text-overflow: ellipsis;
-    -webkit-line-clamp: 1.8;
+    -webkit-line-clamp:0.9;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     font-size: 1rem;
     font-weight: bold;
-    height: 40px;
-    margin-bottom: 10px;
+    height: 20px;
+    margin-bottom: 5px;
 }
 
 .smalldes{
@@ -252,13 +271,14 @@
 }
 #block3{
     display:inline;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 #price{
+    margin-top: -5px;
     text-align: end ;
     
-    font-size: 1.8rem;
-    color: black;
+    font-size: 1.7rem;
+    color: rgb(74, 69, 69);
 
 }
 .bidder{
@@ -283,10 +303,17 @@
 .card-subtitle.a{
     display:inline;
 }
+.bot img{
+width: 330px;
+    height: 130px;
+
+}
 
 
-
-
+.middle img{
+    width: 500px;
+    height: 300px;
+}
 
 
 

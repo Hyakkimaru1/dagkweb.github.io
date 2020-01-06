@@ -8,6 +8,7 @@ const userModel = require('../models/user.model');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
+    req.session.urlBack = req.originalUrl; 
     let sortBy = req.query.sortBy;
     let orderBy;
     console.log(sortBy);
@@ -54,9 +55,13 @@ router.get('/', async (req, res) => {
         //kiem tra thoi han dang san pham
         let seconds = moment().unix() - moment(row.timeCreate).unix();
         row.isNew = seconds/60 < config.newProduct.time;
+        //đếm lượt bid
         row.countBid = await searchModel.countBid(row.id);
+        //định dạng date để in ra view
         row.timeCreate = moment(row.timeCreate).format('HH:mm:ss DD-MM-YYYY').toString();
+        //id sản phẩm
         row.id_SP = row.id;
+        //link ảnh
         const link_anh = await productModel.getLinkImg(row.id);
         console.log(link_anh);
         row.link = "/imgs/" + row.id + "/" + link_anh[0];
@@ -68,6 +73,19 @@ router.get('/', async (req, res) => {
         }
         else{
             row.maskName = '';
+        }
+        if (req.session.isAuthenticated === true) {
+            //check đã thích hay chưa
+            const check = await userModel.singleLike(row.id, req.session.authUser.id_user);
+            if (check === null) {
+                row.isLike = false;
+            }
+            else {
+                row.isLike = true;
+            }
+        }
+        else{
+            row.isLike = false;
         }
     }
     console.log(total);

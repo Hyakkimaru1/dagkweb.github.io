@@ -47,6 +47,10 @@ function validate(){
         document.getElementById("errUserName").innerHTML = "Please fill out user name!";
         return false;
     }
+    else if(user.length < 5){
+        document.getElementById("errUserName").innerHTML = "Please enter at least 5 characters!";
+        return false;
+    }
     else
     {
         document.getElementById("errUserName").innerHTML = "";

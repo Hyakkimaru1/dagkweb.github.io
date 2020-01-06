@@ -226,27 +226,47 @@
 
           </div>
 
-            <div class="col-sm-2" style="max-width: 114.5px; max-height:155px">
+            <div class="col-sm-2">
               <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
                 alt="" class="categories">
             </div>
             <div class="col-sm-10" style="max-width: 572.5px; max-height:155px">
-              <h5 class="item-title">{{ten_SP}}</h5>
-              <div class="item-content">{{moTaSP}}</div>
+              <h5 class="item-title text-truncate">{{ten_SP}}</h5>
+              <div class="item-content text-truncate">{{{moTaSP}}}</div>
               <div class="row">
-                <div class="col-xl-4" style="max-width: 191px;">
-                <p style="font-size: 15px; font-weight: 300; margin-top:0.9rem;margin-bottom:0rem;margin-left:5rem;">****{{lastname}}: </p>
+                <div class="col-2">
+                <p style="font-size: 15px; font-weight: 300; margin-top:0.9rem;margin-bottom:0rem;margin-left:1rem;">****{{lastname}}: </p>
               </div>
 
-                <div class="col-xl-5" style="max-width: 191px;">
+                <div class="col-5" style="max-width: 191px;">
                   
                   
                   <div style="font-size: 28px; font-weight: 700;">${{gia_HienTai}}</div>
 
                 </div>
-                 <div class="col-xl-3" style="max-width: 143.13px;">
-                  <button type="button" class="btn btn-outline-primary rounded-pill">View this
-                    lot</button>
+                 <div class="col-5" >
+                  <div class="row">
+                    <div class="col-8">
+                      <button type="button" class="btn btn-outline-primary rounded-pill">View this
+                        lot</button>
+                    </div>
+                    <div class="col-4">
+                      {{#if isLike}}
+                      <form class="form">
+                        <button type="button" class="btn btn-block btn-danger" role="button">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </button>
+                      </form>
+                      {{else}}
+                      <form class="form" action="/love" method="GET">
+                        <input type="hidden" name="id_SP" value="{{id}}">
+                        <button type="submit" class="btn btn-block btn-outline-danger" style="width: 50px;" role="button">
+                          <i class="fa fa-heart" aria-hidden="true"></i>
+                        </button>
+                      </form>
+                      {{/if}}
+                    </div>
+                  </div>
                 </div>
               </div>
                 <div class="row">
@@ -312,6 +332,7 @@
             </div>
           </div>
         </div>
+
       </a>
       {{/rows}}
       <div class="row">

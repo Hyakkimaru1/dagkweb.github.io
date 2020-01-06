@@ -1,99 +1,100 @@
 {{#section 'css'}}
 <style>
-    a:hover {
-        text-decoration: none;
-    }
+  a:hover {
+    text-decoration: none;
+  }
 
-    div.search-item:hover {
-        border: 1px solid #ee4d2d;
-        z-index: 2;
-    }
+  div.search-item:hover {
+    border: 1px solid #ee4d2d;
+    z-index: 2;
+  }
 </style>
 {{/section}}
 <div class="container">
-    <div class="mt-5">
-        <h3>
-            <i class="fa fa-lightbulb-o text-warning" aria-hidden="true"></i> Search results for keywords '<span
-                class="text-danger">{{keyword}}</span>':
-        </h3>
-    </div>
-    {{#if this.empty}}
-    <div>Không tìm thấy sản phẩm.</div>
-    {{else}}
+  <div class="mt-5">
+    <h3>
+      <i class="fa fa-lightbulb-o text-warning" aria-hidden="true"></i> Search results for keywords '<span
+        class="text-danger">{{keyword}}</span>':
+    </h3>
+  </div>
+  {{#if this.empty}}
+  <div>Không tìm thấy sản phẩm.</div>
+  {{else}}
 
-    <div class="row bg-light p-2">
-        <div>Sort by </div>
-        {{#if isSort}}
-        <a href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=time&orderBy=asc" class="border bg-white text-dark ml-3 mr-3 p-1" style="height: 35px;">Time end</a>
-        <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle border bg-warning text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            {{priceSort}}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=desc">
-              Price: Decrease
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=asc">
-              Price: Ascending
-            </a>
-          </div>
-        </div>
-        {{else}}
-        <a href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=time&orderBy=asc" class="border bg-warning text-dark ml-3 mr-3 p-1" style="height: 35px;">Time end</a>
-        <div class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle border bg-white text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Price
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=desc">
-              Price: Decrease
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=asc">
-              Price: Ascending
-            </a>
+  <div class="row bg-light p-2">
+    <div>Sort by </div>
+    {{#if isSort}}
+    <a href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=time&orderBy=asc"
+      class="border bg-white text-dark ml-3 mr-3 p-1" style="height: 35px;">Time end</a>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle border bg-warning text-white" href="#" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{priceSort}}
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=desc">
+          Price: Decrease
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=asc">
+          Price: Ascending
+        </a>
+      </div>
+    </div>
+    {{else}}
+    <a href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=time&orderBy=asc"
+      class="border bg-warning text-dark ml-3 mr-3 p-1" style="height: 35px;">Time end</a>
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle border bg-white text-dark" href="#" id="navbarDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Price
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=desc">
+          Price: Decrease
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/search?keyword={{keyword}}&page={{cur_value}}&sortBy=price&orderBy=asc">
+          Price: Ascending
+        </a>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  <div class="row mt-3 ">
+    {{#each this.product}}
+    <a href="/product/{{id}}" class="col-3">
+      <div class="card h-100 search-item">
+        <img src="{{link}}" class="card-img-top" alt="...">
+        <div class="card_banner" style="z-index: 1;">{{countBid}} bids</div>
+        {{#if isNew}}
+        <div class="d-flex justify-content-end">
+          <div class="card_banner" style="background-color:transparent;">
+            <img src="/images/new.gif" class="card-img-top" style="width: 50px!important; z-index:1" height="50px">
           </div>
         </div>
         {{/if}}
-    </div>
-    <div class="row mt-3 ">
-        {{#each this.product}}
-        <a href="/product/{{id}}" class="col-3">
-            <div class="card h-100 search-item">
-                
-                <img src="{{link}}" class="card-img-top" alt="...">
-                
-                <div class="card_banner" style="z-index: 1;">{{countBid}} bids</div>
-                {{#if isNew}}
-                <div class="d-flex justify-content-end">
-                    <div class="card_banner" style="background-color:transparent;">
-                        <img src="/images/new.gif" class="card-img-top" style="width: 50px!important; z-index:1" height="50px" >
-                    </div>
-                </div>
-                {{/if}}
-                <div class="card-body">
-                    <h5 class="card-title truncate2l">{{ten_SP}}</h5>
-                    <div class=" smalldes">
-                        <div id="block1">Post in: </div>
-                        <div id="block2">{{timeCreate}}</div>
-                    </div>
-                    <div class="card-subtitle text-muted ">
-                        <div id="block1">Buy it now: </div>
-                        <div id="block3">{{format gia_MuaNgay}}</div>
-                    </div>
-                    <div class="card-subtitle text-muted text-truncate">
-                        <div id="block1">Bidder: </div>
-                        <div class="bidder">{{maskName}}</div>
-                    </div>
-                    <div id="price"><strong>{{format gia_HienTai}}</strong> </div>
-                    <div class="time_remain align-content-lg-start">
-                        <strong>Close in </strong>
-                        <p id="{{id_SP}}">
+        <div class="card-body">
+          <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+          <div class=" smalldes">
+            <div id="block1">Post in: </div>
+            <div id="block2">{{timeCreate}}</div>
+          </div>
+          <div class="card-subtitle text-muted ">
+            <div id="block1">Buy it now: </div>
+            <div id="block3">{{format gia_MuaNgay}}</div>
+          </div>
+          <div class="card-subtitle text-muted text-truncate">
+            <div id="block1">Bidder: </div>
+            <div class="bidder">{{maskName}}</div>
+          </div>
+          <div id="price"><strong>{{format gia_HienTai}}</strong> </div>
+          <div class="time_remain align-content-lg-start">
+            <strong>Close in </strong>
+            <p id="{{id_SP}}">
                     <script>
                       var countDownDate{{id_SP}} = new Date("{{timeEnd}}").getTime();
+                      var countDownDate2{{id_SP}} = new Date("{{timeCreate}}").getTime();
 
                       var x{{id_SP}} = setInterval(function () {
 
@@ -121,46 +122,87 @@
                           document.getElementById({{id_SP}}).innerHTML = "EXPIRED";
                         }
                       }, 1000);
+
+
+                    var x2{{id_SP}} = setInterval(function () {
+
+                        // Get today's date and time
+                        var now{{id_SP}} = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance =   now{{id_SP}}   - countDownDate2{{id_SP}};
+                      
+                        // If the count down is over, write some text
+                        
+                        if (distance <1800000) {
+                          
+                          clearInterval(x2{{id_SP}});
+                          document.getElementById("a"+{{id_SP}}).setAttribute('class','r2');
+                        }
+                      }, 1000);
+
+
                     </script>
                   </p>
-                    </div>
-                </div>
-            </div>
-        </a>
-        {{/each}}
-
-    </div>
-
-    <div class="row mt-3">
-        <div class="col-sm-12">
-            <nav>
-                <ul class="pagination d-flex justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="/search?keyword={{keyword}}&page={{prev_value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">
-                            <i class="fa fa-backward" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    {{#each this.page_numbers}}
-                    {{#if isCurrentPage}}
-                    <li class="page-item active" aria-current="page">
-                        <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span></a>
-                    </li>
-                    {{else}}
-                    <li class="page-item">
-                        <a class="page-link" href="/search?keyword={{keyword}}&page={{value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">{{value}}</a>
-                    </li>
-                    {{/if}}
-                    {{/each}}
-                    <li class="page-item">
-                        <a class="page-link" href="/search?keyword={{keyword}}&page={{next_value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">
-                            <i class="fa fa-forward" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+          </div>
         </div>
+        <div class="card-footer text-center">
+          {{#if isLike}}
+            <form class="form">
+              <button type="button" class="btn btn-block btn-danger" role="button">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                Loved
+              </button>
+            </form>
+          {{else}}
+          <form class="form" action="/love" method="GET">
+            <input type="hidden" name="id_SP" value="{{id}}">
+            <button type="submit" class="btn btn-block btn-outline-danger" role="button">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              Love
+            </button>
+          </form>
+          {{/if}}
+        </div>
+      </div>
+    </a>
+    {{/each}}
 
+  </div>
 
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <nav>
+        <ul class="pagination d-flex justify-content-center">
+          <li class="page-item">
+            <a class="page-link"
+              href="/search?keyword={{keyword}}&page={{prev_value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">
+              <i class="fa fa-backward" aria-hidden="true"></i>
+            </a>
+          </li>
+          {{#each this.page_numbers}}
+          {{#if isCurrentPage}}
+          <li class="page-item active" aria-current="page">
+            <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span></a>
+          </li>
+          {{else}}
+          <li class="page-item">
+            <a class="page-link"
+              href="/search?keyword={{keyword}}&page={{value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">{{value}}</a>
+          </li>
+          {{/if}}
+          {{/each}}
+          <li class="page-item">
+            <a class="page-link"
+              href="/search?keyword={{keyword}}&page={{next_value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">
+              <i class="fa fa-forward" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    {{/if}}
+
+
+  </div>
+  {{/if}}
 </div>

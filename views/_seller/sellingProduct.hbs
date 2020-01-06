@@ -1,17 +1,17 @@
 
-<h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
-                        <br>
-                        <hr class="mt-1">
+<h3>SELLING PRODUCTS</h3>
+<br>
+<hr class="mt-1">
 
 {{#each result}}
-<a id="categories" class="item" href="/product/{{id_SP}}">
+ <a id="categories" class="item" href="/product/{{id}}">
         <div class="card-body shadow-sm p-3 mb-5 bg-white rounded" style="min-width: 689px; min-height:195px;">
            
           <div class="row">
             <div class="card_banner2 text-center" style="width: 2.5rem;">
            {{num_of_bid}}
           </div>
-         <div class="card_banner3" id="a{{id_SP}}" style="width: 2.5rem;">
+         <div class="card_banner3" id="a{{id}}" style="width: 2.5rem;">
           New
                   
 
@@ -22,8 +22,8 @@
                 alt="" class="categories">
             </div>
             <div class="col-sm-10" style="max-width: 572.5px; max-height:155px">
-              <h5 class="item-title">{{ten_SP}}</h5>
-              <div class="item-content">{{moTaSP}}</div>
+              <h5 class="item-title text-truncate">{{ten_SP}}</h5>
+              <div class="item-content text-truncate">{{{moTaSP}}}</div>
               <div class="row">
                 <div class="col-xl-4" style="max-width: 191px;">
                 <p style="font-size: 15px; font-weight: 300; margin-top:0.9rem;margin-bottom:0rem;margin-left:5rem;">****{{lastname}}: </p>
@@ -50,18 +50,18 @@
                 <div class="row">
                 <div class="col-xl-5 mt-1" style="max-width: 238px;">
                   <p style="font-weight:700;">Close in</p>
-                  <p id="{{id_SP}}">
+                  <p id="{{id}}">
                     <script>
-                      var countDownDate{{id_SP}} = new Date("{{timeEnd}}").getTime();
-                      var countDownDate2{{id_SP}} = new Date("{{timeCreate}}").getTime();
+                      var countDownDate{{id}} = new Date("{{timeEnd}}").getTime();
+                      var countDownDate2{{id}} = new Date("{{timeCreate}}").getTime();
 
-                      var x{{id_SP}} = setInterval(function () {
+                      var x{{id}} = setInterval(function () {
 
                         // Get today's date and time
-                        var now{{id_SP}} = new Date().getTime();
+                        var now{{id}} = new Date().getTime();
 
                         // Find the distance between now and the count down date
-                        var distance = countDownDate{{id_SP}} - now{{id_SP}};
+                        var distance = countDownDate{{id}} - now{{id}};
 
                         // Time calculations for days, hours, minutes and seconds
                         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -72,31 +72,31 @@
                         
                         // Output the result in an element with id="demo"
 
-                        document.getElementById({{id_SP}}).innerHTML = days + "d " + hours + "h "
+                        document.getElementById({{id}}).innerHTML = days + "d " + hours + "h "
                     + minutes + "m " + seconds + "s ";
                         // If the count down is over, write some text 
                         if (distance < 0) {
                           
-                          clearInterval(x{{id_SP}});
-                          document.getElementById({{id_SP}}).innerHTML = "EXPIRED";
+                          clearInterval(x{{id}});
+                          document.getElementById({{id}}).innerHTML = "EXPIRED";
                         }
                       }, 1000);
 
 
-                    var x2{{id_SP}} = setInterval(function () {
+                    var x2{{id}} = setInterval(function () {
 
                         // Get today's date and time
-                        var now{{id_SP}} = new Date().getTime();
+                        var now{{id}} = new Date().getTime();
 
                         // Find the distance between now and the count down date
-                        var distance =   now{{id_SP}}   - countDownDate2{{id_SP}};
+                        var distance =   now{{id}}   - countDownDate2{{id}};
                       
                         // If the count down is over, write some text
                         
                         if (distance <1800000) {
                           
-                          clearInterval(x2{{id_SP}});
-                          document.getElementById("a"+{{id_SP}}).setAttribute('class','r2');
+                          clearInterval(x2{{id}});
+                          document.getElementById("a"+{{id}}).setAttribute('class','r2');
                         }
                       }, 1000);
 
