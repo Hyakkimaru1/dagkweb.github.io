@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
   let isCurMaxAuto = false;
   let maxAuto = -1;
   try {
-    if (req.session.authUser.id_user != undefined && req.session.authUser.id_user != null) {
+    if (req.session.authUser.id_user !== undefined && req.session.authUser.id_user !== null) {
       checkLogin = true;
       curUser = req.session.authUser;
       if (req.session.authUser.id_user == rows[0].nguoiBan) {
