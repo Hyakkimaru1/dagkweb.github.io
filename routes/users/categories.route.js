@@ -99,6 +99,8 @@ router.get('/:id/:id2', async (req, res) => {
       row.isLike = false;
     }
   }
+  console.log(rows);
+  
   res.render('_categories/categories', {
     lcCategories,
     rows,

@@ -18,7 +18,7 @@
           </div>
 
             <div class="col-sm-2" style="max-width: 114.5px; max-height:155px">
-              <img src="https://assets.catawiki.nl/assets/2019/10/15/9/4/3/943bc99c-f59c-4174-b7d2-41d8cfd94489.jpg"
+              <img src="/imgs/{{id}}/{{link_anh}}"
                 alt="" class="categories">
             </div>
             <div class="col-sm-10" style="max-width: 572.5px; max-height:155px">
@@ -37,11 +37,11 @@
                 </div>
                  <div class="col-xl-3" style="max-width: 143.13px;">
                    {{#if  boSung}}
-                   <form action="/seller/edit/{{id_SP}}" method="POST">
+                   <form action="/seller/edit/{{id}}" method="POST">
                     <button type="submit" class="btn btn-outline-primary rounded-pill">Edit</button>
                     </form>
                   {{else}}
-                  <form action="/seller/update/{{id_SP}}" method="POST">
+                  <form action="/seller/update/{{id}}" method="POST">
                     <button type="submit" class="btn btn-outline-primary rounded-pill">Need update</button>
                   </form>
                   {{/if}}
