@@ -35,7 +35,7 @@ function myFunction() {
           .then((willDelete) => {
             if (willDelete) {
                 $(document).ready(function() {
-                  $("#"+id).attr("action",'/admin/users/patch');
+                  $("#"+id).attr("action",'/admin/users/up');
                     $("#"+id).submit();
                 });
               swal("Poof! Your imaginary file has been deleted!", {
@@ -57,7 +57,7 @@ function myFunction() {
             .then((willDelete) => {
               if (willDelete) {
                   $(document).ready(function() {
-                    $("#"+id).attr("action",'/admin/users/patch');
+                    $("#"+id).attr("action",'/admin/users/down');
                       $("#"+id).submit();
                   });
                 swal("Poof! Your imaginary file has been deleted!", {

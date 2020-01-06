@@ -317,8 +317,12 @@ router.post('/del', async (req, res) => {
 
 
 router.get('/my_product', async (req, res) => {
-  console.log(req.session.authUser.id_user);
+  
   const result = await productModel.sellingProduct(req.session.authUser.id_user);
+
+  
+
+  console.log(result);
   res.render('_seller/sellingProduct',{
     layout:'seller_layout',
     showMenuSeller:true,
@@ -331,6 +335,8 @@ router.get('/my_product', async (req, res) => {
 
 router.get('/sold', async (req, res) => {
   const result = await productModel.soldProduct(req.session.authUser.id_user);
+  
+  
   for(let row of result){
     if(row.nguoiThang === null){
       row.nguoiCanDG = row.nguoiGiuGia;
@@ -344,6 +350,7 @@ router.get('/sold', async (req, res) => {
     layout:'seller_layout',
     showMenuSeller:true,
     sold: true,
+    empty: result.length === 0,
     result
   });
  

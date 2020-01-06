@@ -10,10 +10,12 @@
 <script src="/js/account.js"></script>
 {{/section}}
 
-<h3>SELLING PRODUCTS</h3>
-<br>
-<hr class="mt-1">
-
+<h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
+                        <br>
+                        <hr class="mt-1">
+{{#if empty}}
+<p>Bạn chưa bán được sản phẩm nào.</p>
+{{else }}
 {{#each result}}
 <div class="in-stock">
 
@@ -98,3 +100,4 @@
 </div>
 
 {{/each }}
+{{/if}}
