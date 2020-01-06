@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const userModel = require('../../models/user.model');
 const productModel = require('../../models/product.model');
 const moment = require('moment');
-const productModel = require('../../models/product.model');
 
 const router = express.Router();
 
