@@ -73,6 +73,7 @@ ORDER BY gia_HienTai DESC limit 5`),
     return db.patch('sanpham', entity, condition);
   },
   getLinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id}`),
+  get1LinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id} limit 1`),
   totalProductNeedInf: id => db.load(`select count(*) as total from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
   getAllDetail: id => db.load(`select * from chi_tiet_ra_gia ct join nguoidung nd where ct.id_NM = nd.id_user and ct.id_SP = ${id} ORDER BY ct.id DESC`),
   getBidderPrice: id => db.load(`select * 
@@ -98,4 +99,10 @@ ORDER BY gia_HienTai DESC limit 5`),
     return db.patch('sanpham', entity, condition);
   },
   getallProductNeedSend: _ => db.load('SELECT * FROM sanpham WHERE ISNULL(nguoiThang) AND  (TIMEDIFF(timeEnd,NOW()) < 0) AND SendMail = 0'),
+  pageByCatPapaCanSell: (id_Cha, offset) => db.load(`
+  select  sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid
+from danhmuc dm JOIN dmsp dp on dm.id = dp.id_DM JOIN sanpham sp on sp.id = dp.id_SP LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )
+where dm.id_DM_cha = 1 and sp.boSungThongTin = ${id_Cha} and TIMEDIFF(sp.timeEnd,NOW()) > 0 AND ISNULL(sp.nguoiThang)
+group by sp.id
+limit ${config.paginate.limit} offset ${offset}`),
 };

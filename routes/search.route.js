@@ -38,15 +38,15 @@ router.get('/', async (req, res) => {
             sort = 'timeEnd asc';//mac dinh ngay giam dan
         }
     }
-    let getCat = null;
     let checkSearch = false;
-    if (req.query.selectCat !== -1)
+    if (+req.query.selectCat !== -1)
     {
         checkSearch= true;
     }
     else {
         checkSearch = false;
     }
+    console.log(req.query);
     const kw = req.query.keyword;
     const limit = config.paginate.limit;
     let page = req.query.page || 1;
@@ -60,11 +60,16 @@ router.get('/', async (req, res) => {
         ]);
     }
     else {
+        
          [total, rows] = await Promise.all([
             searchModel.countSearchByName(kw),
             searchModel.searchByName(kw, offset,sort)
         ]);
+        console.log(total);
+        console.log(rows);
     }
+    console.log(total);
+    console.log(rows);
     for(let row of rows){
         //kiem tra thoi han dang san pham
         let seconds = moment().unix() - moment(row.timeCreate).unix();

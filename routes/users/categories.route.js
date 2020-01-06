@@ -6,25 +6,50 @@ const userModel = require('../../models/user.model');
 
 const router = express.Router();
 
+
+router.get('/', async (req, res) => {
+  res.redirect('categories/1');
+})
+
 router.get('/:id', async (req, res) => {
 
-  for (const c of res.locals.lcCategories) {
-    if (c.id === +req.params.id) {
-      c.isActive = true;
-    }
-  }
-
-  const id_DM = req.params.id;
+  req.session.urlBack = req.originalUrl;
+  const id_Cha = req.params.id;
   const limit = config.paginate.limit;
   const page = req.query.page || 1;
   if (page < 1) page = 1;
   const offset = (page - 1) * config.paginate.limit;
+  const lcCategories = await categoryModel.allCategoryPapa();
 
-  const [total, rows, links] = await Promise.all([
-    productModel.countByCat(id_DM),
-    productModel.pageByCat(id_DM, offset),
-    categoryModel.categoryPapa(id_DM)
-  ]);
+  let total = 0;
+  for (const child of lcCategories)
+  { 
+    let totalTemp = 0;
+    const countCategories = await categoryModel.allChildCanSell(child.id);
+    //console.log(countCategories);
+    for (const child2 of countCategories)
+    {
+      totalTemp += +child2.num_of_products;
+      if (child.id === +req.params.id){
+        total += +child2.num_of_products;
+      }
+    }
+    child.num_of_products = totalTemp;
+  }
+ 
+  const rows = await productModel.pageByCatPapaCanSell(id_Cha, offset);
+  for (const c of lcCategories) {
+    if (c.id === +req.params.id) {
+      c.isActive = true;
+    }
+  }
+  console.log(rows);
+  for( const i of rows)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  }
+
 
   let nPages = Math.floor(total / limit);
   if (total % limit > 0) nPages++;
@@ -37,15 +62,32 @@ router.get('/:id', async (req, res) => {
   }
   let isMax = +page !== nPages;
   let isMin = +page !== 1;
-  res.render('_categories/categories', {
+
+  for (let row of rows) {
+    //check đã thích hay chưa
+    if (req.session.isAuthenticated === true) {
+      const check = await userModel.singleLike(row.id, req.session.authUser.id_user);
+      if (check === null) {
+        row.isLike = false;
+      }
+      else {
+        row.isLike = true;
+      }
+    }
+    else {
+      row.isLike = false;
+    }
+  }
+  
+  res.render('_categories/categoriesPapa', {
+    lcCategories,
     rows,
     empty: rows.length === 0,
     page_numbers,
     prev_value: +page - 1,
     next_value: +page + 1,
     isMax,
-    isMin,
-    links: links[0]
+    isMin
   });
 })
 
