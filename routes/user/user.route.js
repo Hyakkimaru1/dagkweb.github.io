@@ -86,6 +86,9 @@ router.post('/changepwd', async (req, res) => {
 });
 
 router.get('/feedback', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getFeedback(req.session.authUser.id_user);
   if(rows.length > 0){
     //console.log(rows);
@@ -110,6 +113,9 @@ router.get('/feedback', async (req, res) => {
 });
 
 router.get('/cartBidding', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getCartBidding(req.session.authUser.id_user);
   console.log(rows);
   if (rows.length > 0) {
@@ -167,6 +173,9 @@ router.get('/cartBidding', async (req, res) => {
 });
 
 router.get('/successfulBid', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getWonlist(req.session.authUser.id_user);
 
  
@@ -263,6 +272,9 @@ router.post('/wonBid-fb', async (req, res) => {
 });
 
 router.get('/wishlist', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getWishlist(req.session.authUser.id_user);
   if(rows.length > 0) {
     for(const row of rows){
@@ -314,6 +326,9 @@ router.get('/wishlist/del/:id', async (req, res) => {
 //seller's views
 
 router.get('/checkSeller', async(req, res) =>{
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   if(req.session.authUser.Permission === 1){
     res.redirect('/seller/my_product');
   }
