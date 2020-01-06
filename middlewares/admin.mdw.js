@@ -3,7 +3,7 @@ module.exports = (req, res, next) => {
       return res.redirect(`/account/login?retUrl=${req.originalUrl}`);
     }
 
-    if(req.session.authUser.permission !== 2){
+    if(req.session.authUser.Permission !== 2){
         throw Error('Access denied!');
     }
   

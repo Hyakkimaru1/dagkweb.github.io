@@ -10,12 +10,9 @@
 <script>
   var i = 0;
   var imgsource = [];
-
-  { { #each imgsource } }
-  imgsource.push('{{this}}');
-  {
-    {
-      /each}}
+  {{#each imgsource}}
+    imgsource.push('{{this}}');
+  {{/each}}
       function changeImg(x) {
         if (x == document.getElementById("changimgR")) {
           $('#smallPic').children().eq(i).css('border', '0')
@@ -79,8 +76,8 @@
         </div>
         <div class="col-sm-8">
 
-          <div class="card img" style="width: 29rem;border:0;height: 29rem">
-            <img src="{{MainPic}}" class="card-img-top" alt="..." id="mainPic">
+          <div class="card img" style="width: 29rem;border:0;height: 26rem; background-color: transparent ">
+            <img src="{{MainPic}}" class="card-img-top" alt="..." id="mainPic" >
             <div onclick="changeImg(this)" id="changimgR" class="d-inline"
               style="margin-top: 150px;margin-left: 415px; position: absolute;">
               <i class="fas fa-chevron-circle-right fa-3x rounded-circle changeImg"></i>

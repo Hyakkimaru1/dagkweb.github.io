@@ -5,6 +5,8 @@ const restrictAdmin = require('../middlewares/admin.mdw');
 module.exports = function (app) {
 
     app.use('/search',require('../routes/search.route'));
+    
+    app.use('/love',restrict, require('../routes/love.route'));
 
     app.use('/account', require('../routes/user/user.register.route'));
 

@@ -2,6 +2,7 @@ const express = require('express');
 const categoryModel = require('../../models/categories.model');
 const productModel = require('../../models/product.model');
 const config = require('../../config/default.json');
+const userModel = require('../../models/user.model');
 
 const router = express.Router();
 
@@ -50,7 +51,7 @@ router.get('/:id', async (req, res) => {
 
 
 router.get('/:id/:id2', async (req, res) => {
- 
+  req.session.urlBack = req.originalUrl;
   const id_Cha = req.params.id;
   const id_DM = req.params.id2;
   const limit = config.paginate.limit;
@@ -82,6 +83,22 @@ router.get('/:id/:id2', async (req, res) => {
   }
   let isMax = +page !== nPages;
   let isMin = +page !== 1;
+
+  for (let row of rows) {
+    //check đã thích hay chưa
+    if (req.session.isAuthenticated === true) {
+      const check = await userModel.singleLike(row.id, req.session.authUser.id_user);
+      if (check === null) {
+        row.isLike = false;
+      }
+      else {
+        row.isLike = true;
+      }
+    }
+    else {
+      row.isLike = false;
+    }
+  }
   res.render('_categories/categories', {
     lcCategories,
     rows,

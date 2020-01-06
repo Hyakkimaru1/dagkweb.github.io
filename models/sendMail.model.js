@@ -40,5 +40,124 @@ module.exports = {
         });
 
         return data;
+    },
+    sendBid: (user, seller, namePro, price) => {
+
+        let username = user.username.substr(user.username.length - 3);
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>You have placed "${namePro}" for ${price}</p>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: seller.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>User "***${username}" have placed "${namePro}" for ${price}</p>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    },
+    sendBuyNow: (user, seller, namePro, price) => {
+
+        let username = user.username.substr(user.username.length - 3);
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>You have bought "${namePro}" for ${price}</p><br><h3>congratulations!</h3>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: seller.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>User "***${username}" have bought "${namePro}" for ${price}</p><br><h3>congratulations!</h3>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    },
+    sendMailDeny: (user, namePro) => {
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>You have been banned in product "${namePro}"</p>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    },
+    sendMailEnd: (user, namePro) => {
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>The product "${namePro}" that you have placed is ended</p>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
+    },
+    sendMailSigle: (user, namePro) => {
+
+        transporter.sendMail({
+            from: 'System Auction 2019',
+            to: user.email,
+            subject: 'Placed bid',
+            text: 'You recieved message from systemauction2019@gmail.com',
+            html: `<p>The product "${namePro}" that you have placed is placed by the other</p>`
+
+        }, (err, info) => {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Message sent: ' + info.response);
+            }
+        });
     }
 };

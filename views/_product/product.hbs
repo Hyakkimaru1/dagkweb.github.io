@@ -89,7 +89,7 @@ function pic(x){
         </div>
         <div class="col-sm-8">
 
-          <div class="card img" style="width: 29rem;border:0;height: 29rem">
+          <div class="card img" style="width: 29rem;border:0;height: 26rem">
             <img src="{{MainPic}}"
               class="card-img-top" alt="..." id="mainPic">
             <div onclick="changeImg(this)" id="changimgR" class="d-inline"
@@ -242,19 +242,22 @@ function pic(x){
           {{#if noBanCurUser}}
           <form id="inputBid" method="POST">
             <div>
+               <span id="examplePrimay" style="display: block;"></span>
               <input style="text-align:right; width: 45%; background:url(../img/dollar.png) no-repeat scroll 7px 4px;
                                 padding-left:30px;" type="text" class="form-control rounded-pill d-inline"
                 id="primary" name="gia_HienTai">
-              <button style="text-align:right; width: 45%;" type="button" onclick="buyPrimary({{checkLogin}},{{curUser.diem_DG}})"
+              <button style="text-align:right; width: 45%;" type="button" onclick="buyPrimary({{checkLogin}},{{rows.allBuy}},{{maxAuto}},{{isCurMaxAuto}},{{curUser.diem_DG}})"
                 class="btn btn-primary rounded-pill mb-2 text-center" id="btPrimary">Primary</button>
               <span id="notiWrong" style="color: red;font-weight: 700;"></span>
               <br>
               <p class="product" style="font-size: 15px; font-weight: 700;"> Place an automatic bid</p>
               <br>
+              <span id="exampleAuto" style="display: block;"></span>
               <input style="text-align:right; width: 45%; background:url(../img/dollar.png) no-repeat scroll 7px 4px;
                                 padding-left:30px;" type="text" class="form-control rounded-pill d-inline"
                 id="primaryAuto" name="primaryAuto">
-              <button style="text-align:right; width: 45%; background-color: #FF7C2D;color: white;" type="button" onclick="buyAuto({{checkLogin}},{{curUser.diem_DG}})"
+                
+              <button style="text-align:right; width: 45%; background-color: #FF7C2D;color: white;" type="button" onclick="buyAuto({{checkLogin}},{{rows.allBuy}},{{maxAuto}},{{isCurMaxAuto}},{{curUser.diem_DG}})"
                 class="btn btn-warning rounded-pill mb-2 text-center" id="btPrimaryAuto" formaction="/product/{{rows.id}}/auto">Primary</button>
               <span id="notiWrongAuto" style="color: red;font-weight: 700; display: block;"></span>
               <a href="#" style="font-size: 12px;">How do automatic bids work?</a>
@@ -262,7 +265,7 @@ function pic(x){
               <br>
               {{#if check_MuaNgay}}
               <div id="buyNow" class="text-center">
-                <button style="text-align:right; width: 45%; background-color: #BFEEFA;color: #4097E8; margin-top:5px;margin-left:auto;margin-right:auto;" type="button" onclick="buyNowPro({{checkLogin}},{{curUser.diem_DG}})"
+                <button style="text-align:right; width: 45%; background-color: #BFEEFA;color: #4097E8; margin-top:5px;margin-left:auto;margin-right:auto;" type="button" onclick="buyNowPro({{checkLogin}},{{rows.allBuy}},{{curUser.diem_DG}})"
                   class="btn btn-primary rounded-circle mb-2" id="btbuyNow">BUY NOW</button>
                   <br>
                 <h5 class="product" style="color: #3878E1;  display:inline"> $</h5>
