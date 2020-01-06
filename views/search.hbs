@@ -190,13 +190,13 @@
           {{else}}
           <li class="page-item">
             <a class="page-link"
-              href="/search?selectCat={{idCat}}&keyword={{keyword}}&page={{value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">{{value}}</a>
+              href="/search?selectCat={{../idCat}}&keyword={{../keyword}}&page={{value}}&sortBy={{../sortBy}}&orderBy={{../orderBy}}">{{value}}</a>
           </li>
           {{/if}}
           {{/each}}
           <li class="page-item">
             <a class="page-link"
-              href="/search?selectCat={{idCat}}&keyword={{keyword}}&page={{next_value}}&sortBy={{sortBy}}&orderBy={{orderBy}}">
+              href="/search?selectCat={{../idCat}}&keyword={{../keyword}}&page={{next_value}}&sortBy={{../sortBy}}&orderBy={{../orderBy}}">
               <i class="fa fa-forward" aria-hidden="true"></i>
             </a>
           </li>

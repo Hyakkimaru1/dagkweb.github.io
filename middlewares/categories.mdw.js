@@ -25,6 +25,7 @@ module.exports = function (app) {
               }
             }
         }
+        res.locals.rowsChild=rowsChild;
         res.locals.cat=cat;
         // res.end('hello from expressjs');
        

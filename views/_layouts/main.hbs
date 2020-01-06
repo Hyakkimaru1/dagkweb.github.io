@@ -75,8 +75,8 @@
             placeholder="Search" aria-label="Search">
             <select class="custom-select mr-sm-2" name="selectCat">
                 <option selected value="-1">All categories</option>
-                {{#each cat}}
-                  <option value="{{id}}">{{ten_DM_cha}}</option>
+                {{#each rowsChild}}
+                  <option value="{{id}}">{{ten_DM}}</option>
                 {{/each}}
               </select>
           <button class="btn btn-outline-success my-2 mr-3 my-sm-0" type="submit">Search</button>

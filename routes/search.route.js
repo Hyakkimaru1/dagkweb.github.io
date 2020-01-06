@@ -12,7 +12,10 @@ router.get('/', async (req, res) => {
     req.session.urlBack = req.originalUrl; 
     let sortBy = req.query.sortBy;
     let orderBy;
-
+    if (req.query.selectCat === '')
+    {
+        req.query.selectCat = -1;
+    }
     let sort='';
     let priceSort = 'Price';
     //ban dau tim kiem thi mac dinh sort theo thoi gian ket thuc tang dan
@@ -46,7 +49,6 @@ router.get('/', async (req, res) => {
     else {
         checkSearch = false;
     }
-    console.log(req.query);
     const kw = req.query.keyword;
     const limit = config.paginate.limit;
     let page = req.query.page || 1;
@@ -65,11 +67,8 @@ router.get('/', async (req, res) => {
             searchModel.countSearchByName(kw),
             searchModel.searchByName(kw, offset,sort)
         ]);
-        console.log(total);
-        console.log(rows);
     }
-    console.log(total);
-    console.log(rows);
+
     for(let row of rows){
         //kiem tra thoi han dang san pham
         let seconds = moment().unix() - moment(row.timeCreate).unix();
@@ -82,7 +81,6 @@ router.get('/', async (req, res) => {
         row.id_SP = row.id;
         //link ảnh
         const link_anh = await productModel.getLinkImg(row.id);
-        console.log(link_anh);
         row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh;
 
         //lay ten nguoi bid
