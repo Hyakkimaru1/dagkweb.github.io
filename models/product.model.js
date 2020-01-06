@@ -64,5 +64,12 @@ module.exports = {
     const entity = { gia,id_SP,id_NM}
     return db.add('chi_tiet_ra_gia', entity)
   },
-  isBanCurUser:   (id_NM,id_sp) =>  db.load(`SELECT * FROM cam_nguoi_mua WHERE id_sp = ${id_sp} AND id_NM = ${id_NM}`), 
+  isBanCurUser:   (id_NM,id_sp) =>  db.load(`SELECT * FROM cam_nguoi_mua WHERE id_sp = ${id_sp} AND id_NM = ${id_NM}`),
+  getTotalImg:   (id_sp) =>  db.load(`SELECT * FROM anh_cua_sanpham WHERE id_sp = ${id_sp}`),
+  getCurMaxBidAuto: (id_sp) => db.load(`
+  SELECT * 
+  FROM gia_toi_da_auto 
+  WHERE id_sp = ${id_sp} and gia_ToiDa >= ALL(SELECT gia_ToiDa FROM gia_toi_da_auto WHERE id_sp = ${id_sp})
+  ORDER BY timeCreate`),
+  updatePriceAuto: entity => db.add('gia_toi_da_auto',entity), 
 };
