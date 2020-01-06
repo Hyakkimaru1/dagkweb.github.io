@@ -394,8 +394,14 @@ function buyNowPro(check, pointUser, checkBuy) {
 
 
 function addFavourite(check) {
-  $('#btAddFavourite').hide();
-  $('#addFavourite').submit();
+  if (check)
+  {
+    $('#btAddFavourite').hide();
+    $('#addFavourite').submit();
+  }
+  else {
+    Swal.fire('Vui lòng đăng nhập');
+  }
 }
 
 

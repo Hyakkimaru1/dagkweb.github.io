@@ -66,6 +66,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', 'hbs');
 
 require('./middlewares/categories.mdw')(app);
+require('./middlewares/sendMail.mdw')(app);
 require('./middlewares/locals.mdw')(app);
 require('./middlewares/routes.mdw')(app);
 

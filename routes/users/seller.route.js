@@ -38,9 +38,17 @@ router.get('/add_product', async (req, res) => {
   {
     throw new Error('Người dùng chưa đủ điều kiện thêm sản phẩm');
   }
+  const CheckNeedInf = await productModel.totalProductNeedInf(req.session.authUser.id_user);
+  if (CheckNeedInf[0].total >= 3)
+  {
+    res.render('_seller/needAddinfo',{layout:'seller_layout'});
+    return;
+  }
 
-  const rows = await categoryModel.allCategoryPapa();
-  const rowsChild = await categoryModel.all();
+  const [rows,rowsChild] = await Promise.all([ 
+    categoryModel.allCategoryPapa(),
+    categoryModel.all()
+  ]);;
   for (const i of rows){
       i.Child = [];
       for (const j of rowsChild)
@@ -65,6 +73,7 @@ router.post('/add_product2',async (req, res) => {
     throw new Error('Seller muốn update');
   }
   
+
   let entity = {
     ten_SP: req.body.productName.toString()
   }

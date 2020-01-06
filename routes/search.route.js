@@ -2,6 +2,7 @@ const express = require('express');
 const searchModel = require('../models/search.model');
 const config = require('../config/default.json');
 const moment = require('moment');
+const categoryModel = require('../models/categories.model');
 const productModel = require('../models/product.model');
 const userModel = require('../models/user.model');
 
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
     req.session.urlBack = req.originalUrl; 
     let sortBy = req.query.sortBy;
     let orderBy;
-    console.log(sortBy);
+
     let sort='';
     let priceSort = 'Price';
     //ban dau tim kiem thi mac dinh sort theo thoi gian ket thuc tang dan
@@ -37,20 +38,38 @@ router.get('/', async (req, res) => {
             sort = 'timeEnd asc';//mac dinh ngay giam dan
         }
     }
-    console.log(sort);
-    
+    let checkSearch = false;
+    if (+req.query.selectCat !== -1)
+    {
+        checkSearch= true;
+    }
+    else {
+        checkSearch = false;
+    }
+    console.log(req.query);
     const kw = req.query.keyword;
     const limit = config.paginate.limit;
-    console.log(req.query.page);
     let page = req.query.page || 1;
     if (page < 1) page = 1;
     let offset = (page - 1) * config.paginate.limit;
-
-    const [total, rows] = await Promise.all([
-        searchModel.countSearchByName(kw),
-        searchModel.searchByName(kw, offset,sort)
-    ]);
-
+    let total, rows;
+    if (checkSearch){
+         [total, rows] = await Promise.all([
+            searchModel.countSearchByPlus(kw,req.query.selectCat),
+            searchModel.searchByNamePlus(kw,req.query.selectCat, offset,sort)
+        ]);
+    }
+    else {
+        
+         [total, rows] = await Promise.all([
+            searchModel.countSearchByName(kw),
+            searchModel.searchByName(kw, offset,sort)
+        ]);
+        console.log(total);
+        console.log(rows);
+    }
+    console.log(total);
+    console.log(rows);
     for(let row of rows){
         //kiem tra thoi han dang san pham
         let seconds = moment().unix() - moment(row.timeCreate).unix();
@@ -88,7 +107,6 @@ router.get('/', async (req, res) => {
             row.isLike = false;
         }
     }
-    console.log(total);
     let nPages = Math.floor(total / limit);
     if (total % limit > 0) nPages++;
     const page_numbers = [];
@@ -98,9 +116,8 @@ router.get('/', async (req, res) => {
             isCurrentPage: i === +page
         })
     }
-    console.log(rows);
-    console.log(page_numbers);
     res.render('search', {
+        idCat: req.query.selectCat,
         product: rows,
         keyword: kw,
         sortBy,

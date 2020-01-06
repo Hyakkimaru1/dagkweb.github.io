@@ -416,15 +416,12 @@ router.post('/:id/addFavourite', async (req, res) => {
 
   try {
     if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null) {
-      res.redirect('../account/login');
-    }
-    curUser = await userModel.single(req.session.authUser.id_user);
-    if (curUser.diem_DG < 80) {
       throw new Error('Wanted');
     }
+    curUser = await userModel.single(req.session.authUser.id_user);
 
   } catch (error) {
-    throw new Error('aaa');
+    throw new Error('Wanted');
   }
 
   let noBanCurUser = await productModel.isBanCurUser(req.session.authUser.id_user, req.params.id);

@@ -1,4 +1,4 @@
-const categoryModel = require('../models/categories.model')
+const categoryModel = require('../models/categories.model');
 const productModel = require('../models/product.model');
 module.exports = function (app) {
     // app.use(async(req,res,next)=>{
