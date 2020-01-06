@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
   let isCurMaxAuto = false;
   let maxAuto = -1;
   try {
-    if (req.session.authUser.id_user != undefined && req.session.authUser.id_user != null) {
+    if (req.session.authUser.id_user !== undefined && req.session.authUser.id_user !== null) {
       checkLogin = true;
       curUser = req.session.authUser;
       if (req.session.authUser.id_user == rows[0].nguoiBan) {
@@ -405,6 +405,7 @@ router.post('/:id/buyNow', async (req, res) => {
 })
 
 router.post('/:id/addFavourite', async (req, res) => {
+
   try {
     if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null) {
       throw new Error('Wanted');
@@ -412,7 +413,7 @@ router.post('/:id/addFavourite', async (req, res) => {
     curUser = await userModel.single(req.session.authUser.id_user);
 
   } catch (error) {
-    throw new ERR_HTTP_HEADERS_SENT('set');
+    throw new Error('Wanted');
   }
 
   let noBanCurUser = await productModel.isBanCurUser(req.session.authUser.id_user, req.params.id);

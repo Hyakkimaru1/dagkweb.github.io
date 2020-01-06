@@ -50,8 +50,8 @@
     <div class="list_product row d-flex justify-content-around ">
       {{#each end}}
       <a href="/product/{{id}}" class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+        <div class="card" style="width: 283px;">
+          <img style="height:250px;" src="/imgs/{{id}}/{{link_anh}}"
             class="card-img-top" alt="...">
            <div class="card_banner" style="width: 2.5rem;">
            {{num_of_bid}}
@@ -141,8 +141,8 @@
     <div class="list_product row d-flex justify-content-around ">
       {{#each bid}}
       <a href="/product/{{id}}" class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+        <div class="card" style="width: 283px;">
+          <img style="height:250px;" src="/imgs/{{id}}/{{link_anh}}"
             class="card-img-top" alt="...">
            <div class="card_banner" style="width: 2.5rem;">
            {{num_of_bid}}
@@ -234,8 +234,8 @@
     <div class="list_product row d-flex justify-content-around ">
       {{#each price}}
       <a href="/product/{{id}}" class="shadow col-2 item">
-        <div class="card" style="width: auto;">
-          <img style="height:250px;" src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+        <div class="card" style="width: 283px;">
+          <img style="height:250px;" src="/imgs/{{id}}/{{link_anh}}"
             class="card-img-top" alt="...">
            <div class="card_banner" style="width: 2.5rem;">
            {{num_of_bid}}
@@ -295,7 +295,7 @@
 
                         // Get today's date and time
                         var now{{id}} = new Date().getTime();
-
+                          
                         // Find the distance between now and the count down date
                         var distance =   now{{id}}   - countDownDate2{{id}};
                       

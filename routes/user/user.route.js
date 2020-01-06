@@ -1,7 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const userModel = require('../../models/user.model');
+const productModel = require('../../models/product.model');
 const moment = require('moment');
+
 
 const router = express.Router();
 
@@ -85,6 +87,9 @@ router.post('/changepwd', async (req, res) => {
 });
 
 router.get('/feedback', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getFeedback(req.session.authUser.id_user);
   if(rows.length > 0){
     //console.log(rows);
@@ -109,14 +114,23 @@ router.get('/feedback', async (req, res) => {
 });
 
 router.get('/cartBidding', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getCartBidding(req.session.authUser.id_user);
-  console.log(rows);
+ 
   if (rows.length > 0) {
     for (let row of rows) {
+
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id_SP);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id_SP + "/" + link_anh[0].link_anh;
+
       //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan
       const sp = await userModel.getSP(row.id_SP);
      
-      row.tenSP = sp.tenSP;
+      row.tenSP = sp.ten_SP;
       row.gia_MuaNgay = sp.gia_MuaNgay;
       row.moTaSP = sp.moTaSP;
       row.nguoiBan = sp.nguoiBan;
@@ -145,10 +159,11 @@ router.get('/cartBidding', async (req, res) => {
       }
       else
         row.timeOut = '0d 0h 0m 0s';
-      delete row.timeEnd;
+  
       
     }
   }
+  console.log(rows);
 
   res.render('vwAccount/vwProfile/cartBidding',{
     showMenuAcc:true,
@@ -159,16 +174,22 @@ router.get('/cartBidding', async (req, res) => {
 });
 
 router.get('/successfulBid', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getWonlist(req.session.authUser.id_user);
 
  
   if(rows.length > 0){
     for(const row of rows){
-   
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh;
+      //ten seller
       const Seller = await userModel.single(row.nguoiBan);
       if(Seller !== null){
         row.nameSeller = Seller.firstname + " " + Seller.lastname;
-      
       }
     }
   }
@@ -252,9 +273,17 @@ router.post('/wonBid-fb', async (req, res) => {
 });
 
 router.get('/wishlist', async (req, res) => {
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   const rows = await userModel.getWishlist(req.session.authUser.id_user);
   if(rows.length > 0) {
     for(const row of rows){
+      //link ảnh
+      const link_anh = await productModel.getLinkImg(row.id);
+      console.log(link_anh);
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh;
+
       //tinh toan thoi gian con lai
       let seconds = moment(row.timeEnd).unix() - moment().unix();
 
@@ -278,10 +307,10 @@ router.get('/wishlist', async (req, res) => {
       }
       else
         row.timeOut = '0d 0h 0m 0s';
-      delete row.timeEnd;
+     
     }
   }
-  //console.log(rows);
+  console.log(rows);
   res.render('vwAccount/vwProfile/wishlist',{
     showMenuAcc:true,
     wishlist:true,
@@ -298,6 +327,9 @@ router.get('/wishlist/del/:id', async (req, res) => {
 //seller's views
 
 router.get('/checkSeller', async(req, res) =>{
+  if(req.session.authUser.Permission === 2){
+    throw Error('Bạn không phải là bidder/seller!');
+  }
   if(req.session.authUser.Permission === 1){
     res.redirect('/seller/my_product');
   }
