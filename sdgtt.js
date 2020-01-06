@@ -4,6 +4,8 @@ const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
 const numeral = require('numeral');
 const morgan = require('morgan');
+const productModel = require('./models/product.model');
+
 require('express-async-errors');
 
 const app = express();
@@ -63,19 +65,32 @@ app.engine('hbs', exphbs({
 
 app.set('view engine', 'hbs');
 
+require('./middlewares/categories.mdw')(app);
 require('./middlewares/locals.mdw')(app);
 require('./middlewares/routes.mdw')(app);
 
 
-app.get('/', (req, res) => {
+
+app.get('/', async (req, res) => {
+  const [end,bid, price] = await Promise.all([
+    productModel.top5NearEnd(),
+    productModel.top5MostBid(),
+    productModel.top5Pricest(),
+    
+  ]);
+
   
+  
+
   // res.end('hello from expressjs');
   res.render('home',{
-    showMenuAcc:false,
-    showMenuAdmin: false
-  });
-})
+   end,
+   bid,
+   price
 
+  });
+ 
+})
 
 
 app.use((req, res, next) => {

@@ -11,7 +11,7 @@ router.get('/profile', (req, res) => {
   console.log(req.session.authUser.Permission) ;
   res.render('vwAccount/vwProfile/profile',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     profile:true
   });
 });
@@ -24,7 +24,7 @@ router.post('/profile', async (req, res) => {
   if (!(user === null))
     return res.render('vwAccount/vwProfile/profile', {
       showMenuAcc:true,
-      isSeller: req.session.authUser.Permission==2,
+      isSeller: req.session.authUser.Permission==1,
       profile:true,
       err_message: 'The new email is duplicate! You can use the another email.'
     });
@@ -43,7 +43,7 @@ router.post('/profile', async (req, res) => {
 
   res.render('vwAccount/vwProfile/profile',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     profile:true,
     success_message: 'Your Information has been saved'
   });
@@ -53,7 +53,7 @@ router.post('/profile', async (req, res) => {
 router.get('/changepwd', (req, res) => {
   res.render('vwAccount/vwProfile/changePwd',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     changepwd:true,
   });
 });
@@ -69,7 +69,7 @@ router.post('/changepwd', async (req, res) => {
   if (rs === false)
     return res.render('vwAccount/vwProfile/changePwd', {
       showMenuAcc:true,
-      isSeller: req.session.authUser.Permission==2,
+      isSeller: req.session.authUser.Permission==1,
       profile:true,
       err_message: 'The current password was wrong.'
     });
@@ -84,7 +84,7 @@ router.post('/changepwd', async (req, res) => {
   const result = await userModel.patch(entity);
   res.render('vwAccount/vwProfile/changePwd', {
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     changePwd:true,
     success_message: 'Your password has been changed successfully!'
   });
@@ -108,7 +108,7 @@ router.get('/feedback', async (req, res) => {
   console.log(rows);
   res.render('vwAccount/vwProfile/feedback',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     isactive_feedback:true,
     feedback: rows,
     empty: rows.length === 0,
@@ -158,7 +158,7 @@ router.get('/cartBidding', async (req, res) => {
 
   res.render('vwAccount/vwProfile/cartBidding',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     cartBidding:true,
     products: rows,
     empty: rows.length === 0,
@@ -181,7 +181,7 @@ router.get('/successfulBid', async (req, res) => {
   }
   res.render('vwAccount/vwProfile/successfulBid',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     successfulBid:true,
     products: rows,
     empty: rows.length === 0,
@@ -273,7 +273,7 @@ router.get('/wishlist', async (req, res) => {
   //console.log(rows);
   res.render('vwAccount/vwProfile/wishlist',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==2,
+    isSeller: req.session.authUser.Permission==1,
     wishlist:true,
     products: rows,
     empty: rows.length === 0,

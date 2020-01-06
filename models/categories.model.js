@@ -1,6 +1,10 @@
 const db = require('../utils/db');
 
 module.exports = {
+  allChildByPapa: (id) => db.load(`select * 
+  from danhmuc  
+  where id_DM_cha = ${id}` ),
+
   all: () => db.load('select * from danhmuc'),
   single: id => db.load(`select * from danhmuc where id = ${id}`),
   add: entity => db.add('danhmuc', entity),
@@ -38,5 +42,8 @@ module.exports = {
   where dm.id = ${id}`),
   allCategoryPapa: () => db.load(`select ten_DM_cha,id
   from danhmuc_cha`),
-  allCategoryChild: () => db.load(`select ten_DM_cha,dmc.id as id_Cha, ten_DM, dm.id as id_Con from danhmuc dm join danhmuc_cha dmc on dm.id_DM_cha = dmc.id`)
+  allCategoryChild: () => db.load(`select ten_DM_cha,dmc.id as id_Cha, ten_DM, dm.id as id_Con from danhmuc dm join danhmuc_cha dmc on dm.id_DM_cha = dmc.id`),
+
+  
+
 };

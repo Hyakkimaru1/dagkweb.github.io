@@ -41,14 +41,7 @@
         </thead>
         <tbody>
           {{#each this.user}}
-          <div style="display: none;"> 
-          <form id="{{id_user}}" fation="/admin/users/patch" method="POST" style="display: none;">
-            <div class="form-group">
-              <input type="text" class="form-control" id="txtCatId" name="Permission" value="{{#if isSeller }}0{{else}}2{{/if}}">
-              <input type="text" class="form-control" id="txtCatId" name="id_user" value="{{id_user}}">
-            </div>
-          </form>
-          </div>
+          
 
           <tr>
             <th scope="row"><input type="checkbox" name="vehicle1" value="Bike">{{id_user}}</th>
@@ -56,18 +49,38 @@
             <td>{{#if isSeller }} Seller {{else }} Bidder {{/if}}</td>
 
             <td class=" text-left">
-              {{#if isBidder}}
+              {{#if isSeller }}
+            <form id="{{id_user}}" fation="/admin/users/down" method="POST" style="display: none;">
+            <div class="form-group">
+              <input type="text" class="form-control" id="txtCatId" name="Permission" value="0">
+              <input type="text" class="form-control" id="txtCatId" name="id_user" value="{{id_user}}">
+           
+            </div>
+          </form>
+        
+
+                <button  onclick="down({{id_user}})" class=" btn btn-outline-primary btn-sm">
+
+                <i class="fa fa-caret-square-o-down"></i>
+              </button>
+
+              {{else if isBidder }}
               <a class=" btn btn-outline-primary btn-sm" >
 
                 <i>--</i>
               </a>
-              {{else if isSeller}}
-              <button  onclick="down({{id_user}})" class=" btn btn-outline-primary btn-sm">
-
-                <i class="fa fa-caret-square-o-down"></i>
-              </button>
-              {{else}}
-              <button  onclick="up({{id_user}})" class=" btn btn-outline-primary btn-sm">
+              {{else if isUp}}
+              
+             <div style="display: none;"> 
+          <form id="{{id_user}}" fation="/admin/users/up" method="POST" style="display: none;">
+            <div class="form-group">
+              <input type="text" class="form-control" id="txtCatId" name="Permission" value="1">
+              <input type="text" class="form-control" id="txtCatId" name="id_user" value="{{id_user}}">
+           
+            </div>
+          </form>
+          </div>
+                <button  onclick="up({{id_user}})" class=" btn btn-outline-primary btn-sm">
                 <i class="fa fa-caret-square-o-up"></i>
               </button>
               {{/if}}

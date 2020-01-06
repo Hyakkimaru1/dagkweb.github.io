@@ -7,9 +7,10 @@ const router = express.Router();
 
 
 router.get('/:id', async (req, res) => {
-  const [rows,linkImg] = await Promise.all([
+  const [rows,linkImg,end] = await Promise.all([
     productModel.single(req.params.id),
-    productModel.getLinkImg(req.params.id)
+    productModel.getLinkImg(req.params.id),
+    productModel.top5NearEnd()
   ]);
   
   //if product is not providding info product
@@ -102,7 +103,8 @@ router.get('/:id', async (req, res) => {
     check_MuaNgay,
     check,
     canSell,
-    MainPic
+    MainPic,
+    end
   });
 })
 

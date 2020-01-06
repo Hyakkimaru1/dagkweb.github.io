@@ -14,8 +14,11 @@
 <h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
                         <br>
                         <hr class="mt-1">
-
+{{#if empty}}
+<p>Bạn chưa bán được sản phẩm nào.</p>
+{{else }}
 {{#each result}}
+
  <div class="in-stock">
    
         <div class="card-body shadow-sm p-3 mb-5 bg-white rounded h-100 w-100">
@@ -96,3 +99,4 @@
       </div>
 
 {{/each }}
+{{/if}}

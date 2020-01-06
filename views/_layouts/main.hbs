@@ -40,36 +40,20 @@
         <a class="px-2 dropdown-toggle button2" data-toggle="dropdown" style="color: black;">
           <i class="fa fa-bars"></i></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Electronic Devices</a></li>
-          <li><a href="#">Healthy and Beauty</a></li>
-          <li><a href="#">Sports and Travel</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Men's Fashion</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Women's Fashion</a></li>
+          {{#each cat}}
+          
+    
           <li class="dropdown-submenu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Babies & Toys</a>
+            <a href="/categories/{{id}}" class="dropdown-toggle" data-toggle="dropdown">{{ten_DM_cha}}</a>
+            {{#if Child}}
             <ul class="dropdown-menu">
-              <li><a href="#">Barby gear</a></li>
-              <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Nursery</a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-submenu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">Separated link</a></li>
-                      <li class="divider"></li>
-                      <li><a href="#">One more separated link</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
+              {{#each Child}}
+              <li><a href="/categories/{{id_DM_cha}}/{{id}}">{{ten_DM}}</a></li>
+              {{/each }}
             </ul>
+            {{/if}}
           </li>
+          {{/each}}
         </ul>
         </a>
       </div>
