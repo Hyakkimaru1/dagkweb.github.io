@@ -41,7 +41,6 @@ router.get('/', async (req, res) => {
             sort = 'timeEnd asc';//mac dinh ngay giam dan
         }
     }
-    console.log(req.query);
     let checkSearch = false;
     if (+req.query.selectCat !== -1)
     {
