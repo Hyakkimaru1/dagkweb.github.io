@@ -1,36 +1,36 @@
 <div class="container mt-3 p-4" style="background-color: white;min-width: 1140px;">
   <p style="margin-bottom: 6px;font-size: 18px;color: #000;font-weight: 600;">Bổ sung thông tin cơ bản</p>
   <br>
-  <form action="/seller/post/{{id}}" class=" text-right" id="form" method="POST" enctype="multipart/form-data">
-    <div class="row mt-3">
-      <div class="col-md-2">
-        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Mô tả sản phẩm</span>
-      </div>
-      <div class="col-md-8">
-        <textarea name="description" id="description"></textarea>
-      </div>
-    </div>
+  <form action="/seller/edit2/{{rows.id}}" class=" text-right" id="form" method="POST" enctype="multipart/form-data">
     <div class="row mt-3">
       <div class="col-md-2">
         <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Giá khởi điểm</span>
       </div>
       <div class="col-md-8">
-        <input type="text" class="form-control" name="firstPrice" id="firstPrice" placeholder="VNĐ">
+        <input type="text" class="form-control" name="firstPrice" id="firstPrice" placeholder="VNĐ" value="{{rows.gia_KhoiDiem}}">
       </div>
 
     </div>
-    
+    <div class="row mt-3">
+      <div class="col-md-2">
+
+        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Bước giá</span>
+      </div>
+      <div class="col-md-8">
+        <input type="text" class="form-control" name="stepPrice" id="stepPrice" placeholder="VNĐ" value="{{rows.buocGia}}">
+      </div>
+
+    </div>
     <div class="row mt-3">
       <div class="col-md-2">
 
         <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">Tình trạng</span>
       </div>
       <div class="col-md-8">
-        <input type="text" class="form-control" name="status" id="status" placeholder="Mới, cũ %,đồ cỗ,...">
+        <input type="text" class="form-control" name="status" id="status" placeholder="Mới, cũ %,đồ cỗ,..." value="{{rows.tinhTrang}}">
       </div>
 
     </div>
-    
        <div class="row mt-3">
       <div class="col-md-2">
 
@@ -47,23 +47,7 @@
         <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Trọng lượng</span>
       </div>
       <div class="col-md-3">
-        <input type="text" class="form-control" name="weightPro" id="weightPro" placeholder="gam">
-      </div>
-    </div>
-    <div class="row mt-3">
-      <div class="col-md-2">
-
-        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Bước giá</span>
-      </div>
-      <div class="col-md-4">
-        <input type="text" class="form-control" name="stepPrice" id="stepPrice" placeholder="VNĐ">
-      </div>
-        <div class="col-md-3">
-        <span style="font-family: inherit; text-align: right;color: #666;" class="mr-4">*Tất cả đều có thể mua</span>
-      </div>
-      <div class="col-md-1">
-        <input class="form-check-input" style="font-family: inherit; text-align: right;color: #666;" type="checkbox"
-          value="true" name="allBuy">
+        <input type="text" class="form-control" name="weightPro" id="weightPro" placeholder="gam" value="{{rows.trongLuong}}">
       </div>
     </div>
     <div class="row mt-3">
@@ -96,7 +80,7 @@
         <label for="file1" id="nameFile1">Ảnh bìa</label>
         <div class="card shadow" style="display: none;" id="viewImg1">
           <div class="card-body">
-          <img  id="img1" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img1" src="{{PicMain}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del1"></i>
           </div>
@@ -108,7 +92,7 @@
         <label for="file2" id="nameFile2">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg2">
           <div class="card-body">
-          <img  id="img2" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img2" src="{{Pic2}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del2"></i>
           </div>
@@ -119,7 +103,7 @@
         <label for="file3" id="nameFile3">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg3">
           <div class="card-body">
-          <img  id="img3" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img3" src="{{Pic3}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del3"></i>
           </div>
@@ -130,7 +114,7 @@
         <label for="file4" id="nameFile4">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg4">
           <div class="card-body">
-          <img  id="img4" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img4" src="{{Pic4}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del4"></i>
           </div>
@@ -145,7 +129,7 @@
         <label for="file5" id="nameFile5">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg5">
           <div class="card-body">
-          <img  id="img5" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img5" src="{{Pic5}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del5"></i>
           </div>
@@ -156,7 +140,7 @@
         <label for="file6" id="nameFile6">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg6">
           <div class="card-body">
-          <img  id="img6" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img6" src="{{Pic6}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del6"></i>
           </div>
@@ -167,7 +151,7 @@
         <label for="file7" id="nameFile7">choose a file</label>
         <div class="card shadow" style="display: none;" id="viewImg7">
           <div class="card-body">
-          <img  id="img7" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img7" src="{{Pic7}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del7"></i>
           </div>
@@ -178,7 +162,7 @@
         <label for="file8" id="nameFile8">choose a file</label>
          <div class="card shadow" style="display: none;" id="viewImg8">
           <div class="card-body">
-          <img  id="img8" src="#" alt="your image" width="100px" height="100px"/>
+          <img  id="img8" src="{{Pic8}}" alt="your image" width="100px" height="100px"/>
           <br>
           <i class="fas fa-trash-alt" id="bt_del8"></i>
           </div>
@@ -200,11 +184,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {{/section}}
-{{#section 'jsHead'}}
 
-{{/section}}
 {{#section 'js'}}
-<script src="/js/information_product.js"></script>
+<script src="/js/update_product.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>

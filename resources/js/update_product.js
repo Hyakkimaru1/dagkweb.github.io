@@ -361,8 +361,7 @@ function countImg() {
 $('#btSubmit').click(function () {
   countImg();
 
-  var description = CKEDITOR.instances.description.getData();
-  if (description === '' || $('#firstPrice').val() === '' || $('#stepPrice').val() == '' || count < 3 || $('#weightPro').val() == '') {
+  if ($('#firstPrice').val() === '' || $('#stepPrice').val() == '' || count < 3 || $('#weightPro').val() == '') {
     if (count < 3) {
       Swal.fire('Vui lòng thêm ít nhất 3 hình');
 

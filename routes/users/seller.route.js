@@ -5,8 +5,10 @@ const userModel = require('../../models/user.model');
 const multer  = require('multer');
 const mkdirp = require('mkdirp');
 const moment = require('moment');
+const senMailModel = require('../../models/sendMail.model');
 const numeral = require('numeral');
 var uplodedImages = [];
+var temp = 0;
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const dir = './public/imgs/'+req.params.id;
@@ -14,8 +16,9 @@ var storage = multer.diskStorage({
     mkdirp(dir, err => cb(err, dir))
   },
   filename: function (req, file, cb) {
-    var newFileName = file.fieldname + '-' + Date.now();
+    var newFileName = file.fieldname + temp + '-' + Date.now();
     cb(null,newFileName);
+    temp++;
     uplodedImages.push(newFileName);
   }
 })  
@@ -76,6 +79,7 @@ router.post('/add_product2',async (req, res) => {
 })
 
 router.post('/post/:id', function (req, res){
+  temp=0;
   uplodedImages = [];
   upload.fields(fields)(req, res, async err => {
   if (err) { }
@@ -90,7 +94,16 @@ router.post('/post/:id', function (req, res){
       }
   } catch (error) {
   }
-  
+  try {
+    if (req.body.allBuy === 'true'){
+      req.body.allBuy =  1;
+    }
+    else {
+      req.body.allBuy =  0;
+    }
+  } catch (error) {
+    
+  }
   let entity = {
     moTaSP: req.body.description.toString(),
     gia_KhoiDiem: req.body.firstPrice,
@@ -101,21 +114,29 @@ router.post('/post/:id', function (req, res){
     gia_HienTai: req.body.firstPrice,
     tinhTrang: req.body.status.toString(),
     trongLuong: req.body.weightPro,
-    boSungThongTin: 1
+    boSungThongTin: 1,
+    allBuy: req.body.allBuy
   }
   
   const row = await productModel.patch(entity,req.params.id);
  
+  let Max = uplodedImages.length;
+  const checkHadImg = await productModel.getTotalImg(req.params.id);
+  if (checkHadImg.length + uplodedImages.length > 8)
+  {
+    Max = Math.abs(8 - checkHadImg.length);
+  }
+
   let rowLink;
-  for (let temp = 0; temp < uplodedImages.length;temp++){
+  for (let temp = 0; temp < Max;temp++){
     entity = {
       id_sp: req.params.id,
       link_anh: uplodedImages[temp].toString()
     }
     rowLink = await productModel.addLinkAnh(entity);
-  }
+  } 
 
-  res.send('ok');
+  res.redirect('../my_product');
   });
 })
 
@@ -257,6 +278,7 @@ router.post('/product/:id', async(req,res)=>{
       {
         throw new Error('Cannot ban this person');
       }
+
       //update người giữ giá cao nhất
       if (req.body.id_NM == BestBidder[0].id_user)
       {
@@ -268,6 +290,12 @@ router.post('/product/:id', async(req,res)=>{
         }
         const updateProduct = await productModel.patch(entity,req.params.id);
       }
+      const Bidder = await userModel.single(req.body.id_NM);
+      try {
+        const sendMailDeny = await senMailModel.sendMailDeny(Bidder,product[0].ten_SP);
+      } catch (error) {
+        console.log(error);
+      }
     }
     
   } catch (error) {
@@ -277,31 +305,12 @@ router.post('/product/:id', async(req,res)=>{
   res.redirect(req.params.id);
 })
 
+
+
 router.get('/err', (req, res) => {
 
   throw new Error('error occured');
 
-  // try {
-  //   throw new Error('error occured');
-  // }
-  // catch (err) {
-  //   console.log(err.stack);
-  //   res.send('View error on console');
-  // }
-})
-
-router.get('/edit/:id', async (req, res) => {
-  const rows = await categoryModel.single(req.params.id);
-  if (rows.length === 0) {
-    throw new Error('Invalid category id');
-  }
-  // const c = {
-  //   CatID: req.params.id,
-  //   CatName: 'unknown'
-  // }
-  res.render('vwCategories/edit', {
-    category: rows[0]
-  });
 })
 
 router.post('/patch', async (req, res) => {
@@ -317,12 +326,18 @@ router.post('/del', async (req, res) => {
 
 
 router.get('/my_product', async (req, res) => {
-  
   const result = await productModel.sellingProduct(req.session.authUser.id_user);
+  for (const child of result)
+  {
+    if(child.boSungThongTin === 0)
+    {
+      child.boSung = false;
+    }
+    else {
+      child.boSung = true;
+    }
+  }
 
-  
-
-  console.log(result);
   res.render('_seller/sellingProduct',{
     layout:'seller_layout',
     showMenuSeller:true,
@@ -330,8 +345,107 @@ router.get('/my_product', async (req, res) => {
     result
   
   });
- 
 })
+
+router.post('/update/:id',(req,res) => {
+
+  res.render('_seller/information_productSeller',{layout:'seller_layout',id:req.params.id});
+})
+
+router.post('/edit/:id',async (req,res) => {
+  if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null)
+  {
+    throw new Error('Người dùng muốn đăng nhập lậu');
+  }
+
+  const product = await productModel.single(req.params.id);
+  if (product[0].nguoiBan !== req.session.authUser.id_user)
+  {
+    throw new Error('Not person who sold');
+  }
+  const [rows, linkImg] = await Promise.all([
+    productModel.single(req.params.id),
+    productModel.getLinkImg(req.params.id)
+  ]);
+
+  //if product is not providding info product
+  if (rows[0].boSungThongTin === 0) {
+    //error
+    throw new Error('error occured');
+  }
+
+  //get link img
+  let imgsource = [];
+  for (let c of linkImg) {
+    imgsource.push("/imgs/" + req.params.id + "/" + c.link_anh);
+  }
+
+  for (let temp = imgsource.length; temp < 8; temp++)
+  {
+    imgsource[temp] = ""
+  }
+  //get Main picture
+  res.render('_seller/update_information',{layout:'seller_layout',
+  rows: rows[0],
+  PicMain: imgsource[0],
+  Pic2: imgsource[1],
+  Pic3: imgsource[2],
+  Pic4: imgsource[3],
+  Pic5: imgsource[4],
+  Pic6: imgsource[5],
+  Pic7: imgsource[6],
+  Pic8: imgsource[7],
+  });
+})
+
+router.post('/edit2/:id', function (req, res){
+  uplodedImages = [];
+  upload.fields(fields)(req, res, async err => {
+  if (err) { }
+  let buyingNow = req.body.buyingNow;
+  let checkAuto = 0;
+  if (buyingNow === ''){
+    buyingNow = null;
+  }
+  try {
+    if (req.body.checkAuto === 'true'){
+        checkAuto =  1;
+      }
+  } catch (error) {
+  }
+  let entity = {
+    gia_KhoiDiem: req.body.firstPrice,
+    buocGia: req.body.stepPrice,
+    timeEnd: req.body.dateEnd,
+    gia_MuaNgay: buyingNow,
+    giaHan: checkAuto,
+    gia_HienTai: req.body.firstPrice,
+    tinhTrang: req.body.status.toString(),
+    trongLuong: req.body.weightPro,
+    boSungThongTin: 1
+  }
+  
+  const row = await productModel.patch(entity,req.params.id);
+
+  let Max = uplodedImages.length;
+  const checkHadImg = await productModel.getTotalImg(req.params.id);
+  if (checkHadImg.length + uplodedImages.length > 8)
+  {
+    Max = Math.abs(8 - checkHadImg.length);
+  }
+
+  let rowLink;
+  for (let temp = 0; temp < Max;temp++){
+    entity = {
+      id_sp: req.params.id,
+      link_anh: uplodedImages[temp].toString()
+    }
+    rowLink = await productModel.addLinkAnh(entity);
+  } 
+  res.redirect('../my_product');
+  });
+})
+
 
 router.get('/sold', async (req, res) => {
   const result = await productModel.soldProduct(req.session.authUser.id_user);

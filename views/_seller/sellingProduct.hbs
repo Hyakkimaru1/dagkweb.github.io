@@ -36,8 +36,15 @@
 
                 </div>
                  <div class="col-xl-3" style="max-width: 143.13px;">
-                  <button type="button" class="btn btn-outline-primary rounded-pill">View this
-                    lot</button>
+                   {{#if  boSung}}
+                   <form action="/seller/edit/{{id_SP}}" method="POST">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill">Edit</button>
+                    </form>
+                  {{else}}
+                  <form action="/seller/update/{{id_SP}}" method="POST">
+                    <button type="submit" class="btn btn-outline-primary rounded-pill">Need update</button>
+                  </form>
+                  {{/if}}
                 </div>
               </div>
                 <div class="row">
@@ -104,5 +111,5 @@
           </div>
         </div>
       </a>
-
+      
 {{/each }}
