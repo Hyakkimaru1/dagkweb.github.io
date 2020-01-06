@@ -456,7 +456,11 @@ router.get('/delSoldPro',async (req,res) =>{
     }
     const obj = {};
     obj.id_user = entity.id_nguoi_duoc_DG;
-    obj.diem_DG = 100*diem_dg_moi/NumberOfRating;
+    let Newpoint = 100*diem_dg_moi;
+    if(Newpoint < 0){
+      Newpoint = 0;
+    }
+    obj.diem_DG = Newpoint/NumberOfRating;
     const rs = await userModel.patch(obj);
   }
   else {//neu da co danh gia thi sua lai danh gia
@@ -484,7 +488,11 @@ router.get('/delSoldPro',async (req,res) =>{
     }
     const obj3 = {};
     obj3.id_user = req.query.idBidder;
-    obj3.diem_DG = 100*diem_dg_moi/NumberOfRating;
+    let Newpoint = 100*diem_dg_moi;
+    if(Newpoint < 0){
+      Newpoint = 0;
+    }
+    obj3.diem_DG = Newpoint/NumberOfRating;
     const rs = await userModel.patch(obj3);
 
   }

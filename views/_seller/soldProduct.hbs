@@ -10,7 +10,7 @@
 <script src="/js/account.js"></script>
 {{/section}}
 
-<h3 style="margin-top:38px;">SELLING PRODUCTS</h3>
+<h3>SOLD PRODUCTS</h3>
                         <br>
                         <hr class="mt-1">
 {{#if empty}}
@@ -35,18 +35,18 @@
           </div>
           <div class="col-sm-6">
             <div class="row">
-              <div class="col-6">
-                <button type="button" class="btn btn-outline-primary rounded-pill"
-                  onclick="window.location.href='/product/{{id}}'">View this lot</button>
+              <div class="col-4 p-0">
+                <button type="button" class="btn btn-block btn-outline-primary rounded-pill"
+                  onclick="window.location.href='/product/{{id}}'"><i class="fa fa-eye" aria-hidden="true"></i> View</button>
               </div>
-              <div class="col-6">
-                <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
+              <div class="col-4 p-0">
+                <button type="button" class="btn btn-block btn-outline-warning rounded-pill" data-toggle="modal"
                   data-target="#exampleModal{{id}}" data-whatever="@mdo">
-                  Rate this bidder
+                  Rate
                 </button>
               </div>
-              <div class="col-12">
-                <button type="button" class="btn btn-outline-danger rounded-pill"
+              <div class="col-4 p-0">
+                <button type="button" class="btn btn-block btn-outline-danger rounded-pill"
                   onclick="window.location.href='/seller/delSoldPro?idSP={{id}}&idBidder={{nguoiCanDG}}'">Delete</button>
               </div>
             </div>
