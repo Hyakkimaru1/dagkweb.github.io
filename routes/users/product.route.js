@@ -405,9 +405,10 @@ router.post('/:id/buyNow', async (req, res) => {
 })
 
 router.post('/:id/addFavourite', async (req, res) => {
+
   try {
     if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null) {
-      throw new Error('Wanted');
+      res.redirect('../account/login');
     }
     curUser = await userModel.single(req.session.authUser.id_user);
     if (curUser.diem_DG < 80) {
@@ -415,7 +416,7 @@ router.post('/:id/addFavourite', async (req, res) => {
     }
 
   } catch (error) {
-    throw new Error('Wanted');
+    throw new Error('aaa');
   }
 
   let noBanCurUser = await productModel.isBanCurUser(req.session.authUser.id_user, req.params.id);

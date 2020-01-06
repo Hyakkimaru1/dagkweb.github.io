@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 var minBid = parseInt($('#minBid').text());
 
-function buyPrimary(check, pointUser,maxAuto,isCurMaxAuto, checkBuy) {
+function buyPrimary(check,checkBuy,maxAuto,isCurMaxAuto,pointUser) {
   if (check === false) {
     Swal.fire('Vui lòng đăng nhập');
   }
@@ -177,7 +177,7 @@ function buyPrimary(check, pointUser,maxAuto,isCurMaxAuto, checkBuy) {
 
 }
 
-function buyAuto(check, pointUser,maxAuto,isCurMaxAuto, checkBuy) {
+function buyAuto(check,checkBuy,maxAuto,isCurMaxAuto,pointUser ) {
   if (check === false) {
     Swal.fire('Vui lòng đăng nhập');
   }
