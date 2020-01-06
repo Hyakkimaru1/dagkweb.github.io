@@ -102,7 +102,7 @@ ORDER BY gia_HienTai DESC limit 5`),
   pageByCatPapaCanSell: (id_Cha, offset) => db.load(`
   select  sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid
 from danhmuc dm JOIN dmsp dp on dm.id = dp.id_DM JOIN sanpham sp on sp.id = dp.id_SP LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )
-where dm.id_DM_cha = 1 and sp.boSungThongTin = ${id_Cha} and TIMEDIFF(sp.timeEnd,NOW()) > 0 AND ISNULL(sp.nguoiThang)
+where dm.id_DM_cha = ${id_Cha} and sp.boSungThongTin = 1 and TIMEDIFF(sp.timeEnd,NOW()) > 0 AND ISNULL(sp.nguoiThang)
 group by sp.id
 limit ${config.paginate.limit} offset ${offset}`),
 };
