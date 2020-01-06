@@ -124,7 +124,7 @@ router.get('/cartBidding', async (req, res) => {
       //link ảnh
       const link_anh = await productModel.getLinkImg(row.id_SP);
       console.log(link_anh);
-      row.link = "/imgs/" + row.id_SP + "/" + link_anh[0].link_anh + ".jpg";
+      row.link = "/imgs/" + row.id_SP + "/" + link_anh[0].link_anh;
 
       //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan
       const sp = await userModel.getSP(row.id_SP);
@@ -184,7 +184,7 @@ router.get('/successfulBid', async (req, res) => {
       //link ảnh
       const link_anh = await productModel.getLinkImg(row.id);
       console.log(link_anh);
-      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh + ".jpg";
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh;
       //ten seller
       const Seller = await userModel.single(row.nguoiBan);
       if(Seller !== null){
@@ -281,7 +281,7 @@ router.get('/wishlist', async (req, res) => {
       //link ảnh
       const link_anh = await productModel.getLinkImg(row.id);
       console.log(link_anh);
-      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh + ".jpg";
+      row.link = "/imgs/" + row.id + "/" + link_anh[0].link_anh;
 
       //tinh toan thoi gian con lai
       let seconds = moment(row.timeEnd).unix() - moment().unix();
