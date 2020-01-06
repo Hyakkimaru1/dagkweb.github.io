@@ -4,14 +4,14 @@ const config = require('../config/default.json');
 module.exports = {
  
 
-  soldProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid, a.link_anh
-  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user ) LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+  soldProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname,c.id_SP, count(c.id_SP) as num_of_bid
+  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on (IF(sp.nguoiThang,sp.nguoiThang,sp.nguoiGiuGia) = n.id_user )  
   where (isPay = 1 AND sp.nguoiThang IS NOT NULL or (sp.nguoiGiuGia is not null and now() - timeEnd >= 0))	AND sp.nguoiBan=${id}
 	group by sp.id`),
 
   
-  sellingProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid, a.link_anh
-  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = c.id_NM LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+  sellingProduct: id=> db.load(`select sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
+  from sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = c.id_NM 
   where  (((TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang)) OR sp.boSungThongTin=0) AND sp.nguoiBan=${id}
 	group by sp.id `),
   all: () => db.load('select * from sanpham'),
@@ -25,8 +25,8 @@ module.exports = {
     return rows[0].total;
   },
   pageByCatCanSell: (id_DM,id_Cha, offset) => db.load(`
-  select sp.*,c.id_NM,n.lastname ,c.id_SP, count(c.id_SP) as num_of_bid, a.link_anh
-  from sanpham sp join dmsp d on d.id_SP = sp.id join danhmuc dm on dm.id = d.id_DM LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+  select sp.*,c.id_NM,n.lastname ,c.id_SP, count(c.id_SP) as num_of_bid
+  from sanpham sp join dmsp d on d.id_SP = sp.id join danhmuc dm on dm.id = d.id_DM LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia
   where dm.id_DM_cha = ${id_Cha} and dm.id = ${id_DM} and (TIMEDIFF(sp.timeEnd,NOW()) > 0) AND ISNULL(sp.nguoiThang)
 	group by sp.id 
   limit ${config.paginate.limit} offset ${offset}`),
@@ -41,21 +41,21 @@ module.exports = {
 
   bidder:id_SP=> db.load(`select * from sanpham s join chi_tiet_ra_gia c on c.id_SP = ${id_SP} where s.gia_HienTai = c.gia`),
 
-  top5NearEnd: ()=> db.load(`SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid, a.link_anh
-  FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+  top5NearEnd: ()=> db.load(`SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
+  FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia
   WHERE (TIMEDIFF(timeEnd,NOW()) > 0) 
   group by sp.id 
   ORDER BY timeEnd limit 5`),
 
-  top5MostBid: ()=> db.load(`	SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid, a.link_anh
-  FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+  top5MostBid: ()=> db.load(`	SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
+  FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia
   WHERE (TIMEDIFF(timeEnd,NOW()) > 0)
   GROUP BY sp.id
   ORDER BY num_of_bid DESC limit 5
   `),
 
-top5Pricest: ()=> db.load(`	SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid, a.link_anh
-FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia LEFT JOIN anh_cua_sanpham a on a.id_sp=sp.id
+top5Pricest: ()=> db.load(`	SELECT sp.*,c.id_NM,n.lastname, count(c.id_SP) as num_of_bid
+FROM sanpham sp LEFT JOIN chi_tiet_ra_gia c on sp.id=c.id_SP LEFT JOIN nguoidung n on n.id_user = sp.nguoiGiuGia 
 WHERE (TIMEDIFF(timeEnd,NOW()) > 0)
 GROUP BY sp.id
 ORDER BY gia_HienTai DESC limit 5`),
@@ -73,6 +73,7 @@ ORDER BY gia_HienTai DESC limit 5`),
     return db.patch('sanpham', entity, condition);
   },
   getLinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id}`),
+  get1LinkImg: id => db.load(`select link_anh from anh_cua_sanpham where id_sp = ${id} limit 1`),
   totalProductNeedInf: id => db.load(`select count(*) from sanpham where nguoiBan = ${id} and boSungThongTin = 0`),
   getAllDetail: id => db.load(`select * from chi_tiet_ra_gia ct join nguoidung nd where ct.id_NM = nd.id_user and ct.id_SP = ${id} ORDER BY ct.id DESC`),
   getBidderPrice: id => db.load(`select * 

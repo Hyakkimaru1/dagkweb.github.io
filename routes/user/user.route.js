@@ -220,7 +220,8 @@ router.post('/wonBid-fb', async (req, res) => {
     console.log(dg);
 
     //cap nhat lai diem danh gia trong bang nguoidung
-    const NumberOfRating = await userModel.getTotalRating(entity.id_nguoi_duoc_DG)[0].total;
+    const t = await userModel.getTotalRating(entity.id_nguoi_duoc_DG)
+    const NumberOfRating = t[0].total;
     const detailOfRating = await userModel.getDetailRating(entity.id_nguoi_duoc_DG);
     let diem_dg_moi = 0;
     for(const rate of detailOfRating){
