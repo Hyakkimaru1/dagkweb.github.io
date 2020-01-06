@@ -67,8 +67,8 @@
     {{#each this.product}}
     <a href="/product/{{id}}" class="col-3">
       <div class="card h-100 search-item shadow-sm">
-        <img src="{{link}}" class="card-img-top" alt="...">
-        <div class="card_banner" style="z-index: 1;">{{countBid}} bids</div>
+        <img src="{{link}}" style="width: 250px; height:250px" class="card-img-top" alt="...">
+        <div class="card_banner" style="z-index: 1;">{{num_of_bid}} bids</div>
         {{#if isNew}}
         <div class="d-flex justify-content-end">
           <div class="card_banner" style="background-color:transparent;">
@@ -77,7 +77,7 @@
         </div>
         {{/if}}
         <div class="card-body">
-          <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+          <h5 class="card-title text-truncate">{{ten_SP}}</h5>
           <div class=" smalldes">
             <div id="block1">Post in: </div>
             <div id="block2">{{timeCreate}}</div>
