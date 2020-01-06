@@ -142,11 +142,7 @@ router.get('/:id/:id2', async (req, res) => {
     }
   }
   console.log(rows);
-  for( const i of rows)
-  {
-    const t = await productModel.get1LinkImg(i.id);
-    i.link_anh= t[0].link_anh;
-  } 
+  
   res.render('_categories/categories', {
     lcCategories,
     rows,
