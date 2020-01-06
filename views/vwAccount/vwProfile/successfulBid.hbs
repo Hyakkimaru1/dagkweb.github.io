@@ -25,7 +25,7 @@
                 alt="" class="categories">
             </div>
             <div class="col-sm-10">
-              <h5 class="item-title" href="product.html">{{ten_SP}}</h5>
+              <h5 class="item-title" href="/product/{{id}}">{{ten_SP}}</h5>
               <div class="item-content">{{moTaSP}}</div>
               <div class="row">
                 <div class="col-sm-6">
@@ -36,10 +36,10 @@
                   <button type="button" class="btn btn-outline-primary rounded-pill"
                     onclick="window.location.href='/product/{{id}}'">View this lot</button>
                   <button type="button" class="btn btn-outline-warning rounded-pill" data-toggle="modal"
-                    data-target="#exampleModal" data-whatever="@mdo">
+                    data-target="#exampleModal{{id}}" data-whatever="@mdo">
                     Rate this item
                   </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                  <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -51,7 +51,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <form id="form-feedback" action="/user/wonBid-fb?idSP={{id}}&idSeller={{nguoiBan}}" class="form" >
+                          <form id="form-feedback" action="/user/wonBid-fb?idSP={{id}}&idSeller={{nguoiBan}}" class="form" method="POST">
                             <div class=" form-group">
                               <label for="message-text" class="col-form-label">Rate:</label>
                             </div>
@@ -81,13 +81,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-10">
-              <div class="row">
-                <div class="col-sm-4">
-
                 </div>
               </div>
             </div>

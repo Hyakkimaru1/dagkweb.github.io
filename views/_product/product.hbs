@@ -89,7 +89,7 @@ function pic(x){
         </div>
         <div class="col-sm-8">
 
-          <div class="card img" style="width: 29rem;border:0">
+          <div class="card img" style="width: 29rem;border:0;height: 29rem">
             <img src="{{MainPic}}"
               class="card-img-top" alt="..." id="mainPic">
             <div onclick="changeImg(this)" id="changimgR" class="d-inline"
@@ -178,6 +178,9 @@ function pic(x){
         <div class="headTag">
           <div class="p-3">
             <p class="product" style="color: white;">Lot closes in:</p>
+            {{#ifa noBanCurUser '&&' noHadFavourite}}
+            <button type="button" id = "btAddFavourite" class="btn btn-outline-light float-right" onclick=" return addFavourite()">Add <i class="fas fa-plus"></i></button>
+            {{/ifa}}
             <br>
             <h5 class="product" id="timeEnd">
               <script>
@@ -222,8 +225,9 @@ function pic(x){
           <p class="product" style="font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;
                         font-weight: 400; font-size: 20px; font-weight: 700;" id="currendBid">{{rows.gia_HienTai}}</p>
           <br>
-          <p class="product" style="font-size: 15px;">Bidder: * *</p>
-          <p class="product" style="font-size: 15px;" id="nameBidder">{{BidderPrice.usernameMask}}  </p>
+          <p class="product" {{#if curUserIsBidder}} style="font-size: 15px; weight: 600; color: #F00" {{else}} style="font-size: 15px;" {{/if}}>Bidder: * *</p>
+          <p class="product" {{#if curUserIsBidder}} style="font-size: 15px; weight: 600; color: #F00" {{else}} style="font-size: 15px;" {{/if}} id="nameBidder">
+            {{BidderPrice.usernameMask}}  </p>
           <i class="far fa-heart" style="color: #15AABF"></i>
           <p class="product" id="voteBidder">{{BidderPrice.diem_DG}}</p>
           <p>%</p>
@@ -235,6 +239,7 @@ function pic(x){
           <p class="bodyTag product" style="font-size: 13px;font-weight: 500; color: #B1B1B1;">VietNam</p>
           <br>
           <p class="product" style="font-size: 15px; font-weight: 700;"> Bid directly</p>
+          {{#if noBanCurUser}}
           <form id="inputBid" method="POST">
             <div>
               <input style="text-align:right; width: 45%; background:url(../img/dollar.png) no-repeat scroll 7px 4px;
@@ -257,8 +262,8 @@ function pic(x){
               <br>
               {{#if check_MuaNgay}}
               <div id="buyNow" class="text-center">
-                <button style="text-align:right; width: 50%; background-color: #BFEEFA;color: #4097E8; margin-top:5px;" type="button" onclick="buyNowPro({{checkLogin}},{{curUser.diem_DG}})"
-                  class="btn btn-primary rounded-circle mb-2 text-center" id="btbuyNow" formaction="/product/{{rows.id}}/buyNow">BUY NOW</button>
+                <button style="text-align:right; width: 45%; background-color: #BFEEFA;color: #4097E8; margin-top:5px;margin-left:auto;margin-right:auto;" type="button" onclick="buyNowPro({{checkLogin}},{{curUser.diem_DG}})"
+                  class="btn btn-primary rounded-circle mb-2" id="btbuyNow">BUY NOW</button>
                   <br>
                 <h5 class="product" style="color: #3878E1;  display:inline"> $</h5>
                 <h5 class="product" style="color: #3878E1; font-weight: 700; font-size: 25px;  display:inline"
@@ -268,6 +273,7 @@ function pic(x){
               {{/if}}
             </div>
           </form>
+          {{/if}}
           <br>
           <br>
           <a data-toggle="modal" data-target="#exampleModalScrollable" href="javascript:void(0)"
@@ -398,7 +404,7 @@ function pic(x){
       </div>
       <div class="modal-body">
         <div id="allBid">
-          <div class="card-body" style="width: 32rem;">
+          <div class="card-body">
            
             <div class="row ">
               <div class="col-sm-5">
@@ -430,3 +436,15 @@ function pic(x){
     </div>
   </div>
 </div>
+
+<!-- form ẩn cho mua ngay -->
+<form action="/product/{{rows.id}}/buyNow" style="display: none;" id="formBuyNow" method="POST">
+  <input type="text" value="{{rows.gia_MuaNgay}}" name="gia_HienTai">
+  <input type="text" value="{{curUser.id_user}}" name="nguoiThang">
+</form>
+
+<!-- form thêm sản phẩm yêu thích -->
+<form action="/product/{{rows.id}}/addFavourite" style="display: none;" id="addFavourite" method="POST">
+  <input type="text" value="{{rows.id}}" name="id_SP">
+  <input type="text" value="{{curUser.id_user}}" name="id_NM">
+</form>

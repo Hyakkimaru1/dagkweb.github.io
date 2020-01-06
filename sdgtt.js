@@ -95,13 +95,14 @@ app.get('/', async (req, res) => {
 
 app.use((req, res, next) => {
   // res.render('vwError/404');
-  res.render('error', { layout: 'error' });
+  const err = `404 - The Page can't be found`;
+  res.render('error', { layout: 'error',err });
 })
 
 app.use((err, req, res, next) => {
   // res.render('vwError/index');
   console.error(err.stack);
-  res.status(500).render('error', { layout: 'error' });
+  res.status(500).render('error', { layout: 'error',err });
 })
 
 const PORT = 3000;

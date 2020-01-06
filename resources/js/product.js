@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-  $('#smallPic').children().eq(0).css('border', '2px solid #00AEEF')
+  $('#smallPic').children().eq(0).css('border', '2px solid #00AEEF');
   $('#infSeller').hide();
   $('#description').click(function () {
     $('#infSeller').hide();
@@ -128,8 +128,7 @@ function buyNowPro(check, pointUser) {
             'Xem trong giỏ hàng!',
             $('#lotClosed').show(),
             $('#lotOpen').hide(),
-            $("#inputBid").attr("action", $('#btbuyNow').attr("formaction")),
-            $("#inputBid").submit()
+            $("#formBuyNow").submit()
           )
         }
       });
@@ -137,3 +136,8 @@ function buyNowPro(check, pointUser) {
   }
 }
 
+
+function addFavourite(check) {
+    $('#btAddFavourite').hide();
+    $('#addFavourite').submit();
+}

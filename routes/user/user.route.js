@@ -11,7 +11,6 @@ router.get('/profile', (req, res) => {
   console.log(req.session.authUser.Permission) ;
   res.render('vwAccount/vwProfile/profile',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     profile:true
   });
 });
@@ -24,7 +23,6 @@ router.post('/profile', async (req, res) => {
   if (!(user === null))
     return res.render('vwAccount/vwProfile/profile', {
       showMenuAcc:true,
-      isSeller: req.session.authUser.Permission==1,
       profile:true,
       err_message: 'The new email is duplicate! You can use the another email.'
     });
@@ -43,7 +41,6 @@ router.post('/profile', async (req, res) => {
 
   res.render('vwAccount/vwProfile/profile',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     profile:true,
     success_message: 'Your Information has been saved'
   });
@@ -53,7 +50,6 @@ router.post('/profile', async (req, res) => {
 router.get('/changepwd', (req, res) => {
   res.render('vwAccount/vwProfile/changePwd',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     changepwd:true,
   });
 });
@@ -69,7 +65,6 @@ router.post('/changepwd', async (req, res) => {
   if (rs === false)
     return res.render('vwAccount/vwProfile/changePwd', {
       showMenuAcc:true,
-      isSeller: req.session.authUser.Permission==1,
       profile:true,
       err_message: 'The current password was wrong.'
     });
@@ -84,7 +79,6 @@ router.post('/changepwd', async (req, res) => {
   const result = await userModel.patch(entity);
   res.render('vwAccount/vwProfile/changePwd', {
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     changePwd:true,
     success_message: 'Your password has been changed successfully!'
   });
@@ -108,7 +102,6 @@ router.get('/feedback', async (req, res) => {
   console.log(rows);
   res.render('vwAccount/vwProfile/feedback',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     isactive_feedback:true,
     feedback: rows,
     empty: rows.length === 0,
@@ -117,6 +110,7 @@ router.get('/feedback', async (req, res) => {
 
 router.get('/cartBidding', async (req, res) => {
   const rows = await userModel.getCartBidding(req.session.authUser.id_user);
+  console.log(rows);
   if (rows.length > 0) {
     for (let row of rows) {
       //ten_SP,gia_MuaNgay,moTaSP,timeEnd,nguoiBan
@@ -158,7 +152,6 @@ router.get('/cartBidding', async (req, res) => {
 
   res.render('vwAccount/vwProfile/cartBidding',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     cartBidding:true,
     products: rows,
     empty: rows.length === 0,
@@ -181,7 +174,6 @@ router.get('/successfulBid', async (req, res) => {
   }
   res.render('vwAccount/vwProfile/successfulBid',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     successfulBid:true,
     products: rows,
     empty: rows.length === 0,
@@ -207,11 +199,15 @@ router.post('/wonBid-fb', async (req, res) => {
     console.log(dg);
 
     //cap nhat lai diem danh gia trong bang nguoidung
-    const user = await userModel.single(entity.id_nguoi_duoc_DG);
-    const diem_dg_moi = entity.diem_DG + user.diem_DG;
+    const NumberOfRating = await userModel.getTotalRating(entity.id_nguoi_duoc_DG)[0].total;
+    const detailOfRating = await userModel.getDetailRating(entity.id_nguoi_duoc_DG);
+    let diem_dg_moi = 0;
+    for(const rate of detailOfRating){
+      diem_dg_moi += rate.diem_DG;
+    }
     const obj = {};
-    obj.id_user = user.id_user;
-    obj.diem_DG = diem_dg_moi;
+    obj.id_user = entity.id_nguoi_duoc_DG;
+    obj.diem_DG = 100*diem_dg_moi/NumberOfRating;
     const rs = await userModel.patch(obj);
   }
   else {//neu da co danh gia thi sua lai danh gia
@@ -224,16 +220,23 @@ router.post('/wonBid-fb', async (req, res) => {
     obj2.nhan_xet_DG = req.body.feedback;
 
     const [rs1,rs2] = await Promise.all([
-      userModel.patch_dg(obj1),
-      userModel.patch_dg(obj2)
+      userModel.patch_dg(obj1),//sua lai diem
+      userModel.patch_dg(obj2) //sua lai noi dung danh gia
     ]);
 
     //cap nhat lai diem danh gia
-    const user = await userModel.single(req.query.idSeller);
-    const diem_dg_moi = obj1.diem_DG + user.diem_DG;
+    const totalRating = await userModel.getTotalRating(req.query.idSeller);
+
+    const NumberOfRating = totalRating[0].total;
+    console.log(NumberOfRating);
+    const detailOfRating = await userModel.getDetailRating(req.query.idSeller);
+    let diem_dg_moi = 0;
+    for(const rate of detailOfRating){
+      diem_dg_moi += rate.diem_DG;
+    }
     const obj3 = {};
-    obj3.id_user = user.id_user;
-    obj3.diem_DG = diem_dg_moi;
+    obj3.id_user = req.query.idSeller;
+    obj3.diem_DG = 100*diem_dg_moi/NumberOfRating;
     const rs = await userModel.patch(obj3);
 
   }
@@ -273,7 +276,6 @@ router.get('/wishlist', async (req, res) => {
   //console.log(rows);
   res.render('vwAccount/vwProfile/wishlist',{
     showMenuAcc:true,
-    isSeller: req.session.authUser.Permission==1,
     wishlist:true,
     products: rows,
     empty: rows.length === 0,
@@ -283,20 +285,46 @@ router.get('/wishlist', async (req, res) => {
 router.get('/wishlist/del/:id', async (req, res) => {
   const result = await userModel.delFavorProduct(req.session.authUser.id_user,+req.params.id);
   res.redirect('/user/wishlist');
-})
+});
 
 //seller's views
 
-router.get('/manageProductSeller',(req, res) =>{
-  res.render('vwAccount/manageProductSeller');
+router.get('/checkSeller', async(req, res) =>{
+  if(req.session.authUser.Permission === 1){
+    res.redirect('/seller/my_product');
+  }
+  if(req.session.authUser.Permission === 0){
+    if(req.query.upgrade){
+      const entity = {};
+      entity.id_user = req.session.authUser.id_user;
+      entity.timeUpdateSeller = moment().format('YYYY/MM/DD HH:mm:ss');
+      console.log(entity);
+      const rs = await userModel.patch(entity);
+      return res.render('vwAccount/vwProfile/upgrade',{
+        showMenuAcc: true,
+        manageProductSeller:true,
+        isUpgrade:true,
+      })
+    }
+    let isUpgrade = !(req.session.authUser.timeUpdateSeller === null);
+    console.log(req.session.authUser.timeUpdateSeller);
+    if(isUpgrade){
+      if(moment().diff(req.session.authUser.timeUpdateSeller,'days') >= 7){
+        const entity = {};
+        entity.id_user = req.session.authUser.id_user;
+        entity.timeUpdateSeller = null;
+        console.log(entity);
+        const rs = await userModel.patch(entity);
+        isUpgrade = !isUpgrade;
+      }
+    }
+    res.render('vwAccount/vwProfile/upgrade',{
+      showMenuAcc:true,
+      manageProductSeller: true,
+      isUpgrade
+    });
+  }
 });
 
-router.get('/manageProductSeller/sellerSoldItems',(req, res) =>{
-  res.render('vwAccount/sellerSoldItems');
-});
-
-router.get('/manageProductSeller/post_productSeller',(req, res) =>{
-  res.render('vwAccount/post_productSeller');
-});
 
 module.exports = router;

@@ -1,0 +1,605 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/post_product.css">
+<link rel="stylesheet" href="/css/categories.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css">
+{{/section}}
+
+{{#section 'jsHead'}}
+<script>
+  var i = 0;
+  var imgsource = [];
+
+  { { #each imgsource } }
+  imgsource.push('{{this}}');
+  {
+    {
+      /each}}
+      function changeImg(x) {
+        if (x == document.getElementById("changimgR")) {
+          $('#smallPic').children().eq(i).css('border', '0')
+
+          i++;
+          if (i > (imgsource.length - 1))
+            i = 0;
+          document.getElementById("mainPic").setAttribute("src", imgsource[i]);
+          $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+
+        }
+        else {
+          $('#smallPic').children().eq(i).css('border', '0')
+          i--;
+          if (i < 0)
+            i = imgsource.length - 1;
+          document.getElementById("mainPic").setAttribute("src", imgsource[i]);
+          $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+        }
+      }
+
+      function pic(x) {
+        $('#smallPic').children().eq(i).css('border', '0')
+        for (var j = 0; j < imgsource.length; j++) {
+          console.log(imgsource[j] + ' va ' + x.src)
+          if (x.src.indexOf(imgsource[j]) !== -1) {
+            i = j;
+          }
+        }
+        $('#smallPic').children().eq(i).css('border', '2px solid #00AEEF');
+        document.getElementById("mainPic").setAttribute("src", x.src);
+      }
+</script>
+{{/section}}
+<div class="container mt-3 mb-5" id="content">
+  <div class="row">
+    <div class="col-sm-9">
+      <h1 style="font-weight:700; font-size: 30px;display: inline;">{{rows.ten_SP}}</h1>
+      <div class="row mt-4">
+        <div class="col-sm-4">
+          <div class="text-center">
+            <img style="margin-top: 100px;  margin-left: auto; margin-right: auto;" class="rounded-circle" width="80px"
+              height="80px" src="{{Seller.avatar}}" alt="">
+            <br>
+            <p class="product" style="font-size:20px;">Seller:</p> <br>
+            <p class="product" style="font-size:20px;">* *</p>
+            <p class="product" style="font-size:20px;" id="nameSeller">{{Seller.usernameMask}}</p>
+            <br>
+            <i class="far fa-heart fa-2x " style="color: #15AABF"></i>
+            <p style="font-size:20px;" id="voteSeller">{{Seller.diem_DG}}</p>
+            <p class="product" style="font-size:20px;">%</p>
+          </div>
+          <br>
+
+          <h5 class="product" style="font-size:18px;color: black; margin-top: 260px; display: block;">Any questions?
+          </h5>
+
+          <a href="#" style="font-size: 14px; color:#B4B4B4;" class="Contract"><i class="fas fa-shipping-fast"
+              style="color: #B4B4B4;"></i> Contact our Customer
+            Support</a>
+        </div>
+        <div class="col-sm-8">
+
+          <div class="card img" style="width: 29rem;border:0;height: 29rem">
+            <img src="{{MainPic}}" class="card-img-top" alt="..." id="mainPic">
+            <div onclick="changeImg(this)" id="changimgR" class="d-inline"
+              style="margin-top: 150px;margin-left: 415px; position: absolute;">
+              <i class="fas fa-chevron-circle-right fa-3x rounded-circle changeImg"></i>
+            </div>
+            <div onclick="changeImg(this)" style="position: absolute;margin-left: 0px;margin-top: 150px;">
+              <i class="fas fa-chevron-circle-left fa-3x rounded-circle changeImg"></i>
+            </div>
+          </div>
+          <div class="mr-5 text-center" id="smallPic">
+            {{#each imgsource}}
+            <img class="mr-2" src="{{this}}" width="65px" height="65px" alt="..." onclick="pic(this)">
+            {{/each}}
+          </div>
+          <div style="margin-top: 90px;">
+            <div class="text-center">
+              <button type='button' id="descriptionE" class="description" style="border: 2px solid #BFEEFA">
+                <p class="product" style="font-size:20px;">Description</p>
+              </button>
+              <button type='button' id="seller" class="description">
+                <p class="product" style="font-size:20px"> Seller</p>
+              </button>
+            </div>
+
+            <div class="mt-3">
+              <div id="inf" class=" border-left pl-4">
+                <h5 class="product" style="font-size:20px; color: black;" id="titleDes">{{rows.ten_SP}}</h5>
+                <br>
+                <br>
+                <h5 class="product" style="font-size:17px; color: black; display:inline">POST IN:         </h5>
+                <p class="product" style="font-size:17px; color: black;" id="brand">{{timeCreate}}</p>
+                <br>
+                <br>
+                <h5 class="product" style="font-size:17px; color: black;  display:inline">STATUS:           </h5>
+                <p class="product" style="font-size:17px; color: black;" id="Series">{{rows.tinhTrang}}</p>
+                <br>
+                <br>
+                <h5 class="product" style="font-size:17px; color: black;  display:inline">WEIGHT:          </h5>
+                <p style="font-size:17px; color: black;" id="serialNumber">{{rows.trongLuong}}</p>
+                <br>
+                <p class="product" style="font-size:17px; color: black; margin-top: 20px; display: block;" id="moreInf">
+                  {{{rows.moTaSP}}}
+                  <br>Will be shipped registered & insured</p>
+                <br>
+                <br>
+                <form style="display: none;" action="{{rows.id}}" method="POST" id="formEditNew"><input type="text"
+                    id="editNew" name="moTaSP" value="{{rows.moTaSP}}"></form>
+                <textarea name="descriptionEdit" id="descriptionEdit"></textarea>
+                <button type="button" class="btn btn-outline-info mt-2" id="btEdit" onclick="newDir()">Edit</button>
+              </div>
+              <div id="infSeller" class=" border-left pl-4">
+                <p class="product" style="font-size: 15px; color: #727272;"> * * </p>
+                <p class="product" id="nameSeller" style="font-size: 15px; color: #727272;">{{username_Seller}}</p>
+                <p class="product" style="font-size: 15px; color: #727272;">member since</p>
+                <p class="product" style="font-size: 15px; color: #727272;"> {{timeCreateSeller}}</p>
+                <br>
+                <p class="product" style="font-size: 18px;">Feedback score: <i class="far fa-heart fa-x "
+                    style="color: #15AABF"></i>
+                </p>
+                <p class="product" id="voteSeller" style="color: black;">{{Seller.diem_DG}}</p>
+                <p>% (</p>
+                <p class="product" id="totalVote">{{totalRatingSeller}}</p>
+                <p>reviews )</p>
+                <br>
+                {{#each detailRateSeller}}
+                <br>
+                <p><i class="fas fa-user-edit" style="color: #3878E1;"></i> {{nhan_xet_DG}}    ({{diem_DG}} point)</p>
+                {{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      {{#ifa check '&&' canSell}}
+      <div class="shadow mb-5 bg-white rounded" id="lotClosed" style="display: none">
+        <div class="headTag-close">
+          <div class="p-3">
+            <p class="product" style="color: white; ">Lot closed</p>
+            <hr style="border-color: white;margin-top: -5px;">
+            <br>
+            <p class="product" style="display:block; color: white; margin-top: -20px;">You can no longer place any bids
+              on this lot.</p>
+          </div>
+        </div>
+      </div>
+      <div class="shadow mb-5 bg-white rounded" id='lotOpen'>
+        <div class="headTag">
+          <div class="p-3">
+            <p class="product" style="color: white;">Lot closes in: </p>
+            <br>
+            <h5 class="product" id="timeEnd">
+              <script>
+                  var countDownDate = new Date("{{ rows.timeEnd }}").getTime();
+
+                  setInterval(function () {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+
+                    // Output the result in an element with id="demo"
+
+                    document.getElementById('timeEnd').innerHTML = days + "d " + hours + "h "
+                      + minutes + "m " + seconds + "s ";
+
+                    // If the count down is over, write some text 
+                    if (distance < 0) {
+                      $('#lotClosed').show(),
+                        $('#lotOpen').hide()
+                    }
+                  }, 1000);
+              </script>
+            </h5>
+            <hr style="border-color: white;">
+            <p class="product" style="font-weight: 700; color: white;">You haven't bid on this lot yet.</p>
+          </div>
+        </div>
+        <div class="p-3">
+          <p class="bodyTag product">Current bid</p>
+          <p class="product" style="font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;
+                         font-weight: 400; font-size: 20px; font-weight: 700;">$</p>
+          <p class="product" style="font-family: ProximaNova,Helvetica Neue,Arial,sans-serif;
+                        font-weight: 400; font-size: 20px; font-weight: 700;" id="currendBid">{{rows.gia_HienTai}}</p>
+          <br>
+          <p class="product" style="font-size: 15px;">Bidder: </p>
+           <a href="javascript:void(0)" data-target="#BidderBest{{BidderPrice.id_user}}" data-toggle="modal">
+            <p class="product" style="font-size: 15px;" id="nameBidder">* *{{BidderPrice.usernameMask}}</p>
+          </a>
+          
+          <!-- show đánh giá --->
+
+          <div class="modal fade" id="BidderBest{{BidderPrice.id_user}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p class="product" style="color:black; font-weight:700; font-size: 23px;">Reviews Bidder: {{AllDetailPriceBest.usernameMask}}</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="allBid">
+                      <div class="card-body">
+                        {{#each AllDetailPriceBest.allReview}}
+                        <br>
+                        <p><i class="fas fa-user-edit" style="color: #3878E1;"></i> {{nhan_xet_DG}}    ({{diem_DG}} point)</p>
+                         {{/each}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- -->
+          <i class="far fa-heart" style="color: #15AABF"></i>
+          <p class="product" id="voteBidder">{{BidderPrice.diem_DG}}</p>
+          <p>%</p>
+          <br>
+          <p class="bodyTag product" style="font-size: 13px;">Next minimum bid  $</p>
+          <p class="bodyTag product" style="font-size: 13px;" id="minBid">{{minium_Bid}}</p>
+          <br>
+          <p class="bodyTag product" style="font-size: 13px;">Location: </p>
+          <p class="bodyTag product" style="font-size: 13px;font-weight: 500; color: #B1B1B1;">VietNam</p>
+          <br>
+          <p class="product" style="font-size: 15px; font-weight: 700;"> Bid directly</p>
+          <br>
+          <br>
+          <a data-toggle="modal" data-target="#exampleModalScrollable" href="javascript:void(0)"
+            style="font-size: 15px;" id="ViewAll">View all bids</a>
+        </div>
+      </div>
+      {{else }}
+      <div class="shadow mb-5 bg-white rounded" id="lotClosed" {{#ifa check '&&' canSell }} style="display: none"
+        {{/ifa}}>
+        <div class="headTag-close">
+          <div class="p-3">
+            <p class="product" style="color: white; ">Lot closed</p>
+            <hr style="border-color: white;margin-top: -5px;">
+            <br>
+            <p class="product" style="display:block; color: white; margin-top: -20px;">You can no longer place any bids
+              on this lot.</p>
+          </div>
+        </div>
+      </div>
+      {{/ifa}}
+    </div>
+  </div>
+  <h4 class="mt-5">Other interesting lots</h4>
+  <div class="a">
+    <h2>Top 5 items with most bids/ closing soon/ highest price</h2>
+
+    <div class="list_product row d-flex justify-content-around">
+
+
+      <div class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+          <div class="card_banner">
+            106 bids
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l product">Car in 1970s very cool for someone who like antique</h5>
+            <div class=" smalldes">
+              <div id="block1">Post in: </div>
+              <div id="block2">25/6/2019 11:11</div>
+            </div>
+            <div class="card-subtitle text-muted ">
+              <div id="block1">Buy it now: </div>
+              <div id="block3">190$</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1">Bidder: </div>
+              <div class="bidder">Katashiwa Ohisa </div>
+            </div>
+            <div id="price"><strong>190$</strong> </div>
+            <div class="time_remain ">
+              <strong>Close in </strong>
+              <time class="time_close">
+                <span>4d</span>
+                <span>2h</span>
+                <span>42m</span>
+                <span>24s</span>
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+          <div class="card_banner">
+            106 bids
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l product">Car in 1970s very cool for someone who like antique</h5>
+            <div class=" smalldes">
+              <div id="block1">Post in: </div>
+              <div id="block2">25/6/2019 11:11</div>
+            </div>
+            <div class="card-subtitle text-muted ">
+              <div id="block1">Buy it now: </div>
+              <div id="block3">190$</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1">Bidder: </div>
+              <div class="bidder">Katashiwa Ohisa </div>
+            </div>
+            <div id="price"><strong>190$</strong> </div>
+            <div class="time_remain ">
+              <strong>Close in </strong>
+              <time class="time_close">
+                <span>4d</span>
+                <span>2h</span>
+                <span>42m</span>
+                <span>24s</span>
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+          <div class="card_banner">
+            106 bids
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l product">Car in 1970s very cool for someone who like antique</h5>
+            <div class=" smalldes">
+              <div id="block1">Post in: </div>
+              <div id="block2">25/6/2019 11:11</div>
+            </div>
+            <div class="card-subtitle text-muted ">
+              <div id="block1">Buy it now: </div>
+              <div id="block3">190$</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1">Bidder: </div>
+              <div class="bidder">Katashiwa Ohisa </div>
+            </div>
+            <div id="price"><strong>190$</strong> </div>
+            <div class="time_remain ">
+              <strong>Close in </strong>
+              <time class="time_close">
+                <span>4d</span>
+                <span>2h</span>
+                <span>42m</span>
+                <span>24s</span>
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+          <div class="card_banner">
+            106 bids
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l product">Car in 1970s very cool for someone who like antique</h5>
+            <div class=" smalldes">
+              <div id="block1">Post in: </div>
+              <div id="block2">25/6/2019 11:11</div>
+            </div>
+            <div class="card-subtitle text-muted ">
+              <div id="block1">Buy it now: </div>
+              <div id="block3">190$</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1">Bidder: </div>
+              <div class="bidder">Katashiwa Ohisa </div>
+            </div>
+            <div id="price"><strong>190$</strong> </div>
+            <div class="time_remain ">
+              <strong>Close in </strong>
+              <time class="time_close">
+                <span>4d</span>
+                <span>2h</span>
+                <span>42m</span>
+                <span>24s</span>
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shadow col-2 item">
+        <div class="card" style="width: auto;">
+          <img src="https://assets.catawiki.nl/assets/2019/11/7/4/4/5/thumb2_445b596e-fe80-4ec4-aa2c-f5236e4c26bb.jpg"
+            class="card-img-top" alt="...">
+          <div class="card_banner">
+            106 bids
+          </div>
+          <div class="card-body">
+            <h5 class="card-title truncate2l product">Car in 1970s very cool for </h5>
+            <div class=" smalldes">
+              <div id="block1">Post in: </div>
+              <div id="block2">25/6/2019 11:11</div>
+            </div>
+            <div class="card-subtitle text-muted ">
+              <div id="block1">Buy it now: </div>
+              <div id="block3">190$</div>
+            </div>
+            <div class="card-subtitle text-muted text-truncate">
+              <div id="block1">Bidder: </div>
+              <div class="bidder">Katashiwa Ohisa </div>
+            </div>
+            <div id="price"><strong>190$</strong> </div>
+            <div class="time_remain ">
+              <strong>Close in </strong>
+              <time class="time_close">
+                <span>4d</span>
+                <span>2h</span>
+                <span>42m</span>
+                <span>24s</span>
+              </time>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p class="product" style="color:black; font-weight:700; font-size: 23px;">Bid history</p>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="allBid">
+          <div class="card-body">
+
+            <div class="row ">
+              <div class="col-sm-5">
+                <p class="bidHistory product">Time</p>
+              </div>
+              <div class="col-sm-3">
+                <p class="bidHistory product" class="bidHistory">Bidder</p>
+              </div>
+              <div class="col-sm-4">
+                <p class="bidHistory product" class="bidHistory">Price</p>
+              </div>
+            </div>
+            <form style="display: none;" action="{{rows.id}}" method="POST" id="formDeny"><input type="text" id="id_SP"
+                name="id_SP"><input type="text" id="id_NM" name="id_NM"></form>
+            {{#each AllDetailPrice}}
+            <div class="row ">
+              <div class="col-sm-5">
+                <p class="bidHistory product">{{timePriced}}</p>
+              </div>
+              <div class="col-sm-3">
+                <a href="javascript:void(0)" data-target="#Bidder{{id_NM}}" data-toggle="modal">
+                  <p class="bidHistory product" class="bidHistory">***{{usernameMask}}</p>
+                </a>
+              </div>
+              <div class="col-sm-3">
+                <p class="bidHistory product" class="bidHistory">{{Money}}</p>
+              </div>
+              <div class="col-sm-1">
+                <p class="bidHistory" id="delBid1" onclick="delBidder({{id_NM}},{{id_SP}})"><i
+                    class="fas fa-user-minus"></i></p>
+              </div>
+            </div>
+            <!-- reviews of bidder -->
+            
+            <div class="modal fade" id="Bidder{{id_NM}}" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <p class="product" style="color:black; font-weight:700; font-size: 23px;">Reviews Bidder: {{usernameMask}}</p>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div id="allBid">
+                      <div class="card-body">
+                        {{#each allReview}}
+                        <br>
+                        <p><i class="fas fa-user-edit" style="color: #3878E1;"></i> {{nhan_xet_DG}}    ({{diem_DG}} point)</p>
+                         {{/each}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer section bg-dark text-white mt-5">
+  <div class="container a1">
+    <div class="row">
+      <div class="col-md-3">
+        <a class="footer-brand" href="#"><img src="https://image.flaticon.com/icons/svg/2258/2258440.svg" alt="brand">
+          <strong style="color: aliceblue;">AUCTION</strong> </a>
+        <p class="mt-2 text-gray">For those seeking the finest in services and technology
+          in a downtown business center, without the high cost.</p>
+        <ul class="social-buttons mb-5 mb-lg-0 a">
+          <li><i class="fa fa-twitter mx-2"></i></li>
+          <li><i class="fa fa-facebook mx-2"></i></a></li>
+          <li><i class="fa fa-github mx-2"></i></a></li>
+          <li><i class="fa fa-dribbble mx-2"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-md-3 col-lg-2 mt-4 mt-md-0">
+        <h6 class="font-weight-normal">About Us</h6>
+        <ul class="links-vertical">
+          <li><a class="text-gray" href="https://themesberg.com/blog" target="_blank">Blog</a></li>
+          <li><a class="text-gray" href="https://themesberg.com/about" target="_blank">About Us</a></li>
+          <li><a class="text-gray" href="https://themesberg.com/products" target="_blank">Products</a></li>
+          <li><a class="text-gray" href="https://themesberg.com/contact" target="_blank">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-md-3 col-lg-3 mt-4 mt-md-0">
+        <h6 class="font-weight-normal">Market</h6>
+        <ul class="links-vertical">
+          <li><a class="text-gray" href="#">Sales FAQ</a></li>
+          <li><a class="text-gray" href="#">How to Register</a></li>
+          <li><a class="text-gray" href="#">Sell Goods</a></li>
+          <li><a class="text-gray" href="#">Receive Payment</a></li>
+          <li><a class="text-gray" href="#">Sell Goods</a></li>
+          <li><a class="text-gray" href="#">Receive Payment</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 col-lg-4 col-xl-4 mt-3 mt-lg-0 mt-4 mt-md-0">
+        <h6 class="pria">Subscribe</h6>
+        <p class="text-gray">Join our mailing list. We write rarely, but only the best content.</p>
+        <form>
+          <div class="form-row">
+            <div class="col-12"><input type="email" class="form-control mb-2" placeholder="Email Address" name="email"
+                required=""></div>
+            <div class="col-12"><button type="submit" class="btn btn-secondary shadow-soft btn-block"
+                data-loading-text="Sending"><span>Subscribe</span></button></div>
+          </div>
+        </form><small class="text-gray mt-3 form-text">We’ll never share your details. See our <a class="text-light"
+            href="./html/pages/legal.html">Privacy Policy</a></small>
+      </div>
+    </div>
+    <hr>
+    <div class="copyright text-center mt-5">
+      <script>
+          document.write(new Date().getFullYear())
+      </script>2019<span><a href="https://themesberg.com">Themesberg</a>. All rights reserved.</span></div>
+  </div>
+</footer>
+{{#section 'js'}}
+<script src="/js/productViewSeller.js"></script>
+{{/section}}

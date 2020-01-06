@@ -22,6 +22,14 @@ router.post('/register', async (req, res) => {//chua check recaptcha
     });
   }
 
+  //kiem tra username moi co trung hay khong?
+  const user2 = await userModel.singleByUsername(req.body.username);
+  if (!(user2 === null)){
+    return res.render('vwAccount/vwRegister/register', {
+      err_message: 'That username already exists!'
+    });
+  }
+
   //bat dau tao account de luu xuong database
   const N = 10;
   const hash = bcrypt.hashSync(req.body.raw_password, N);
@@ -86,7 +94,7 @@ router.post('/login', async (req, res) => {
     return res.render('vwAccount/vwLogin/login', {
       err_message: 'Invalid username or password.'
     });
-  console.log(user);
+  //console.log(user);
   //account chua duoc active
   if(user.isActive === 0){
     const data = nodeMailer.sendOTP(user.email);
@@ -107,7 +115,7 @@ router.post('/login', async (req, res) => {
   delete user.password;
   req.session.isAuthenticated = true;
   req.session.authUser = user;
-  console.log(user);
+  req.session.isAdmin = user.Permission === 2;
   const url = req.query.retUrl || '/';
   res.redirect(url); 
 });

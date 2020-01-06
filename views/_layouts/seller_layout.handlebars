@@ -40,7 +40,7 @@
           <img class="rounded-circle" width="35px" height="35px"
             src="https://cdn.trangcongnghe.com/uploads/posts/2017-11/lien-quan-mobile-top-5-nhung-tuong-khac-che-cung-superman-ma-ban-can-biet_1.jpg"
             alt="">
-          <p class="navbar-text ml-2 m-1"> Super man</p>
+          <p class="navbar-text ml-2 m-1">{{authUser.firstname}} {{authUser.lastname}}</p>
         </div>
         <div class="dropdown-menu dropdown-menu-right" style="margin-top:0px" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/user/profile">
@@ -71,7 +71,7 @@
 {{#if showMenuSeller}}
 <div class="container mt-3 mb-5" style="display: block;">
     <div class="row mt-2">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
             <h3 class="title"><i class="fa fa-address-book"></i>Manage Product</h3>
             <hr>
             <div class="sidenav">
@@ -79,7 +79,7 @@
                 <a {{#if sold}} style="color: blue; "{{/if}} href="/seller/sold"><i class="fa fa-usd"></i>Sold products</a>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-8">
             {{{body}}}
         </div>
     </div>
