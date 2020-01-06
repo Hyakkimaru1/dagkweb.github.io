@@ -14,7 +14,8 @@ module.exports = function (app) {
           categoryModel.allCategoryPapa(),
           categoryModel.all()
         ]);
-          
+       
+
         for (const i of cat){
             i.Child = [];
             for (const j of rowsChild)

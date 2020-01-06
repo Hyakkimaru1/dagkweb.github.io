@@ -150,6 +150,12 @@ router.post('/post/:id', function (req, res){
 })
 
 router.get('/product/:id',async (req,res) => {
+  const end = await productModel.top5NearEnd();
+  for( const i of end)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  } 
   if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null)
   {
     throw new Error('Người dùng muốn đăng nhập lậu');
@@ -249,6 +255,7 @@ router.get('/product/:id',async (req,res) => {
     rows: rows[0],
     imgsource,
     Seller,
+    end,
     minium_Bid,
     check_MuaNgay,
     check,
@@ -259,6 +266,7 @@ router.get('/product/:id',async (req,res) => {
 })
 
 router.post('/product/:id', async(req,res)=>{
+ 
   if (req.session.authUser.id_user == undefined || req.session.authUser.id_user == null)
   {
     throw new Error('Người dùng muốn đăng nhập lậu');
@@ -346,7 +354,11 @@ router.get('/my_product', async (req, res) => {
       child.boSung = true;
     }
   }
-
+  for( const i of result)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  } 
   res.render('_seller/sellingProduct',{
     layout:'seller_layout',
     showMenuSeller:true,
@@ -469,6 +481,13 @@ router.get('/sold', async (req, res) => {
       row.nguoiCanDG = row.nguoiThang;
     }
   }
+
+  for( const i of result)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  } 
+
   res.render('_seller/soldProduct',{
     layout:'seller_layout',
     showMenuSeller:true,

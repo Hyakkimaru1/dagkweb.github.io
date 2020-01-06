@@ -8,11 +8,16 @@ const router = express.Router();
 
 
 router.get('/:id', async (req, res) => {
-  const [rows, linkImg] = await Promise.all([
+  const [rows,linkImg,end] = await Promise.all([
     productModel.single(req.params.id),
-    productModel.getLinkImg(req.params.id)
+    productModel.getLinkImg(req.params.id),
+    productModel.top5NearEnd()
   ]);
-
+  for( const i of end)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  } 
   //if product is not providding info product
   if (rows[0].boSungThongTin === 0) {
     //error
@@ -132,6 +137,8 @@ router.get('/:id', async (req, res) => {
     c.timePriced = moment(c.timeCreate).format('HH:mm:ss DD-MM-YYYY').toString();
     c.Money = numeral(c.gia).format('0,0');
   }
+
+
   res.render('_product/product', {
     curUserIsBidder,
     noHadFavourite,
@@ -153,7 +160,8 @@ router.get('/:id', async (req, res) => {
     canSell,
     MainPic,
     maxAuto,
-    isCurMaxAuto
+    isCurMaxAuto,
+    end
   });
 })
 

@@ -413,6 +413,14 @@ $('#examplePrimay').click(function() {
   $('#primary').val( parseInt(valuePrimary));
 })
 
+$('#minBid').click(function() {
+ 
+  const temp = $("#minBid").text();
+  const valuePrimary = +temp;
+
+  $('#primary').val( parseInt(valuePrimary));
+})
+
 $('#exampleAuto').click(function() {
   const temp = $("#exampleAuto").text();
   const valuePrimary = temp.substr(3,temp.length - 3);

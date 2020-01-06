@@ -20,7 +20,7 @@
 <div class="main-contain container">
   
 <div class="middle mt-5">
-  <h4>Advertising</h4>
+  <h4 class=" mb-3">Advertising</h4>
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -46,7 +46,7 @@
 </div>
 
   <div class="a my-4">
-    <h3>Auction closing soon</h3>
+    <h3 class=" mb-3 mt-5">Auction closing soon</h3>
     <div class="list_product row d-flex justify-content-around ">
       {{#each end}}
       <a href="/product/{{id}}" class="shadow col-2 item">
@@ -60,17 +60,17 @@
           New
           </div>
           <div class="card-body">
-            <h5 class="card-title truncate2l">{{ten_SP}}</h5>
+            <h5 class="card-title text-truncate">{{ten_SP}}</h5>
           
             <div class="card-subtitle text-muted mb-2 ">
               <div id="block1">Buy now: </div>
-              <div id="block3">{{gia_MuaNgay}}</div>
+              <div id="block3">${{gia_MuaNgay}}</div>
             </div>
             <div class="card-subtitle text-muted text-truncate">
               <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
               <div class="bidder mt-2">****{{lastname}} </div>
             </div>
-            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
+            <div id="price"><strong> ${{gia_HienTai}}</strong> </div>
             <div class="time_remain align-content-lg-start">
               <strong>Close in </strong>
               <time class="time_close">
@@ -137,7 +137,7 @@
   </div>
 
   <div class="a my-4">
-    <h3>Auction with the most bids</h3>
+    <h3  class=" mb-3 mt-5">Auction with the most bids</h3>
     <div class="list_product row d-flex justify-content-around ">
       {{#each bid}}
       <a href="/product/{{id}}" class="shadow col-2 item">
@@ -155,13 +155,13 @@
           
             <div class="card-subtitle text-muted mb-2 ">
               <div id="block1">Buy now: </div>
-              <div id="block3">{{gia_MuaNgay}}</div>
+              <div id="block3">${{gia_MuaNgay}}</div>
             </div>
             <div class="card-subtitle text-muted text-truncate">
               <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
               <div class="bidder mt-2">****{{lastname}} </div>
             </div>
-            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
+            <div id="price"><strong>${{gia_HienTai}}</strong> </div>
             <div class="time_remain align-content-lg-start">
               <strong>Close in </strong>
               <time class="time_close">
@@ -230,7 +230,7 @@
 
 
     <div class="a my-4">
-    <h3>Auction with the highest price</h3>
+    <h3 class=" mb-3 mt-5">Auction with the highest price</h3>
     <div class="list_product row d-flex justify-content-around ">
       {{#each price}}
       <a href="/product/{{id}}" class="shadow col-2 item">
@@ -248,13 +248,13 @@
           
             <div class="card-subtitle text-muted mb-2 ">
               <div id="block1">Buy now: </div>
-              <div id="block3">{{gia_MuaNgay}}</div>
+              <div id="block3">${{gia_MuaNgay}}</div>
             </div>
             <div class="card-subtitle text-muted text-truncate">
               <div id="block1"><i class="fa fa-user" style="color: rgb(248, 180, 53);" aria-hidden="true"></i> </div>
               <div class="bidder mt-2">****{{lastname}} </div>
             </div>
-            <div id="price"><strong> {{gia_HienTai}}</strong> </div>
+            <div id="price"><strong> ${{gia_HienTai}}</strong> </div>
             <div class="time_remain align-content-lg-start">
               <strong>Close in </strong>
               <time class="time_close">

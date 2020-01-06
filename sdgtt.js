@@ -80,7 +80,22 @@ app.get('/', async (req, res) => {
     
   ]);
 
+  for( const i of end)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  }  
   
+  for( const i of bid)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  }  
+  for( const i of price)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  }  
   
 
   // res.end('hello from expressjs');
