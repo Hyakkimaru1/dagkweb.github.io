@@ -114,7 +114,6 @@ router.get('/', async (req, res) => {
             isCurrentPage: i === +page
         })
     }
-    console.log(rows);
     
     res.render('search', {
         idCat: req.query.selectCat,

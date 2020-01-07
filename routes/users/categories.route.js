@@ -43,13 +43,19 @@ router.get('/:id', async (req, res) => {
       c.isActive = true;
     }
   }
-  console.log(rows);
   for( const i of rows)
   {
     const t = await productModel.get1LinkImg(i.id);
+    console.log(t);
     i.link_anh= t[0].link_anh;
   }
 
+  for( const i of rows)
+  {
+    let t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+    
+  } 
 
   let nPages = Math.floor(total / limit);
   if (total % limit > 0) nPages++;
@@ -62,7 +68,7 @@ router.get('/:id', async (req, res) => {
   }
   let isMax = +page !== nPages;
   let isMin = +page !== 1;
-
+ 
   for (let row of rows) {
     //check đã thích hay chưa
     if (req.session.isAuthenticated === true) {
@@ -78,7 +84,7 @@ router.get('/:id', async (req, res) => {
       row.isLike = false;
     }
   }
-  
+ 
   res.render('_categories/categoriesPapa', {
     lcCategories,
     rows,
@@ -125,7 +131,11 @@ router.get('/:id/:id2', async (req, res) => {
   }
   let isMax = +page !== nPages;
   let isMin = +page !== 1;
-
+  for( const i of rows)
+  {
+    const t = await productModel.get1LinkImg(i.id);
+    i.link_anh= t[0].link_anh;
+  }
   for (let row of rows) {
     //check đã thích hay chưa
     if (req.session.isAuthenticated === true) {

@@ -354,10 +354,19 @@ router.get('/my_product', async (req, res) => {
       child.boSung = true;
     }
   }
+  console.log(result);
   for( const i of result)
   {
-    const t = await productModel.get1LinkImg(i.id);
-    i.link_anh= t[0].link_anh;
+    const t = await productModel.getLinkImg(i.id);
+    if (t.length > 0)
+    {
+      i.link_anh= t[0].link_anh;
+      i.boSung = true;
+    }
+    else {
+      i.boSung = false;
+    }
+    
   } 
   res.render('_seller/sellingProduct',{
     layout:'seller_layout',

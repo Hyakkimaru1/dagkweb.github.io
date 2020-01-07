@@ -94,6 +94,7 @@ $('#btNext').click(function() {
           }).then((result) => {
             if (result.value) {
               Swal.fire(
+                ('Thêm thành công'),
                 $('#nameCate_Product').submit()
               )
             }
